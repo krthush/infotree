@@ -1,0 +1,386 @@
+@charset "utf-8";
+
+/* GENERAL STYLING */
+html {
+	position: relative;
+  	min-height: 100%;
+  	margin:0;
+  	padding:0;
+}	/*Removes side margins and is used as relative for footer placement*/
+body {
+	/*Margin bottom by footer height (change when adjusting footer)*/
+	margin-bottom: 60px;
+	margin-right: 0px;
+	margin-left: 0px;
+	padding-right: 0px;
+	padding-left: 0px;
+}	/*Removes side margins and allows space for footer*/
+.nomargins {
+	margin-right: 0px;
+	margin-left: 0px;
+	padding-right: 0px;
+	padding-left: 0px;
+}	/*Removes side margins & padding*/
+.text {
+	margin-right: 0px;
+	margin-left: 0px;
+	padding-right: 0px;
+	padding-left: 0px;
+	text-align: left;
+}	/*Removes side margins & padding*/
+.rawLink, .rawLink:link, .rawLink:visited, .rawLink:hover, .rawLink:active {
+	text-decoration: none;
+	color: #333;
+}	/*Removes all crappy extras of links*/
+.heading {
+	margin-top: 0px;	
+}	/*Removes space above headings*/
+.headerSpace {
+	padding-top: 30px;
+}	/*Provides a spacer for navbar at top of mobile/tablet */
+.fullWidth {
+	width: 100%;
+}
+span.right {
+	float: right;
+}
+.padLeft {
+	padding-left: 20px;
+}
+
+
+
+
+/* COLOUR ADJUSTMENT */
+.dark {
+	color: #333;
+}
+
+
+
+/* NAVBAR ADJUSTMENT */
+.short {
+	margin-bottom: 10px;
+	margin-top: 0px;
+}
+.tall {
+	margin-bottom: 26px;
+	margin-top: 0px;
+}
+#navRightPad {
+	padding-right: 15px;
+}
+#navLeftPad {
+	padding-left: 30px;
+}
+
+
+
+/* SIDEBAR LINKS & FONT */
+.sidebarButtons, .sidebarButtons:link, .sidebarButtons:visited {
+	background-color: #F5F5F5;
+	color: #686868;
+	width: 100%;
+		/*Set height of box, line height centers text*/
+		height: 40px;
+		line-height:40px;
+	text-align: left;
+	text-decoration: none;
+	display: block;
+	border-radius: 3px;
+	font-size: large;
+	padding-left: 20px;
+}	/*Sidebar button*/	
+.sidebarButtons:hover, .sidebarButtons:active {
+	background-color: #DDDDDD;
+	color: #686868;
+	width: 100%;
+		/*Set height of box, line height centers text*/
+		height: 40px;
+		line-height:40px;
+	text-align: left;
+	text-decoration: none;
+	display: block;
+	border-radius: 3px;
+	font-size: large;
+	padding-left: 20px;
+}	/*Sidebar button on hover*/
+@media only screen and (min-width: 992px) {
+	@media only screen and (max-width: 1600px) {
+	    #treeButtonsTop1 {
+	        display: none;
+	    }
+	}
+}
+@media only screen and (min-width: 1600px) {
+    #treeButtonsBottom1 {
+        display: none;
+    }
+}
+@media only screen and (max-width: 992px) {
+	    #treeButtonsBottom1 {
+        display: none;
+    }
+}
+@media only screen and (min-width: 992px) {
+	@media only screen and (max-width: 1600px) {
+	    #treeButtonsTop2 {
+	        display: none;
+	    }
+	}
+}
+@media only screen and (min-width: 1600px) {
+    #treeButtonsBottom2 {
+        display: none;
+    }
+}
+@media only screen and (max-width: 992px) {
+	    #treeButtonsBottom2 {
+        display: none;
+    }
+}
+#sharedTrees {
+	display: none;
+}
+#showLessContainer1 {
+	display: none;
+}
+#showLessContainer2 {
+	display: none;
+}
+
+
+
+/* MAIN CONTENT */
+.midSection {
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-left: 0px;
+	padding-right: 0px;
+	padding-left: 0px;
+}	/*Removes side margins for middle content*/
+.midHeader {
+	width: 100%;
+	background-color: #F8F8F8;
+	height: 42px; /*Set height of box*/
+	box-sizing: border-box;
+	border-radius: 3px;
+	border-bottom: 1px solid #DDDDDD;
+	border-right: 1px solid #DDDDDD;
+	border-left: 1px solid #DDDDDD;
+	position:relative;
+}	/*Header tab for middle section*/
+.midHeaderText {
+	display:table-cell;
+	vertical-align:middle;
+	color: #686868;
+	font-size: large;
+}
+
+/* What is this .... delete? */
+.midHeaderSpace {
+	/*Set height of box, line height centers text*/
+	height: 42px;
+	line-height: 42px;
+}
+
+.midHeader.stack, .midHeaderSpace.stack {
+	border-top: 1px solid #DDDDDD;
+	margin-top: 0px;
+	margin-bottom: 4px;
+}
+.topStack {
+	margin-top: 15px;
+}
+.midHeader.topStack, .midHeaderSpace.topStack {
+	border-top: 1px solid #DDDDDD;
+	margin-top: 15px;
+	margin-bottom: 0px;
+}
+.midContainer {
+	width: 100%;
+	min-height: 160px;
+	border: 1px solid #DDDDDD;
+	border-radius: 3px;
+	box-sizing: border-box;
+	position:relative;
+}
+.noHeight.midContainer {
+	min-height:0px;
+}
+.midContainerHeader {
+	display:table;
+	width: 100%;
+	background-color: #F8F8F8;
+	height: 42px; /*Set height of box*/
+	box-sizing: border-box;
+	border-radius: 3px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-bottom: 1px solid #DDDDDD;
+}
+.midContainerHeader.link:hover, .midContainerHeader.link:active {
+	background-color: #DDDDDD;
+}
+
+.midContainerHeaderText {
+	display:table-cell;
+	vertical-align:middle;
+	color: #686868;
+	font-size: large;
+}
+.midContainerHeaderButtonContainer {
+	position: absolute;
+	height: 42px; /*Set height of box*/
+	line-height: 42px; /*Set height of box*/
+	right:0;
+}
+.midHeaderButton {
+	display: inline-block;
+  	vertical-align: middle;
+	line-height: normal;
+	padding-right:10px;
+}
+.midContainer.stack {
+	margin-top: 15px;
+	margin-bottom: 0px;
+}
+.list {
+	list-style-type: none;
+	text-indent: -30px;
+}
+.midContainerContent {
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.midContainerContentSpace {
+	margin-top: 0px;
+	margin-bottom: 4px;	
+}
+.edit.midContainerContent {
+	margin-bottom:50px;	
+}
+.noEdit.midContainerContent {
+	margin-bottom:15px;
+}
+.button.midContainerContent {
+	margin-bottom:40px;
+}
+.editContent {
+	position: absolute;
+  	bottom:0;
+	right:0;
+	margin-right: 15px;
+	margin-bottom: 5px;
+}
+.editContentButton {
+	display:inline-block;
+	padding-left:10px;
+	padding-right:10px;
+}
+.appear.midContainerContent {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	margin-bottom: 36px;
+}
+.right.glyphicon.glyphicon-edit {
+	line-height: 40px;
+	cursor: pointer;
+}	/* Centre Cog */
+.right.dropdown {
+	display:table-cell;
+	align-items: right;
+	width: 10px;
+	vertical-align:middle;
+}
+
+
+/* TREE */
+#treeIcon {
+	margin-left: 5px;
+    font-size: 21px;
+}
+#treeDesc {
+	text-align:center;
+}
+
+
+/* BOOTSTRAP CHANGES */
+.tooltip-inner {
+    text-align: center;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    margin-bottom: 6px;
+    background-color: #505050;
+    font-size: 14px;
+}
+
+
+
+/* PAGE SPECIFIC */
+.tall.QuestionTextArea {
+	min-height: 160px;
+	padding: 6px 12px;	
+}
+.QuestionButtons {
+	position: absolute;
+  	bottom:0;
+	right:0;
+	margin-right: 15px;
+	margin-bottom: 5px;	
+}
+
+
+
+
+/* CAROUSEL */
+#indexCarousel {
+	margin-right: 0px;
+	margin-left: 0px;
+	padding-right: 0px;
+	padding-left: 0px;
+}	/*Removes side margins for carousel*/
+.carousel-control.left, .carousel-control.right {
+    background-image: none;
+}	/*Removes standard bootstrap gradient*/
+.carouselSize {
+
+}	/*Carousel Size*/
+.carouselImage {
+	margin-left: auto;
+	margin-right: auto;
+}	/*Carousel Image*/
+
+
+
+/* FOOTER */
+footer {
+	position: absolute;
+	bottom: 0;
+	margin-right: 0px;
+	margin-left: 0px;
+	padding-right: 0px;
+	padding-left: 0px;
+	width:100%;
+	/* Set the fixed height of the footer here */
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #383838;
+	color: #F5F5F5;
+}	/*Postions a sticky footer, removes side margins, adjusts background colour, as well as width/height*/
+.right.footer {
+	float: right;
+	padding-right: 20px;
+}	/*Positions footer content to the right, adjusts font*/
+.left.footer {
+	float: left;
+	padding-left: 20px;
+}	/*Positions footer content to the right, adjusts font*/
+.footerLegal {
+	color: #F5F5F5;
+	text-decoration: underline;
+}

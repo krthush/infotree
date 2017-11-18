@@ -1,0 +1,436 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use App\Branch;
+use App\Tree;
+use App\User;
+use App\Leaf;
+
+class TreeController extends Controller
+{
+    public function __construct()
+    {
+        $this->middleware(['auth','active','forbid-banned-user']);
+    }
+
+	/**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+
+    public function mytree() {
+
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
+
+        $myTree = Tree::where('user_id',$userID)->where('favourite',true)->first();
+        $uniTree = Tree::where('university',true)->where('shared',true)->where('favourite',true)->first();
+
+        if ($myTree) {
+            return redirect(route('tree', $myTree));
+        } elseif ($uniTree) {
+            return redirect(route('tree', $uniTree))->withErrors(['You have no favourite tree, please create or select one!']);;
+        } else {
+            return redirect(route('welcome'))->withErrors(['You have no favourite tree, please create or select one!']);
+        }
+
+    }
+
+    public function all() {
+
+        $allSharedTrees = Tree::where('shared',true)->orderBy('likes','desc')->get();
+
+        return view(
+            'trees',
+            compact(
+                'tree',
+                'allSharedTrees'
+            )
+        );
+
+    }
+
+    public function show(Tree $tree) {     
+
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
+
+        $branches = Branch::where('tree_id',$tree->id)->where('parent_id',0)->get();
+
+        if ($tree->description == '' ) {
+            $empty = 1;
+        } else {
+            $empty = 0;
+        }
+
+    	if ($tree->user_id === $userID) {
+
+    		$edit = 1;
+    		$shared = $tree->shared;
+            $favourite = $tree->favourite;
+
+    		return view(
+	            'tree.branches',
+	            compact(
+	                'tree',
+	                'branches',
+                    'empty',
+	            	'edit',
+	            	'shared',
+                    'favourite'
+	            )
+	        );
+
+        } elseif ($user->hasRole('admin')) {
+
+            $edit = 1;
+            $shared = $tree->shared;
+            $favourite = $tree->favourite;
+
+            return view(
+                'tree.branches',
+                compact(
+                    'tree',
+                    'branches',
+                    'empty',
+                    'edit',
+                    'shared',
+                    'favourite'
+                )
+            );
+
+        } elseif ($tree->shared === 1) {
+
+        	$edit = 0;
+        	$shared = 1;
+
+        	return view(
+	            'tree.branches',
+	            compact(
+	                'tree',
+	                'branches',
+                    'empty',
+	            	'edit',
+	            	'shared'
+	            )
+	        );
+            
+        } else {
+
+            return back()->withErrors(['This tree is not yours to view!']);
+
+        }
+    }
+
+    public function clone(Tree $tree) {
+
+        $this->validate(request(), [
+                'title' => 'required',
+        ]);
+
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
+
+        if ($user->hasRole('admin')) {
+            $university = true;
+        } else {
+            $university = false;
+        }
+
+        $newTree = Tree::create([
+
+            'title' => request('title'),
+
+            'user_id' => auth()->user()->getAuthIdentifier(),
+
+            'university' => $university
+
+        ]);
+
+        $treeBranches = Branch::where('tree_id',$tree->id)->get();
+        $treeLeaves = Leaf::where('tree_id', $tree->id)->get();
+
+        foreach ($treeBranches as $branch) {
+            $newBranch = $branch->replicate();
+            $newBranch->user_id = $userID;
+            $newBranch->tree_id = $newTree->id;
+            $newBranch->parent_id = $branch->id;
+            $newBranch->parent_orig_id = $branch->parent_id;
+            $newBranch->save();
+
+        }            
+
+        foreach ($treeLeaves as $leaf) {
+            $newLeaf = $leaf->replicate();
+            $newLeaf->user_id = $userID;
+            $newLeaf->tree_id = $newTree->id;
+            $newLeaf->save();
+        }
+
+        $newLeaves = Leaf::where('tree_id',$newTree->id)->get();
+
+        $newBranches = Branch::where('tree_id',$newTree->id)->orderBy('id','desc')->get();
+
+        foreach ($newLeaves as $newLeaf) {
+
+            $parent = Branch::where('tree_id',$newTree->id)->where('parent_id','=',$newLeaf->parent_id)->first();
+            if ($parent) {
+                $newLeaf->parent_id = $parent->id;
+                $newLeaf->save();
+            }
+
+        }
+
+        foreach ($newBranches as $newBranch) {
+
+
+            $parent = Branch::where('tree_id',$newTree->id)->where('parent_id','=',$newBranch->parent_orig_id)->first();
+
+            if ($parent) {
+                $newBranch->parent_id = $parent->id;
+                $newBranch->save();
+            }
+        }
+
+        Branch::where('tree_id',$newTree->id)->where('parent_orig_id','=',0)->update([
+
+            'parent_id' => 0
+
+        ]);
+
+        Branch::where('tree_id',$newTree->id)->update([
+
+            'parent_orig_id' => 0
+
+        ]);
+
+
+        $insertedId = $newTree->id;
+
+        if ($university === true) {
+            return redirect(route('tree', $insertedId))->with('success', 'New cloned uni tree added successfully.');
+        } else {
+            return redirect(route('tree', $insertedId))->with('success', 'New cloned tree added successfully.');
+        }
+            
+    }    
+
+	public function store(Request $request) {
+
+        $this->validate(request(), [
+                'title' => 'required',
+        ]);
+
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
+
+        if(request('submit')) {
+
+            return redirect(route('welcome'))->with('success','Submit Test success');
+
+        } else {
+
+            if ($user->hasRole('admin')) {
+
+    	        $tree = Tree::create([
+
+    	            'title' => request('title'),
+
+    	            'user_id' => auth()->user()->getAuthIdentifier(),
+
+                    'university' => true
+
+    	        ]);
+
+    	        $insertedId = $tree->id;
+
+    	        return redirect(route('tree', $insertedId))->with('success', 'New Uni Tree added successfully.');
+                
+            } else {
+
+    	        $tree = Tree::create([
+
+    	            'title' => request('title'),
+
+    	            'user_id' => auth()->user()->getAuthIdentifier()
+
+    	        ]);
+
+    	        $insertedId = $tree->id;
+
+    	        return redirect(route('tree', $insertedId))->with('success', 'New Tree added successfully.');
+
+            }
+
+        }
+    }
+
+    public function destroy(Request $request) {
+
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
+
+        $this->validate(request(), [
+            'id' => 'required',
+        ]);
+
+        $tree = Tree::findOrFail(request()->id);
+        $tree_id = request()->id;
+
+
+        if ($tree->user_id === $userID) {
+
+            $branches = Branch::where('tree_id',$tree_id)->get();
+
+            foreach ($branches as $branch) {
+                $branch->leaves()->delete();
+            }
+
+            Branch::where('tree_id',$tree_id)->delete();
+            Leaf::where('tree_id',$tree_id)->delete();
+
+            $tree->delete();
+
+            return redirect(route('welcome'))->with('success', 'Tree has been deleted');
+
+        } else {
+
+            return back()->withErrors([
+                'You can only delete your own trees.'
+            ]);
+
+        }
+
+    }
+
+    public function favourite(Tree $tree) {
+
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
+
+        $this->validate(request(), [
+            'id' => 'required',
+        ]);
+
+        if ($tree->user_id === $userID) {
+
+            Tree::where('user_id',$userID)->update([
+
+                'favourite' => false
+
+            ]);
+
+            Tree::where('id',request('id'))->update([
+
+                'favourite' => true
+
+            ]);
+
+            return back()->with('success', 'Tree has been favourited.');
+
+        } else {
+            return back()->withErrors([
+                'You can only favourite your own tree.',
+                'Please create a new clone tree and favourite it instead!'
+            ]);
+        }
+
+    }
+
+    public function share(Tree $tree) {
+
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
+
+        $this->validate(request(), [
+            'id' => 'required',
+        ]);
+
+
+        if ($tree->user_id === $userID) {
+
+            Tree::where('id',request('id'))->update([
+
+                'shared' => true
+
+            ]);
+
+            Branch::where('tree_id',$tree->id)->update([
+
+                'shared' => true
+
+            ]);
+
+            return back()->with('success', 'Tree has been shared.');
+
+        } else {
+
+            return back()->withErrors([
+                'You can only share your own trees.'
+            ]);
+
+        }
+
+    }    
+
+    public function desc(Tree $tree) {
+
+        $this->validate(request(), [
+                'description' => 'max:100'
+        ]);
+
+        $userID = auth()->user()->getAuthIdentifier();
+
+        if ($tree->user_id === $userID) {
+            
+            Tree::where('id',$tree->id)->update([
+
+                'description' => request('description'),
+
+            ]);
+
+            return back()->with('success', 'Description edited successfully.');
+
+        } else {
+
+            return redirect(route('home'))->withErrors(['This tree is not yours to edit!']);
+
+        }
+
+    }
+
+    public function updateName(Tree $tree) {
+
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
+
+        $this->validate(request(), [
+                'title' => 'required',
+                'id' => 'required'
+        ]);
+
+        if ($tree->user_id === $userID) {
+
+            Tree::where('id', request()->id)->update([
+
+                'title' => request('title'),
+
+            ]);
+
+            return back()->with('success', 'Name edited successfully.');
+
+        } else {
+            return back()->withErrors([
+                'You can only edit your own branches and tree.',
+                'Please create a new clone tree and do your edits there!'
+            ]);
+        }
+
+    }
+
+}
