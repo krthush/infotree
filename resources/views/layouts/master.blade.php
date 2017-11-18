@@ -4,6 +4,7 @@
   @include ('layouts.head')
 
 <body>
+<!--     <img src="{{url('/images/tree.jpg')}}"> -->
 <!--Main responsive container for body/whole website-->  
 <div class="container-fluid nomargins">
 
