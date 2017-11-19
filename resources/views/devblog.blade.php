@@ -54,6 +54,8 @@
 
 			<li>Add editing overlay for leaf page (just one button on top left "edit") then all "add"s appear and Xs appear for deletion, also allow for reordering of list (maybe use sortable?) - this will also lead to CLEAN UP of multiple pages</li>
 
+			<li>Optimization required, https://developers.google.com/speed/pagespeed/insights/</li>
+
 			<li>CSS needs CLEAN UP, needs a lot more functionality/better naming system</li>
 
 			<li>Use AJAX everywhere (e.g. start with favourite button, editing overlays, e.t.c) to make whole website more fluids - fewer pages everything done in sync</li>
