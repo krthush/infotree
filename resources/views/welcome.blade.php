@@ -23,71 +23,94 @@
 
 <!-- This homepage needs major improvement! Use tree idea!! -->
 
+@if ($message = Session::get('success'))
+    <div class="alert alert-success alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button> 
+            <strong>{{ $message }}</strong>
+    </div>
+@endif
 
-<!--Welcome content-->
-<div class="midContainer">
-  <div class="midContainerHeader">
-    <div class="midContainerHeaderText">Welcome to infotree!</div>
-  </div>
-  <div class="noEdit midContainerContent">
-      <div class="welcome">
-        <p class="text">
-          Infotree is currently under production! Many parts of the website do not function properly yet and currently just serve as a front-end mockup.
-        </p>
-        @if (Auth::guest())
-          <p class="text">
-            Please register with your university account email and login so that you can start to use infotree!
-          </p>   
-        @endif
-      </div>        
-      <!--Row for carousel column layout-->
-      <div class="row nomargins">
-      <!-- width column to CENTRE carousel  <div class="col-md-0"></div>    -->     
-          <!--8 width column for carousel-->
-          <div class="col-md-12">
-              <!--Main carousel-->
-              <!-- Carousel only works with images size 1920*1080px -->
-              <div id="indexCarousel">
-                  <div id="carousel1" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                      <li data-target="#carousel1" data-slide-to="0" class="active"></li>
-                      <li data-target="#carousel1" data-slide-to="1"></li>
-                      <li data-target="#carousel1" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner carouselSize" role="listbox">
-                      <div class="item active">
-                        <a href="https://youtu.be/tlTKTTt47WE?list=LLa9afDVBUlyYZecvTNYNRmg" target="_blank">
-                          <img src="images/1.jpg" alt="First slide image" class="carouselImage" id="test">
-                            <div class="carousel-caption">
-                              <h3>Is Reality Real? The Simulation Argument</h3>
-                              <p>Youtube video by Kurzgesagt</p>
-                            </div>
-                        </a>
-                      </div>
-                      <div class="item">                        
-                        <a href="https://youtu.be/uA9mxq3gneE?list=LLa9afDVBUlyYZecvTNYNRmg" target="_blank">
-                          <img src="images/2.jpg" alt="Second slide image" class="carouselImage">
-                            <div class="carousel-caption">
-                              <h3>The Singularity and Friendly AI?</h3>
-                              <p>Youtube video by Computerphile</p>
-                            </div>
-                        </a>
-                      </div>
-                      <div class="item">                          
-                        <a href="https://waitbutwhy.com/2017/04/neuralink.html" target="_blank">
-                          <img src="images/3.jpg" alt="Third slide image" class="carouselImage">
-                            <div class="carousel-caption">
-                              <h3 class="dark">Neuralink and the Brain’s Magical Future</h3>
-                              <p>Blog post by waitbutwhy</p>
-                            </div>
-                        </a>
-                      </div>
+@if ($errors->any())
+    <div class="alert alert-danger alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button> 
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li><strong>{{ $error }}</strong></li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">Welcome!</div>
+
+                <div class="panel-body">
+                    <div class="welcome">
+                      <p class="text">
+                        The closed alpha version of the website is up! You can now start personalizing your study space and share it with each other.
+                      </p>
+                      @if (Auth::guest())
+                        <p class="text">
+                          Please login or register so that you can start to use infotree!
+                        </p>   
+                      @endif
                     </div>
-                    <a class="left carousel-control" href="#carousel1" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span class="sr-only">Previous</span></a><a class="right carousel-control" href="#carousel1" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><span class="sr-only">Next</span></a>
-                  </div>
-              </div>                
-          </div>            
-      </div>
-  </div>
+                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                        {{ csrf_field() }}
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" class="col-md-4 control-label">Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">
+                                    Login
+                                </button>
+
+                                <a class="btn btn-link" href="{{ route('register') }}">
+                                    Click here to register!
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+<script>
+    $(function () {
+      document.body.style.background = "url('images/tree.png') no-repeat right top";
+    });
+</script>
 @endsection
