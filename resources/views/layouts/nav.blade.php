@@ -26,7 +26,7 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="topFixedNavbar2">
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="">My Tree</a></li>
+      <li><a href="{{ route('mytree') }}">My Tree</a></li>
       <li><a href="{{ route('devblog') }}">Dev Blog</a></li>
 <!--       <li><a href="/question">Question</a></li>
       <li><a href="/answer">Answer</a></li> -->
