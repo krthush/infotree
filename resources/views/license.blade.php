@@ -130,7 +130,9 @@
 			<br>
 			<br>
 			Laracasts - main tool for learn laravel framework.
+			<br>
 			W3Cschools - used for learning variety of web dev languages, used/edited some code snippets and examples.
+			<br>
 			<a target="_blank" href="https://www.Vecteezy.com/">Vector Graphics by Vecteezy!</a>
     </div>
 </div>

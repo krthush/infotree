@@ -45,7 +45,7 @@
                     <br>
                     <br>
 
-                    Select "My Tree" to begin and view your Tree. Initially it will be a copy of the university tree, but you can edit and change it however you like. 
+                    Select the university tree relevant to you to begin. Initially you will not be able to edit it, but you can create trees based on it and then edit all you want! 
 
                     <br>
                     <br>
@@ -56,6 +56,11 @@
                     <br>
 
                     When you are ready you can share your tree so that your classmates can see your tree's structure and hopefully help them learn faster!
+
+                    <br>
+                    <br>
+
+                    <a href="password/reset">Click here!</a> to reset your password.
 
                 </div>
             </div>

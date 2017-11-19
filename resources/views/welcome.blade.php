@@ -95,8 +95,8 @@
                                     Login
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('register') }}">
-                                    Click here to register!
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    Click here to reset your password!
                                 </a>
                             </div>
                         </div>

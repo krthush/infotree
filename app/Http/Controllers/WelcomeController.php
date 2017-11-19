@@ -10,6 +10,14 @@ class WelcomeController extends Controller
 {
     public function welcome()
     {
-        return view('welcome');
+        if (auth()->check()) {
+
+            return redirect(route('home'));
+
+        } else {
+
+            return view('welcome');
+            
+        }
     }
 }

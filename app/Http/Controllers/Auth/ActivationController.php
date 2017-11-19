@@ -35,56 +35,56 @@ class ActivationController extends Controller
                 auth()->loginUsingId($user->id);
 
                 // create first "My Tree" for user
-                if ($user->hasRole('student')) {
+                // if ($user->hasRole('student')) {
 
-                    $user = auth()->user();
-                    $userID = $user->getAuthIdentifier();
-                    $tree = Tree::where('university',true)->where('shared',true)->where('favourite',true)->first();
+                //     $user = auth()->user();
+                //     $userID = $user->getAuthIdentifier();
+                //     $tree = Tree::where('university',true)->where('shared',true)->where('favourite',true)->first();
 
-                    $newTree = Tree::create([
+                //     $newTree = Tree::create([
 
-                        'title' => 'My Tree',
+                //         'title' => 'My Tree',
 
-                        'user_id' => auth()->user()->getAuthIdentifier(),
+                //         'user_id' => auth()->user()->getAuthIdentifier(),
 
-                        'favourite' => true
+                //         'favourite' => true
 
-                    ]);
+                //     ]);
 
-                    $treeBranches = Branch::where('tree_id',$tree->id)->get();
+                //     $treeBranches = Branch::where('tree_id',$tree->id)->get();
 
-                    foreach ($treeBranches as $branch) {
-                        $newBranch = $branch->replicate();
-                        $newBranch->user_id = $userID;
-                        $newBranch->tree_id = $newTree->id;
-                        $newBranch->parent_id = $branch->id;
-                        $newBranch->parent_orig_id = $branch->parent_id;
-                        $newBranch->save();
-                    }            
+                //     foreach ($treeBranches as $branch) {
+                //         $newBranch = $branch->replicate();
+                //         $newBranch->user_id = $userID;
+                //         $newBranch->tree_id = $newTree->id;
+                //         $newBranch->parent_id = $branch->id;
+                //         $newBranch->parent_orig_id = $branch->parent_id;
+                //         $newBranch->save();
+                //     }            
 
-                    $newBranches = Branch::where('tree_id',$newTree->id)->orderBy('id','desc')->get();
+                //     $newBranches = Branch::where('tree_id',$newTree->id)->orderBy('id','desc')->get();
 
-                    foreach ($newBranches as $newBranch) {
-                        $parent = Branch::where('tree_id',$newTree->id)->where('parent_id','=',$newBranch->parent_orig_id)->first();
-                        if ($parent) {
-                            $newBranch->parent_id = $parent->id;
-                            $newBranch->save();
-                        }
-                    }
+                //     foreach ($newBranches as $newBranch) {
+                //         $parent = Branch::where('tree_id',$newTree->id)->where('parent_id','=',$newBranch->parent_orig_id)->first();
+                //         if ($parent) {
+                //             $newBranch->parent_id = $parent->id;
+                //             $newBranch->save();
+                //         }
+                //     }
 
-                    Branch::where('tree_id',$newTree->id)->where('parent_orig_id','=',0)->update([
+                //     Branch::where('tree_id',$newTree->id)->where('parent_orig_id','=',0)->update([
 
-                        'parent_id' => 0
+                //         'parent_id' => 0
 
-                    ]);
+                //     ]);
 
-                    Branch::where('tree_id',$newTree->id)->update([
+                //     Branch::where('tree_id',$newTree->id)->update([
 
-                        'parent_orig_id' => null
+                //         'parent_orig_id' => null
 
-                    ]);
+                //     ]);
                     
-                }
+                // }
 
                 // redirect to home
                 return redirect('/home');
