@@ -41,12 +41,14 @@
     </div>
 @endif
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Welcome!</div>
 
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="midContainerHeader">
+                    <div class="midContainerHeaderText">
+                        Welcome! 
+                    </div>
+                </div>
                 <div class="panel-body">
                     <div class="welcome">
                       <p class="text">
@@ -104,8 +106,6 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
 
 <script>

@@ -18,7 +18,7 @@
   @include('layouts.leftSidebar')    
 
     <!-- Content for page-->
-    <div class="col-md-8">    
+    <div class="vertical-center col-md-8">    
 
       @yield('content')
 

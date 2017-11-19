@@ -47,11 +47,6 @@ span.right {
 .padLeft {
 	padding-left: 20px;
 }
-#test{
-    display: table-cell;
-    vertical-align: middle;
-}
-
 
 
 
@@ -301,6 +296,14 @@ span.right {
 	width: 10px;
 	vertical-align:middle;
 }
+.vertical-center {
+  min-height: 80%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 80vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
 
 
 /* TREE */

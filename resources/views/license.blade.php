@@ -134,6 +134,9 @@
 			W3Cschools - used for learning variety of web dev languages, used/edited some code snippets and examples.
 			<br>
 			<a target="_blank" href="https://www.Vecteezy.com/">Vector Graphics by Vecteezy!</a>
+			<br>
+			<br>
+			Also massive thanks to all my friends and family who have helped me along with this project!
     </div>
 </div>
 
