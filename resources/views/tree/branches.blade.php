@@ -170,7 +170,7 @@
     </div>
 </div>
 
-<div class="midHeader hidden-md hidden-lg hidden-sm">
+<div class="topStack midHeader hidden-md hidden-lg hidden-sm">
     <div class="midContainerHeader">
         <div class="midContainerHeaderText">
 
