@@ -38,7 +38,7 @@
 
         <ul>
 
-        	<li>Add "edit linked" branches (e.g. users can link certain branches to university so that when they are updated, only they get updated but they can edit other branches</li>        	
+        	<li>Add "edit linked" branches (e.g. users can link certain branches to university so that when they are updated, only they get updated but they can edit other branches</li>      	
 
 			<li>Add a scrolling list of updates below university trees to let user know what changes are being made to university trees.</li>
 
@@ -78,7 +78,11 @@
 			
 			<li>Move 'interesting' video carousel elsewhere</li>
 
+			<li>Social media sharing button to generate links</li>
+
 			<li>Fix ordering for draggable branches</li>	
+
+			<li>Add better labels for each page (on browser tab heading)</li>
 			
 			<li>Fix left sidebar accordian animations (use a plugin?)</li>
 

@@ -20,6 +20,12 @@
     </div>
 @endif
 
+<div class="alert alert-danger alert-block">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>        
+        N.B. Infotree currently relies on it's admins to keep university tree's up to date, as such some information MAY BE MISSING. Please do not only use infotree as your sole VLE, check blackboard as well.
+    </strong>
+</div>
 
 <div class="alert alert-danger alert-block">
     <button type="button" class="close" data-dismiss="alert">×</button>
