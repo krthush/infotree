@@ -54,7 +54,7 @@
 
 			<li>Add editing overlay for leaf page (just one button on top left "edit") then all "add"s appear and Xs appear for deletion, also allow for reordering of list (maybe use sortable?) - this will also lead to CLEAN UP of multiple pages</li>
 
-			<li>Optimization required, https://developers.google.com/speed/pagespeed/insights/</li>
+			<li>Optimization required, <a href="https://developers.google.com/speed/pagespeed/insights/">google insights</a></li>
 
 			<li>CSS needs CLEAN UP, needs a lot more functionality/better naming system</li>
 
@@ -64,7 +64,7 @@
 
 			<li>Check into safety of using Read-Only inputs, CRSF token should protect against people forging post requests with different inputs</li>
 
-        	<li>Add Terms and Conditions + NDA type modal when users login, make sure to mention that infotree is not liable for any damages incurred by wrong information being supplied to user + some spiel about infotree being a unique idea not to be stolen, try... https://www.nibusinessinfo.co.uk/content/business-websites-legal-requirements, https://www.rocketlawyer.co.uk/pricing.rl</li>
+        	<li>Add Terms and Conditions + NDA type modal when users login, make sure to mention that infotree is not liable for any damages incurred by wrong information being supplied to user + some spiel about infotree being a unique idea not to be stolen, try... <a href="https://www.nibusinessinfo.co.uk/content/business-websites-legal-requirements">nibusinessinfo</a>, <a href="https://www.rocketlawyer.co.uk/pricing.rl<">rocketlawyer</a></li>
 
 		</ul>		
 
@@ -91,7 +91,7 @@
 
 			<li>The accordian on left gets kinda screwed up if spammed on</li>
 
-			<li>Need to fix div height issue on leaves page, see:https://css-tricks.com/fluid-width-equal-height-columns/</li>
+			<li>Need to fix div height issue on leaves page, see <a href="https://css-tricks.com/fluid-width-equal-height-columns/">css-tricks</a></li>
 
 			<li>Enterering is prevented on registration form so that users are forced to view modal with terms and conditions</li>
 
@@ -119,7 +119,7 @@
 
 			<li>Deletion of tree, deletes branches, but doesn't delete leaves of said branches</li>
 
-			<li>Tree + Branch + Leaf controller needs CLEAN UP - repeated code, especially from repeatedly passing variables... try https://stackoverflow.com/questions/28608527/how-to-pass-data-to-all-views-in-laravel-5 and https://laracasts.com/series/laravel-5-fundamentals/episodes/25</li>
+			<li>Tree + Branch + Leaf controller needs CLEAN UP - repeated code, especially from repeatedly passing variables... try <a href="https://stackoverflow.com/questions/28608527/how-to-pass-data-to-all-views-in-laravel-5">stackoverflow</a> and <a href="https://laracasts.com/series/laravel-5-fundamentals/episodes/25">laracasts</a></li>
 
 			<li>Add voting system for shared branches/leaves and heirachy system to show more popular branches/leaves higher</li>
 

@@ -10,9 +10,7 @@
 
 			Framework:
 			<br>
-			Laravel ("The Laravel framework is open-sourced software licensed under the MIT license.")
-			<br>
-			http://laravel-guide.readthedocs.io/en/latest/license/
+			<a href="http://laravel-guide.readthedocs.io/en/latest/license/">Laravel</a> ("The Laravel framework is open-sourced software licensed under the MIT license.")
 			<br>
 			The MIT License (MIT) Copyright © Taylor Otwell
 			<br>
@@ -23,9 +21,7 @@
 			THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			<br>
 			<br>
-			Bootstrap
-			<br>
-			https://v4-alpha.getbootstrap.com/about/license/
+			<a href="https://v4-alpha.getbootstrap.com/about/license/">Bootstrap</a>
 			<br>
 			The MIT License (MIT)
 			<br>
@@ -50,11 +46,9 @@
 			THE SOFTWARE.
 			<br>
 			<br>
-			jstree
+			<a href="https://www.jstree.com/">jstree</a>
 			<br>
-			https://www.jstree.com/
-			<br>
-			https://github.com/vakata/jstree/blob/master/LICENSE-MIT
+			<a href="https://github.com/vakata/jstree/blob/master/LICENSE-MIT">jstree github</a>
 			<br>
 			Copyright (c) 2014 Ivan Bozhanov
 			<br>
@@ -82,9 +76,9 @@
 			<br>
 			spatie/laravel-permission
 			<br>
-			https://spatie.be/en/opensource/laravel
+			<a href="https://spatie.be/en/opensource/laravel">spatie</a>
 			<br>
-			https://github.com/spatie/laravel-permission/blob/master/LICENSE.md
+			<a href="https://github.com/spatie/laravel-permission/blob/master/LICENSE.md">github</a>
 			<br>
 			The MIT License (MIT)
 			<br>
@@ -99,7 +93,7 @@
 			<br>
 			Bannable
 			<br>
-			https://github.com/cybercog/laravel-ban/blob/master/LICENSE
+			<a href="https://github.com/cybercog/laravel-ban/blob/master/LICENSE">github</a>
 			<br>
 			MIT License
 			<br>
@@ -126,7 +120,7 @@
 			<br>
 			nasrulhazim's activation code
 			<br>
-			https://gist.github.com/nasrulhazim/fc363bdf9044f08a2a39556648f1fdce
+			<a href="https://gist.github.com/nasrulhazim/fc363bdf9044f08a2a39556648f1fdce">github</a>
 			<br>
 			<br>
 			Laracasts - main tool for learn laravel framework.
