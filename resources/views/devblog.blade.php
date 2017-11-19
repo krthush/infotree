@@ -30,9 +30,7 @@
 
         <ul>
 
-        	<li>Include usernames in list of shared Trees</li>
-
-        	<li>Upload App onto hosting service... See if it can be managed with current siteground services. Unfortunatly currently it is likely I will require another hosting service -> try laravel forge?</li>
+        	<li>Add SSL and Domain Name to site</li>
 
 		</ul>
 
@@ -71,6 +69,9 @@
 		<h3>MINOR TASKS:</h3>
 
 		<ul>
+
+			<li>Make errors on forms consist, atm double errors shown - some in form and some as closeable box</li>
+
 			<li>Update front page - use tree idea - simple vector of tree overarching login page</li>
 			
 			<li>Move 'interesting' video carousel elsewhere</li>
@@ -86,8 +87,6 @@
 		<h3>KNOWN BUGS:</h3>
 		<ul>
 
-			<li>Creating new lines/line breaks when edit facts does not work </li>
-
 			<li>The accordian on left gets kinda screwed up if spammed on</li>
 
 			<li>Need to fix div height issue on leaves page, see:https://css-tricks.com/fluid-width-equal-height-columns/</li>
@@ -97,6 +96,12 @@
 		</ul>
 		<h3>FINISHED TASKS:</h3>
 		<ul>
+
+        	<li>Upload App onto hosting service... See if it can be managed with current siteground services. Unfortunatly currently it is likely I will require another hosting service -> try laravel forge?</li>
+
+        	<li>Include usernames in list of shared Trees</li>
+
+			<li>Fixed new lines/line breaks when edit facts does not work </li>
 
 			<li>Added renaming functionality for Trees</li>
 

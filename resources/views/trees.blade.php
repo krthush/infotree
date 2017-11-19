@@ -13,7 +13,7 @@
             @foreach($allSharedTrees as $sharedTree)
             <a class="rawLink fullWidth" href="/tree/{{ $sharedTree->id }}">
                 <li class="list-group-item justify-content-between">    	            
-                    <strong>{{ $sharedTree->title }}</strong> <i>{{$sharedTree->description}}</i> made by "name"
+                    <strong class="padRight">{{ $sharedTree->title }}</strong> {{$sharedTree->description}} <i class="padLeft">created by {{ $sharedTree->user()->first()->name }}</i>
                     <span class="badge badge-default badge-pill">{{ $sharedTree->likes()->count() }}</span>
                 </li>
             </a>
