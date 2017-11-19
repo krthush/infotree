@@ -38,6 +38,8 @@
 
         <ul>
 
+        	<li>Implement "Clone Add" to clone tree and add it under a specific user's tree</li>
+
         	<li>Add "edit linked" branches (e.g. users can link certain branches to university so that when they are updated, only they get updated but they can edit other branches</li>      	
 
 			<li>Add a scrolling list of updates below university trees to let user know what changes are being made to university trees.</li>
