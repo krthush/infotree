@@ -50,6 +50,11 @@ span.right {
 .padRight {
 	padding-right: 20px;
 }
+.splitter {
+	background-color: rgb(221, 221, 221);
+	height: 3px;
+	margin-top: 15px;
+}
 
 
 

@@ -87,6 +87,7 @@ class LeafController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
         $id = $branch->id;
+        $parent_id = $branch->parent_id;
 
         $infoContents = Leaf::where('parent_id',$id)->where('type','edu')->get();
         $infoTutorials = Leaf::where('parent_id',$id)->where('type','tut')->get();
@@ -100,6 +101,9 @@ class LeafController extends Controller
         $allInfoContentEncs = Leaf::where('parent_id',$id)->where('type','enc')->pluck('title','id')->all();
         $allInfoContentAdds = Leaf::where('parent_id',$id)->where('type','add')->pluck('title','id')->all();
 
+        $parents = Branch::where('id',$parent_id)->get();
+        $children = Branch::where('parent_id',$id)->get();
+
 
 
         if ($branch->facts == '' ) {
@@ -111,7 +115,7 @@ class LeafController extends Controller
 
         if ($branch->user_id === $userID) {
 
-            $edit = 1;
+            $edit = 'edit';
             $stack = 'stack';
 
             return view(
@@ -128,6 +132,8 @@ class LeafController extends Controller
                     'allInfoVideos',
                     'allInfoContentEncs',
                     'allInfoContentAdds',
+                    'parents',
+                    'children',
                     'edit',
                     'stack',
                     'empty'
@@ -141,6 +147,8 @@ class LeafController extends Controller
             } else {
                 $stack = 'stack';
             }
+
+            $edit = '';
 
             return view(
                 'tree.leaves',
@@ -156,6 +164,9 @@ class LeafController extends Controller
                     'allInfoVideos',
                     'allInfoContentEncs',
                     'allInfoContentAdds',
+                    'parents',
+                    'children',
+                    'edit',
                     'stack',
                     'empty'
                 )

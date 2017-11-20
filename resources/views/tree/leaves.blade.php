@@ -26,28 +26,24 @@
                 <div class="midContainerHeaderText">{{ $branch->title }}</div>        
             </div>
         </div>
-    @isset($edit)
-        @if ($edit === 1)        
+        @if ($edit === 'edit')        
         <div class="padLeft topStack">
             Please <a href="" data-toggle="modal" data-target="#editFact">click here</a> if you would like to add some facts for {{ $branch->title }}
         </div>
-        @endif   
-    @endisset
+        @endif    
 @else
 <div class="midContainer">
 	<div class="midContainerHeader">
     	<div class="midContainerHeaderText">{{ $branch->title }}</div>        
     </div>
-    <div class="edit midContainerContent">
+    <div class="{{ $edit }} midContainerContent">
         {!! nl2br(e($branch->facts)) !!}
     </div>
-    @isset($edit)
-        @if ($edit === 1)
+        @if ($edit === 'edit')
             <div class="editContent">
                 <div class="editContentButton"><a href="" data-toggle="modal" data-target="#editFact">Edit</a></div>
             </div>
-        @endif
-    @endisset 
+        @endif 
 </div>
 @endif
 
@@ -58,7 +54,7 @@
         	<div class="midContainerHeader">
             	<div class="midContainerHeaderText">Educational Content</div>
             </div>
-            <div class="edit midContainerContent">
+            <div class="{{ $edit }} midContainerContent">
             	<ul class="list">
                     @foreach($infoContents as $infoContent)
                         <li>
@@ -67,14 +63,12 @@
                     @endforeach
                 </ul>                    
             </div>
-            @isset($edit)
-                @if ($edit === 1)
+                @if ($edit === 'edit')
                     <div class="editContent">
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#delEdu">Delete</a></div>
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addEdu">Add</a></div>
                     </div>
-                @endif
-            @endisset                
+                @endif                
         </div>
  	</div>
 
@@ -85,7 +79,7 @@
             <div class="midContainerHeader">
                 <div class="midContainerHeaderText">Problem Sets / Tutorials</div>
             </div>
-            <div class="edit midContainerContent">
+            <div class="{{ $edit }} midContainerContent">
                 <ul class="list">
                     @foreach($infoTutorials as $infoTutorial)
                         <li>
@@ -94,14 +88,12 @@
                     @endforeach
                 </ul>                    
             </div>
-            @isset($edit)
-                @if ($edit === 1)
+                @if ($edit === 'edit')
                     <div class="editContent">
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#delTut">Delete</a></div>
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addTut">Add</a></div>
                     </div>
-                @endif
-            @endisset               
+                @endif                
         </div>
     </div>
 
@@ -116,7 +108,7 @@
             <div class="midContainerHeader">
                 <div class="midContainerHeaderText">Teaching Videos</div>
             </div>
-            <div class="edit midContainerContent">
+            <div class="{{ $edit }} midContainerContent">
                 <ul class="list">
                     @foreach($infoVideos as $infoVideo)
                         <li>
@@ -125,14 +117,12 @@
                     @endforeach
                 </ul>
             </div>
-            @isset($edit)
-                @if ($edit === 1)
+                @if ($edit === 'edit')
                     <div class="editContent">
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#delVid">Delete</a></div>
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addVid">Add</a></div>
                     </div>
-                @endif
-            @endisset                
+                @endif              
         </div>
  	</div>
 
@@ -141,7 +131,7 @@
         	<div class="midContainerHeader">
             	<div class="midContainerHeaderText">Encyclopedic Content</div>
             </div>
-            <div class="edit midContainerContent">
+            <div class="{{ $edit }} midContainerContent">
                 <ul class="list">
                     @foreach($infoContentEncs as $infoContentEnc)
                         <li>
@@ -151,14 +141,12 @@
                 </ul>                    
             </div>
         </div>
-        @isset($edit)
-            @if ($edit === 1)
+            @if ($edit === 'edit')
                 <div class="editContent">
                     <div class="editContentButton"><a href="" data-toggle="modal" data-target="#delEnc">Delete</a></div>
                     <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addEnc">Add</a></div>
                 </div>
-            @endif
-        @endisset             
+            @endif            
     </div>
 
     <div class="col-md-4">
@@ -166,7 +154,7 @@
             <div class="midContainerHeader">
                 <div class="midContainerHeaderText">Further Reading/Additional Information</div>
             </div>
-            <div class="edit midContainerContent">
+            <div class="{{ $edit }} midContainerContent">
                 <ul class="list">
                     @foreach($infoContentAdds as $infoContentAdd)
                         <li>
@@ -175,14 +163,12 @@
                     @endforeach
                 </ul>
             </div>
-            @isset($edit)
-                @if ($edit === 1)
+                @if ($edit === 'edit')
                     <div class="editContent">
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#delAdd">Delete</a></div>
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addAdd">Add</a></div>
                     </div>
-                @endif
-            @endisset                        
+                @endif                       
         </div>
     </div>
 
@@ -190,11 +176,54 @@
 
 
 
+<div class="row">
+
+    <div class="col-md-10 col-md-offset-1 splitter"></div>
+
+    <div class="col-md-6">
+        <div class="stack midContainer">
+            <div class="midContainerHeader">
+                <div class="midContainerHeaderText">Previous Branches</div>
+            </div>
+            <div class="midContainerContent">
+                <ul class="list">
+                    @foreach($parents as $parent)
+                        <li>
+                            <a href="/branches/{{ $parent->id }}" >{{ $parent->title }}</a>
+                        </li>
+                    @endforeach
+                </ul>                    
+            </div>               
+        </div>
+    </div>
+
+
+
+    <div class="col-md-6">
+        <div class="stack midContainer">
+            <div class="midContainerHeader">
+                <div class="midContainerHeaderText">Further Branches</div>
+            </div>
+            <div class="midContainerContent">
+                <ul class="list">
+                    @foreach($children as $child)
+                        <li>
+                            <a href="/branches/{{ $child->id }}" >{{ $child->title }}</a>
+                        </li>
+                    @endforeach
+                </ul>                    
+            </div>              
+        </div>
+    </div>
+
+</div>
+
+
 <!-- <div class="stack midContainer">
     <div class="midContainerHeader">
         <div class="midContainerHeaderText">Questions And Answers On {{ $branch->title }}</div>
     </div>
-    <div class="edit midContainerContent">
+    <div class="{{ $edit }} midContainerContent">
         <ul class="list">
             Under Construction
         </ul>
