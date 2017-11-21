@@ -105,6 +105,8 @@
 		<h3>FINISHED TASKS:</h3>
 		<ul>
 
+			<li>Added fixed scrolling (when pages refreshed, scroll height is stored)</li>
+
         	<li>Upload App onto hosting service... See if it can be managed with current siteground services. Unfortunatly currently it is likely I will require another hosting service -> try laravel forge?</li>
 
         	<li>Include usernames in list of shared Trees</li>

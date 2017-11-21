@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('userTrees',\App\Tree::where('user_id',$userID)->get());
             $view->with('selectUserTrees',\App\Tree::where('user_id',$userID)->pluck('title','id')->all());            
             $view->with('uniTrees',\App\Tree::where('shared',true)->where('university',true)->get());
-            $view->with('sharedTrees',\App\Tree::where('shared',true)->where('university','!=',true)->orderBy('likes','desc')->take(10)->get());
+            $view->with('sharedTrees',\App\Tree::where('shared',true)->where('university','!=',true)->orderBy('likes','desc')->take(20)->get());
 
         });
 

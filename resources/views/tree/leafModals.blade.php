@@ -87,10 +87,10 @@
                       <label>Type</label>
                       <input type="text" name="type" class="form-control" value="tut" readonly>
                     </div>
-                  <div class="editContent">
-                    <div class="editContentButton">
-                      <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Add</button>
-                    </div>
+                </div>
+                <div class="editContent">
+                  <div class="editContentButton">
+                    <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Add</button>
                   </div>
                 </div>
             </form>
@@ -124,10 +124,10 @@
                       <label>Type</label>
                       <input type="text" name="type" class="form-control" value="vid" readonly>
                     </div>
-                  <div class="editContent">
-                    <div class="editContentButton">
-                      <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Add</button>
-                    </div>
+                </div>
+                <div class="editContent">
+                  <div class="editContentButton">
+                    <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Add</button>
                   </div>
                 </div>
             </form>
@@ -161,10 +161,10 @@
                       <label>Type</label>
                       <input type="text" name="type" class="form-control" value="enc" readonly>
                     </div>
-                  <div class="editContent">
-                    <div class="editContentButton">
-                      <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Add</button>
-                    </div>
+                </div>
+                <div class="editContent">
+                  <div class="editContentButton">
+                    <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Add</button>
                   </div>
                 </div>
             </form>
@@ -198,10 +198,10 @@
                       <label>Type</label>
                       <input type="text" name="type" class="form-control" value="add" readonly>
                     </div>
-                  <div class="editContent">
-                    <div class="editContentButton">
-                      <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Add</button>
-                    </div>
+                </div>
+                <div class="editContent">
+                  <div class="editContentButton">
+                    <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Add</button>
                   </div>
                 </div>
             </form>

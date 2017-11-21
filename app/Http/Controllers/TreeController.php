@@ -127,6 +127,7 @@ class TreeController extends Controller
         }
     }
 
+    /* not very efficient code -> long load time */
     public function clone(Tree $tree) {
 
         $this->validate(request(), [
@@ -146,7 +147,7 @@ class TreeController extends Controller
 
             'title' => request('title'),
 
-            'user_id' => auth()->user()->getAuthIdentifier(),
+            'user_id' => $userID,
 
             'university' => $university
 
@@ -220,6 +221,103 @@ class TreeController extends Controller
             
     }    
 
+    /* Somewhat unelegant code based on clone code, wasted time creating pseudo new tree */
+    public function add(Tree $tree) {
+
+        $customMessages = [
+            'required' => 'Please select a tree to add to.'
+        ];
+
+        $this->validate(request(), [
+                'userTreeId' => 'required'
+        ], $customMessages);
+
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
+
+        $addTree = Tree::findOrFail(request('userTreeId'));
+
+        $addTreeId = $addTree->id;
+
+        $pseudoTree = Tree::create([
+
+            'title' => 'pseudo',
+
+            'user_id' => $userID,
+
+        ]);
+
+        $treeBranches = Branch::where('tree_id',$tree->id)->get();
+        $treeLeaves = Leaf::where('tree_id', $tree->id)->get();
+
+        foreach ($treeBranches as $branch) {
+            $newBranch = $branch->replicate();
+            $newBranch->user_id = $userID;
+            $newBranch->tree_id = $pseudoTree->id;
+            $newBranch->parent_id = $branch->id;
+            $newBranch->parent_orig_id = $branch->parent_id;
+            $newBranch->save();
+
+        }            
+
+        foreach ($treeLeaves as $leaf) {
+            $newLeaf = $leaf->replicate();
+            $newLeaf->user_id = $userID;
+            $newLeaf->tree_id = $pseudoTree->id;
+            $newLeaf->save();
+        }
+
+        $newLeaves = Leaf::where('tree_id',$pseudoTree->id)->get();
+
+        $newBranches = Branch::where('tree_id',$pseudoTree->id)->orderBy('id','desc')->get();
+
+        foreach ($newLeaves as $newLeaf) {
+
+            $parent = Branch::where('tree_id',$pseudoTree->id)->where('parent_id','=',$newLeaf->parent_id)->first();
+            if ($parent) {
+                $newLeaf->parent_id = $parent->id;
+                $newLeaf->save();
+            }
+
+        }
+
+        foreach ($newBranches as $newBranch) {
+
+            $parent = Branch::where('tree_id',$pseudoTree->id)->where('parent_id','=',$newBranch->parent_orig_id)->first();
+
+            if ($parent) {
+                $newBranch->parent_id = $parent->id;
+                $newBranch->save();
+            }
+
+        }
+
+        Branch::where('tree_id',$pseudoTree->id)->where('parent_orig_id','=',0)->update([
+
+            'parent_id' => 0
+
+        ]);
+
+        Leaf::where('tree_id',$pseudoTree->id)->update([
+
+            'tree_id' => $addTreeId
+
+        ]);
+
+        Branch::where('tree_id',$pseudoTree->id)->update([
+
+            'parent_orig_id' => 0,
+
+            'tree_id' => $addTreeId
+
+        ]);
+
+        $pseudoTree->delete();
+
+        return redirect(route('tree', $addTreeId))->with('success', 'Selected tree successfully added to this tree.');
+            
+    }
+
 	public function store(Request $request) {
 
         $this->validate(request(), [
@@ -229,55 +327,52 @@ class TreeController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
-        if(request('submit')) {
+        if ($user->hasRole('admin')) {
 
-            return redirect(route('welcome'))->with('success','Submit Test success');
+	        $tree = Tree::create([
 
+	            'title' => request('title'),
+
+	            'user_id' => auth()->user()->getAuthIdentifier(),
+
+                'university' => true
+
+	        ]);
+
+	        $insertedId = $tree->id;
+
+	        return redirect(route('tree', $insertedId))->with('success', 'New Uni Tree added successfully.');
+            
         } else {
 
-            if ($user->hasRole('admin')) {
+	        $tree = Tree::create([
 
-    	        $tree = Tree::create([
+	            'title' => request('title'),
 
-    	            'title' => request('title'),
+	            'user_id' => auth()->user()->getAuthIdentifier()
 
-    	            'user_id' => auth()->user()->getAuthIdentifier(),
+	        ]);
 
-                    'university' => true
+	        $insertedId = $tree->id;
 
-    	        ]);
-
-    	        $insertedId = $tree->id;
-
-    	        return redirect(route('tree', $insertedId))->with('success', 'New Uni Tree added successfully.');
-                
-            } else {
-
-    	        $tree = Tree::create([
-
-    	            'title' => request('title'),
-
-    	            'user_id' => auth()->user()->getAuthIdentifier()
-
-    	        ]);
-
-    	        $insertedId = $tree->id;
-
-    	        return redirect(route('tree', $insertedId))->with('success', 'New Tree added successfully.');
-
-            }
+	        return redirect(route('tree', $insertedId))->with('success', 'New Tree added successfully.');
 
         }
+
     }
 
     public function destroy(Request $request) {
 
-        $user = auth()->user();
-        $userID = $user->getAuthIdentifier();
+        $customMessages = [
+            'required' => 'Please select a tree to delete.'
+        ];
 
         $this->validate(request(), [
             'id' => 'required',
         ]);
+
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
 
         $tree = Tree::findOrFail(request()->id);
         $tree_id = request()->id;

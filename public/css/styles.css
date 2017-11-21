@@ -55,7 +55,9 @@ span.right {
 	height: 3px;
 	margin-top: 15px;
 }
-
+.topStack {
+	margin-top: 15px;
+}
 
 
 /* COLOUR ADJUSTMENT */
@@ -196,9 +198,6 @@ span.right {
 	margin-top: 0px;
 	margin-bottom: 4px;
 }
-.topStack {
-	margin-top: 15px;
-}
 .midHeader.topStack, .midHeaderSpace.topStack {
 	border-top: 1px solid #DDDDDD;
 	margin-top: 15px;
@@ -288,7 +287,17 @@ span.right {
 	padding-left:10px;
 	padding-right:10px;
 }
+.appear.midContainer {
+	width: 100%;
+	min-height: 160px;
+	border: 1px solid white;
+	border-radius: 3px;
+	box-sizing: border-box;
+	position:relative;
+	background-color: white;
+}
 .appear.midContainerContent {
+	position: relative;
 	margin-left: 0px;
 	margin-right: 0px;
 	margin-top: 0px;

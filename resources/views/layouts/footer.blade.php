@@ -15,6 +15,7 @@
   	<script src="/js/custom.js"></script>
   	<script>
   		$(function() {
+  			
 			$('[data-toggle="tooltip"]').tooltip();
 			
 	        $('#showMoreButton1').click( function() {
@@ -55,4 +56,15 @@
 	    form.action = action;
 	    form.submit();
 	  }
+	</script>
+	<script>
+  		$(window).scroll(function() {
+		  sessionStorage.scrollTop = $(this).scrollTop();
+		});
+
+		$(document).ready(function() {
+		  if (sessionStorage.scrollTop != "undefined") {
+		    $(window).scrollTop(sessionStorage.scrollTop);
+		  }
+		});
 	</script>
