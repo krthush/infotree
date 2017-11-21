@@ -38,8 +38,6 @@
 
         <ul>
 
-        	<li>Implement "Clone Add" to clone tree and add it under a specific user's tree</li>
-
         	<li>Add "edit linked" branches (e.g. users can link certain branches to university so that when they are updated, only they get updated but they can edit other branches</li>      	
 
 			<li>Add a scrolling list of updates below university trees to let user know what changes are being made to university trees.</li>
@@ -55,6 +53,8 @@
 			<li>Add &#34;year&#34; class for branches/leaves - to sort content out by year, make sure to make it such that higher years can still see lower year shared content just with less priority (i.e. only shown if &#34;show more&#34; selected + higher popularity limit)</li>
 
 			<li>Leaf page needs better UI in general, add editing overlay for leaf page (just one button on top left "edit") then all "add"s appear and Xs appear for deletion, also allow for reordering of list (maybe use sortable?) - this will also lead to CLEAN UP of multiple pages</li>
+
+        	<li>Work on securing DO server</li>
 
 			<li>Optimization required, <a href="https://developers.google.com/speed/pagespeed/insights/">google insights</a></li>
 
@@ -104,6 +104,8 @@
 		</ul>
 		<h3>FINISHED TASKS:</h3>
 		<ul>
+
+			<li>Implement "Clone Add" to clone tree and add it under a specific user's tree</li>
 
 			<li>Added fixed scrolling (when pages refreshed, scroll height is stored)</li>
 
