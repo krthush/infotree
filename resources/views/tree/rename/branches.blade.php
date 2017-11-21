@@ -79,7 +79,7 @@
                     <div class="appear midContainerContent">
                         <div class="form-group">
                             <label>Rename Branch "{{ $branch->title }}"</label>
-                            <input class="form-control" type="text" name="title" placeholder="Enter new name for branch" required>
+                            <input class="form-control" type="text" name="title" placeholder="Enter new name for branch">
                         </div>
                         <div class="form-group">
                             {!! Form::text('id', $branch->id, ['class' => 'hidden', 'readonly' => 'true']) !!}

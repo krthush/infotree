@@ -9,7 +9,7 @@
                     <div class="appear midContainerContent">
                         <div class="form-group">
                             <label>Add Branch Under {{ $child->title }}</label>
-                            <input class="form-control" type="text" name="title" placeholder="Enter name of branch" required>
+                            <input class="form-control" type="text" name="title" placeholder="Enter name of branch" >
                         </div>
                         <div class="form-group">
                             {!! Form::text('parent_id', $child->id, ['class' => 'hidden', 'readonly' => 'true']) !!}
