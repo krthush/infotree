@@ -391,7 +391,7 @@ class TreeController extends Controller
 
             $tree->delete();
 
-            return redirect(route('welcome'))->with('success', 'Tree has been deleted');
+            return redirect(route('home'))->with('success', 'Tree has been deleted');
 
         } else {
 
