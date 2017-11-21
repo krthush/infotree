@@ -369,7 +369,7 @@ class TreeController extends Controller
 
         $this->validate(request(), [
             'id' => 'required',
-        ]);
+        ],$customMessages);
 
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
