@@ -287,21 +287,26 @@ span.right {
 	padding-left:10px;
 	padding-right:10px;
 }
-.appear.midContainer {
-	width: 100%;
-	min-height: 160px;
-	border: 1px solid white;
-	border-radius: 3px;
-	box-sizing: border-box;
-	position:relative;
-	background-color: white;
-}
 .appear.midContainerContent {
-	position: relative;
 	margin-left: 0px;
 	margin-right: 0px;
 	margin-top: 0px;
 	margin-bottom: 36px;
+}
+.appear.midContainer {
+	width: 100%;
+	min-height: 0px;
+	border: 1px solid white;
+	border-radius: 0px;
+	box-sizing: border-box;
+	position:relative;
+	background-color: white;
+}
+.appear.double.midContainerContent {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	margin-bottom: 50px;
 }
 .right.glyphicon.glyphicon-edit {
 	line-height: 40px;

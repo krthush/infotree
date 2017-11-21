@@ -44,7 +44,7 @@
                 <form id="addTreeForm" name="addTreeForm" method="POST" onsubmit="" onreset="" action="">
                     {{ csrf_field() }}
                     <div class="appear midContainer">
-                        <div class="appear midContainerContent">
+                        <div class="appear double midContainerContent">
                             <div class="form-group">
                                 <label>Create New Tree</label>
                                 <input class="form-control" type="text" name="title" placeholder="Enter name of new tree" >
@@ -64,7 +64,7 @@
                     </div>
                     @isset($tree)
                     <div class="appear midContainer">
-                        <div class="appear midContainerContent">
+                        <div class="appear double midContainerContent">
                             <div class="form-group">
                                 {!! Form::label('Add To Tree') !!}
                                 {!! Form::select('userTreeId', $selectUserTrees, old('userTreeId'), ['class'=>'form-control', 'placeholder'=>'Select Tree To Add To']) !!}
