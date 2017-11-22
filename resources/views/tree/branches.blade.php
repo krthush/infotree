@@ -141,13 +141,6 @@
 </div>
 @endif
 
-<div class="topStack alert alert-danger alert-block">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    <strong>        
-        N.B. The University Trees are still under construction, please note they do not contain all blackboard links yet.
-    </strong>
-</div>
-
 <!-- editFact Modal -->
 <div class="modal fade" id="editDesc" role="dialog">
     <div class="modal-dialog">
@@ -259,6 +252,15 @@
         </div>
     </div>
 </div>
+
+@if($tree->id === 5)
+<div class="topStack alert alert-danger alert-block">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>        
+        N.B. The ME1 branch is still under construction, as such it does not contain all ME1 blackboard links.
+    </strong>
+</div>
+@endif
 
 <script>
     $(function () {
