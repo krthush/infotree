@@ -1,6 +1,6 @@
 <div class="midContainerHeader">
     <div class="midContainerHeaderText">
-        {{ $tree->title }}'s Branches 
+        <b>{{ $tree->title }}'s Branches</b> 
     </div>
     <div class="right dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">

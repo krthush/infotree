@@ -23,7 +23,7 @@
 <div class="midContainer">
     <div class="midContainerHeader">
         <div class="midContainerHeaderText">
-            {{ $tree->title }}'s Branches 
+            <b>{{ $tree->title }}'s Branches</b> 
         </div>
         <div class="midContainerHeaderButtonContainer hidden-xs">
 

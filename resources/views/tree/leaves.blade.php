@@ -23,7 +23,7 @@
 @if ($empty === 1)
          <div class="stack midHeader">
             <div class="midContainerHeader">
-                <div class="midContainerHeaderText">{{ $branch->title }}</div>        
+                <div class="midContainerHeaderText"><b>{{ $branch->title }}</b></div>        
             </div>
         </div>
         @if ($edit === 'edit')        

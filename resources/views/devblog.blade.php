@@ -23,7 +23,7 @@
 
 <div class="midContainer">
   <div class="midContainerHeader">
-      <div class="midContainerHeaderText">Dev Blog</div>
+      <div class="midContainerHeaderText"><b>Dev Blog</b></div>
     </div>
     <div class="midContainerContent">
         <h3>CURRENT MAJOR TASKS:</h3>

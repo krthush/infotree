@@ -29,7 +29,7 @@
                     <div class="panel panel-default">
                         <div class="midContainerHeader">
                             <div class="midContainerHeaderText">
-                                Welcome! 
+                                <b>Welcome!</b> 
                             </div>
                         </div>
                         <div class="panel-body">

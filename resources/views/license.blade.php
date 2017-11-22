@@ -4,7 +4,7 @@
 
 <div class="midContainer">
     <div class="midContainerHeader">
-        <div class="midContainerHeaderText">Terms and Conditions</div>
+        <div class="midContainerHeaderText"><b>Terms and Conditions</b></div>
     </div>
     <div class="midContainerContent">
 

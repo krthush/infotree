@@ -4,7 +4,7 @@
 
 <div class="midContainer">
     <div class="midContainerHeader">
-        <div class="midContainerHeaderText">Trees</div>
+        <div class="midContainerHeaderText"><b>Trees</b></div>
     </div>
     <div class="midContainerContent">
     	<p> You can search through all shared trees on infotree here. The number of likes for each given tree is shown on the right. </p>

@@ -31,7 +31,7 @@
             <a class="rawLink" href="" data-toggle="modal" data-target="#0">
                 <span class="glyphicon glyphicon-pencil"></span>
             </a>
-            {{ $tree->title }}'s Branches 
+            <b>{{ $tree->title }}'s Branches</b> 
         </div>
         <div class="right dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
