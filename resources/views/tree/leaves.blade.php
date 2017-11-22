@@ -182,7 +182,7 @@
                         </li>
                     @endforeach
                     @if(count($parents) === 0)
-                        <li>There is no parent!</li>
+                        <li>There is no parent branch!</li>
                     @endif
                 </ul>                    
             </div>               
@@ -204,7 +204,7 @@
                         </li>
                     @endforeach
                     @if(count($children) === 0)
-                        <li>There are no children!</li>
+                        <li>There are no children branches!</li>
                     @endif
                 </ul>                    
             </div>              
