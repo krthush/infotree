@@ -139,43 +139,6 @@
 
 
 
-<!-- addEnc Modal -->
-<div class="modal fade" id="addEnc" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- addEnc Modal content-->
-      <div class="modal-content">
-        <div class="modal-body">
-              <form method="POST" action="/branches/{{ $branch->id }}/leaves">
-                {{ csrf_field() }}
-                <div class="appear midContainerContent">
-                    <div class="form-group">
-                      <label>Add Encyclopedic Content (e.g. wikipedia)</label>
-                      <input type="text" name="title" class="form-control" placeholder="Enter title for content" >
-                    </div>
-                    <div class="form-group">
-                      <label>Link</label>
-                      <input type="text" name="link" class="form-control" placeholder="Enter URL of content" >
-                    </div>
-                    <div class="form-group hidden">
-                      <label>Type</label>
-                      <input type="text" name="type" class="form-control" value="enc" readonly>
-                    </div>
-                </div>
-                <div class="editContent">
-                  <div class="editContentButton">
-                    <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Add</button>
-                  </div>
-                </div>
-            </form>
-        </div>
-      </div>
-      
-    </div>
-</div>
-
-
-
 <!--addAdd Modal -->
 <div class="modal fade" id="addAdd" role="dialog">
     <div class="modal-dialog">
@@ -286,34 +249,6 @@
                   <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Delete</button>
                 </div>
               </div> 
-          {!! Form::close() !!}
-        </div>
-      </div>
-      
-    </div>
-</div>
-
-
-
-<!-- delEnc Modal -->
-<div class="modal fade" id="delEnc" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- delEnc Modal content-->
-      <div class="modal-content">
-        <div class="modal-body">
-          {!! Form::open(['method' => 'DELETE', 'route'=>['delete-leaf', $branch]]) !!}
-            <div class="appear midContainerContent">
-              <div class="form-group">
-                {!! Form::label('Title') !!}
-                {!! Form::select('id', $allInfoContentEncs, old('id'), ['class'=>'form-control', 'placeholder'=>'Select Content']) !!}
-              </div>
-            </div>
-            <div class="editContent">
-              <div class="editContentButton">
-                <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Delete</button>
-              </div>
-            </div> 
           {!! Form::close() !!}
         </div>
       </div>

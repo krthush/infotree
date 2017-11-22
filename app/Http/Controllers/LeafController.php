@@ -92,13 +92,11 @@ class LeafController extends Controller
         $infoContents = Leaf::where('parent_id',$id)->where('type','edu')->get();
         $infoTutorials = Leaf::where('parent_id',$id)->where('type','tut')->get();
         $infoVideos = Leaf::where('parent_id',$id)->where('type','vid')->get();
-        $infoContentEncs = Leaf::where('parent_id',$id)->where('type','enc')->get();
         $infoContentAdds = Leaf::where('parent_id',$id)->where('type','add')->get();
 
         $allInfoContents = Leaf::where('parent_id',$id)->where('type','edu')->pluck('title','id')->all();
         $allInfoTutorials = Leaf::where('parent_id',$id)->where('type','tut')->pluck('title','id')->all();
         $allInfoVideos = Leaf::where('parent_id',$id)->where('type','vid')->pluck('title','id')->all();
-        $allInfoContentEncs = Leaf::where('parent_id',$id)->where('type','enc')->pluck('title','id')->all();
         $allInfoContentAdds = Leaf::where('parent_id',$id)->where('type','add')->pluck('title','id')->all();
 
         $parents = Branch::where('id',$parent_id)->get();
@@ -125,12 +123,10 @@ class LeafController extends Controller
                     'infoContents',
                     'infoTutorials',
                     'infoVideos',
-                    'infoContentEncs',
                     'infoContentAdds',
                     'allInfoContents',
                     'allInfoTutorials',
                     'allInfoVideos',
-                    'allInfoContentEncs',
                     'allInfoContentAdds',
                     'parents',
                     'children',
@@ -157,12 +153,10 @@ class LeafController extends Controller
                     'infoContents',
                     'infoTutorials',
                     'infoVideos',
-                    'infoContentEncs',
                     'infoContentAdds',
                     'allInfoContents',
                     'allInfoTutorials',
                     'allInfoVideos',
-                    'allInfoContentEncs',
                     'allInfoContentAdds',
                     'parents',
                     'children',

@@ -61,6 +61,9 @@
                             <a href="{{ $infoContent->link }}" target="_blank">{{ $infoContent->title }}</a>
                         </li>
                     @endforeach
+                    @if(count($infoContents) === 0)
+                        <li>There is no educational content!</li>
+                    @endif
                 </ul>                    
             </div>
                 @if ($edit === 'edit')
@@ -77,7 +80,7 @@
   	<div class="col-md-6">
         <div class="{{ $stack }} midContainer">
             <div class="midContainerHeader">
-                <div class="midContainerHeaderText">Problem Sets / Tutorials</div>
+                <div class="midContainerHeaderText">Problem Sets / Tutorials / Past Papers</div>
             </div>
             <div class="{{ $edit }} midContainerContent">
                 <ul class="list">
@@ -86,6 +89,9 @@
                             <a href="{{ $infoTutorial->link }}" target="_blank">{{ $infoTutorial->title }}</a>
                         </li>
                     @endforeach
+                    @if(count($infoTutorials) === 0)
+                        <li>There are no problem sets / tutorials / past papers!</li>
+                    @endif
                 </ul>                    
             </div>
                 @if ($edit === 'edit')
@@ -103,7 +109,7 @@
 
 <div class="row">
 
-  	<div class="col-md-4">
+  	<div class="col-md-6">
         <div class="stack midContainer">
             <div class="midContainerHeader">
                 <div class="midContainerHeaderText">Teaching Videos</div>
@@ -115,6 +121,9 @@
                             <a href="{{ $infoVideo->link }}" target="_blank">{{ $infoVideo->title }}</a>
                         </li>
                     @endforeach
+                    @if(count($infoVideos) === 0)
+                        <li>There are no teaching videos!</li>
+                    @endif
                 </ul>
             </div>
                 @if ($edit === 'edit')
@@ -126,33 +135,10 @@
         </div>
  	</div>
 
-  	<div class="col-md-4">
-    	<div class="stack midContainer">
-        	<div class="midContainerHeader">
-            	<div class="midContainerHeaderText">Encyclopedic Content</div>
-            </div>
-            <div class="{{ $edit }} midContainerContent">
-                <ul class="list">
-                    @foreach($infoContentEncs as $infoContentEnc)
-                        <li>
-                            <a href="{{ $infoContent->link }}" target="_blank">{{ $infoContentEnc->title }}</a>
-                        </li>
-                    @endforeach
-                </ul>                    
-            </div>
-        </div>
-            @if ($edit === 'edit')
-                <div class="editContent">
-                    <div class="editContentButton"><a href="" data-toggle="modal" data-target="#delEnc">Delete</a></div>
-                    <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addEnc">Add</a></div>
-                </div>
-            @endif            
-    </div>
-
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="stack midContainer">
             <div class="midContainerHeader">
-                <div class="midContainerHeaderText">Further Reading/Additional Information</div>
+                <div class="midContainerHeaderText">Further Reading / Additional Information</div>
             </div>
             <div class="{{ $edit }} midContainerContent">
                 <ul class="list">
@@ -161,6 +147,9 @@
                             <a href="{{ $infoContentAdd->link }}" target="_blank">{{ $infoContentAdd->title }}</a>
                         </li>
                     @endforeach
+                    @if(count($infoContentAdds) === 0)
+                        <li>There is no further reading / additional information!</li>
+                    @endif
                 </ul>
             </div>
                 @if ($edit === 'edit')
@@ -192,6 +181,9 @@
                             <a href="/branches/{{ $parent->id }}" >{{ $parent->title }}</a>
                         </li>
                     @endforeach
+                    @if(count($parents) === 0)
+                        <li>There is no parent!</li>
+                    @endif
                 </ul>                    
             </div>               
         </div>
@@ -211,6 +203,9 @@
                             <a href="/branches/{{ $child->id }}" >{{ $child->title }}</a>
                         </li>
                     @endforeach
+                    @if(count($children) === 0)
+                        <li>There are no children!</li>
+                    @endif
                 </ul>                    
             </div>              
         </div>

@@ -205,7 +205,6 @@ span.right {
 }
 .midContainer {
 	width: 100%;
-	min-height: 160px;
 	border: 1px solid #DDDDDD;
 	border-radius: 3px;
 	box-sizing: border-box;
