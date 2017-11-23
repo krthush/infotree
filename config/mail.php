@@ -112,6 +112,8 @@ return [
     |
     */
 
+    'pretend' => 'false',
+
     'markdown' => [
         'theme' => 'default',
 
