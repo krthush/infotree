@@ -14,10 +14,10 @@ return [
     |
     */
 
-    'mailgun' => [
-        'domain' => 'infotree.co.uk',
+    'mailgun' => array(
+        'domain' => 'infotree.co.uk.mailgun.org',
         'secret' => 'key-fdb8c8c4c8ca0e3da9425f65fbd3eb82',
-    ],
+    ),
 
     'ses' => [
         'key' => env('SES_KEY'),
