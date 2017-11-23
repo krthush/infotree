@@ -21,13 +21,14 @@
     </div>
 @endif
 
+@if(isset($notice))
+    <div class="alert alert-warning">{{ $notice }}</div>
+@endif
+
 <div class="col-md-10 col-md-offset-2">
     <div class="panel panel-default">
         <div class="panel-heading">Please Check Your Email And Activate Your Account</div>
         <div class="panel-body">
-            @if(isset($notice))
-                <div class="alert alert-warning">{{ $notice }}</div>
-            @endif
             <form class="form-horizontal" role="form" method="POST" action="{{ route('account.activation.resend') }}">
                 {{ csrf_field() }}
 
