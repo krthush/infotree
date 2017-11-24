@@ -63,7 +63,7 @@
                     <br>
                     <br>
 
-                    You can also create new Trees if you like to have different tree's for different purposes! (e.g. You may like to have a Tree for work applications).
+                    You can also create new Trees if you like to have different trees for different purposes! (e.g. You may like to have a Tree for work applications).
 
                     <br>
                     <br>
