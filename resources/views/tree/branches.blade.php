@@ -123,7 +123,7 @@
 </div>
 
 @if ($empty === 1)
-    @if($edit === 0)
+    @if($edit === 1)
         <div class="padLeft topStack">
             Please <a href="" data-toggle="modal" data-target="#editDesc">click here</a> if you would like to add a description for this tree.
         </div>
