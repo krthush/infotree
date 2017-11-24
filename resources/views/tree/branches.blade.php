@@ -127,7 +127,7 @@
         <div class="padLeft topStack">
             Please <a href="" data-toggle="modal" data-target="#editDesc">click here</a> if you would like to add a description for this tree.
         </div>
-    @end
+    @endif
 @else
     <div class="midContainer noHeight topStack">
         <div class="edit midContainerContent" id="treeDesc">
