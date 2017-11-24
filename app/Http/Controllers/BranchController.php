@@ -296,7 +296,7 @@ class BranchController extends Controller
         if ($tree->user_id === $userID) {
 
             return view(
-                'tree.movebranches',
+                'tree.moveBranches',
                 compact(
                     'tree',
                     'branches'
