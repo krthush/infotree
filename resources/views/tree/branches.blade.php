@@ -123,21 +123,21 @@
 </div>
 
 @if ($empty === 1)
-    @isset($edit)
+    @if($edit === 0)
         <div class="padLeft topStack">
             Please <a href="" data-toggle="modal" data-target="#editDesc">click here</a> if you would like to add a description for this tree.
         </div>
-    @endisset
+    @end
 @else
     <div class="midContainer noHeight topStack">
         <div class="edit midContainerContent" id="treeDesc">
             <b>{{ $tree->description }}</b>
         </div>
-        @isset($edit)
+        @if($edit === 1)
                 <div class="editContent">
                     <div class="editContentButton"><a href="" data-toggle="modal" data-target="#editDesc">Edit</a></div>
                 </div>
-        @endisset 
+        @endif 
     </div>
 @endif
 
