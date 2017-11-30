@@ -271,7 +271,7 @@
 
         $('#jstree').jstree({
             // Plugins
-            "plugins" : ["noselectedstate", "types", "search", "state"],
+            "plugins" : ["noselectedstate", "types", "search", "state", "show_matches_children"],
             // Parameters
             "core" : { 
                 "check_callback" : false,
@@ -298,12 +298,6 @@
         }).bind("select_node.jstree", function (e, data) {
             var href = data.node.a_attr.href;
             document.location.href = href;
-        }).on('search.jstree before_open.jstree', function (e, data) {
-            if(data.instance.settings.search.show_only_matches) {
-                data.instance._data.search.dom.find('.jstree-node')
-                    .show().filter('.jstree-last').filter(function() { return this.nextSibling; }).removeClass('jstree-last')
-                    .end().end().end().find(".jstree-children").each(function () { $(this).children(".jstree-node:visible").eq(-1).addClass("jstree-last"); });
-            }
         });
 
 
