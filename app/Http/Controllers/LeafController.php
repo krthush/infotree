@@ -107,6 +107,8 @@ class LeafController extends Controller
 
     }
 
+    
+
     // Branch related methods
     public function show(Branch $branch) {
 
