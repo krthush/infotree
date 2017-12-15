@@ -127,6 +127,91 @@ class TreeController extends Controller
         }
     }
 
+	public function store(Request $request) {
+
+        $this->validate(request(), [
+                'title' => 'required',
+        ]);
+
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
+
+        if ($user->hasRole('admin')) {
+
+	        $tree = Tree::create([
+
+	            'title' => request('title'),
+
+	            'user_id' => auth()->user()->getAuthIdentifier(),
+
+                'university' => true
+
+	        ]);
+
+	        $insertedId = $tree->id;
+
+	        return redirect(route('tree', $insertedId))->with('success', 'New Uni Tree added successfully.');
+            
+        } else {
+
+	        $tree = Tree::create([
+
+	            'title' => request('title'),
+
+	            'user_id' => auth()->user()->getAuthIdentifier()
+
+	        ]);
+
+	        $insertedId = $tree->id;
+
+	        return redirect(route('tree', $insertedId))->with('success', 'New Tree added successfully.');
+
+        }
+
+    }
+
+    public function destroy(Request $request) {
+
+        $customMessages = [
+            'required' => 'Please select a tree to delete.'
+        ];
+
+        $this->validate(request(), [
+            'id' => 'required',
+        ],$customMessages);
+
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
+
+        $tree = Tree::findOrFail(request()->id);
+        $tree_id = request()->id;
+
+
+        if ($tree->user_id === $userID) {
+
+            $branches = Branch::where('tree_id',$tree_id)->get();
+
+            foreach ($branches as $branch) {
+                $branch->leaves()->delete();
+            }
+
+            Branch::where('tree_id',$tree_id)->delete();
+            Leaf::where('tree_id',$tree_id)->delete();
+
+            $tree->delete();
+
+            return redirect(route('home'))->with('success', 'Tree has been deleted');
+
+        } else {
+
+            return back()->withErrors([
+                'You can only delete your own trees.'
+            ]);
+
+        }
+
+    }
+
     /* not very efficient code -> long load time */
     public function clone(Tree $tree) {
 
@@ -316,91 +401,6 @@ class TreeController extends Controller
 
         return redirect(route('tree', $addTreeId))->with('success', 'Selected tree successfully added to this tree.');
             
-    }
-
-	public function store(Request $request) {
-
-        $this->validate(request(), [
-                'title' => 'required',
-        ]);
-
-        $user = auth()->user();
-        $userID = $user->getAuthIdentifier();
-
-        if ($user->hasRole('admin')) {
-
-	        $tree = Tree::create([
-
-	            'title' => request('title'),
-
-	            'user_id' => auth()->user()->getAuthIdentifier(),
-
-                'university' => true
-
-	        ]);
-
-	        $insertedId = $tree->id;
-
-	        return redirect(route('tree', $insertedId))->with('success', 'New Uni Tree added successfully.');
-            
-        } else {
-
-	        $tree = Tree::create([
-
-	            'title' => request('title'),
-
-	            'user_id' => auth()->user()->getAuthIdentifier()
-
-	        ]);
-
-	        $insertedId = $tree->id;
-
-	        return redirect(route('tree', $insertedId))->with('success', 'New Tree added successfully.');
-
-        }
-
-    }
-
-    public function destroy(Request $request) {
-
-        $customMessages = [
-            'required' => 'Please select a tree to delete.'
-        ];
-
-        $this->validate(request(), [
-            'id' => 'required',
-        ],$customMessages);
-
-        $user = auth()->user();
-        $userID = $user->getAuthIdentifier();
-
-        $tree = Tree::findOrFail(request()->id);
-        $tree_id = request()->id;
-
-
-        if ($tree->user_id === $userID) {
-
-            $branches = Branch::where('tree_id',$tree_id)->get();
-
-            foreach ($branches as $branch) {
-                $branch->leaves()->delete();
-            }
-
-            Branch::where('tree_id',$tree_id)->delete();
-            Leaf::where('tree_id',$tree_id)->delete();
-
-            $tree->delete();
-
-            return redirect(route('home'))->with('success', 'Tree has been deleted');
-
-        } else {
-
-            return back()->withErrors([
-                'You can only delete your own trees.'
-            ]);
-
-        }
-
     }
 
     public function favourite(Tree $tree) {

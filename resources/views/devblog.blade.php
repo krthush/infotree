@@ -30,7 +30,9 @@
 
         <ul>
 
-        	<li>Add SSL and Domain Name to site</li>
+        	<li>Add SAML ("single sign on") login so imperial users can create/login accounts using imperial account</li>
+
+        	<li>Implement scraping tool that searches through an admin level blackboard account, checking for updates and then automatically implements them into infotree daily</li>
 
 		</ul>
 
@@ -41,10 +43,6 @@
         	<li>Add "edit linked" branches (e.g. users can link certain branches to university so that when they are updated, only they get updated but they can edit other branches</li>      	
 
 			<li>Add a scrolling list of updates below university trees to let user know what changes are being made to university trees.</li>
-
-			<li>NEED massive overhaul to creation of university branches/leaves, currently just based off of first ever user - need to incorperate admin plugin better</li>
-
-			<li>Find way assigning admins - allow them to edit all trees?</li>
 
 			<li>Improve search engine feature for searching branches such that leaf links are also suggested</li>
 
@@ -66,11 +64,13 @@
 
 			<li>Check into safety of using Read-Only inputs, CRSF token should protect against people forging post requests with different inputs</li>
 
-        	<li>Add Terms and Conditions + NDA type modal when users login, make sure to mention that infotree is not liable for any damages incurred by wrong information being supplied to user + some spiel about infotree being a unique idea not to be stolen, try... <a href="https://www.nibusinessinfo.co.uk/content/business-websites-legal-requirements">nibusinessinfo</a>, <a href="https://www.rocketlawyer.co.uk/pricing.rl<">rocketlawyer</a></li>
+        	<li>Better method of creating Super Admin -> currently based of off first ever created user</li>
+
+        	<li>Controller methods have repeated code for Admin access, just create a permission using "Roles" addon so that permissions can be given to users/admins dependant on the situation</li>
 
 		</ul>		
 
-		<h3>MINOR TASKS:</h3>
+		<h3>PLANNED MINOR TASKS:</h3>
 
 		<ul>
 
@@ -158,6 +158,15 @@
 			<li>Fix password RESET</li>
 
 			<li>At approx 1400px screen width, layout starts to get messed up (things inside the right sidebar start to float ontop each other (N.B. Current fix is VERY long/messy, lot of HTML/JS/CSS repeated for different hides/shows vs. screen size)</li>
+
+        	<li>Add SSL and Domain Name to site</li>
+
+			<li>NEED massive overhaul to creation of university branches/leaves, currently just based off of first ever user - need to incorperate admin plugin better</li>
+
+			<li>Find way assigning admins - allow them to edit all trees?</li>
+
+        	<li>Add Terms and Conditions + NDA type modal when users login, make sure to mention that infotree is not liable for any damages incurred by wrong information being supplied to user + some spiel about infotree being a unique idea not to be stolen, try... <a href="https://www.nibusinessinfo.co.uk/content/business-websites-legal-requirements">nibusinessinfo</a>, <a href="https://www.rocketlawyer.co.uk/pricing.rl<">rocketlawyer</a></li>
+
 		</ul>
     </div>
 </div>
