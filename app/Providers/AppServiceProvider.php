@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
 
                 $selectUserTrees = \App\Tree::where('user_id',$userID);
                 $sharedTrees = \App\Tree::where('shared',true)->where('university','!=',true)->orderBy('likes','desc')->get();
-                $selectUserTrees = array_push($selectUserTrees, $sharedTrees)->pluck('title','id')->all()
+                $selectUserTrees = array_push($selectUserTrees, $sharedTrees)->pluck('title','id')->all();
 
                 $view->with('selectUserTrees',$selectUserTrees);
                 $view->with('sharedTrees', $sharedTrees);
