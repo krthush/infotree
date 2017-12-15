@@ -136,6 +136,31 @@ class LeafController extends Controller
                 )
             );
 
+        } elseif ($user->hasRole('admin')) {
+
+            $edit = 'edit';
+            $stack = 'stack';
+
+            return view(
+                'tree.leaves',
+                compact(
+                    'branch',
+                    'infoContents',
+                    'infoTutorials',
+                    'infoVideos',
+                    'infoContentAdds',
+                    'allInfoContents',
+                    'allInfoTutorials',
+                    'allInfoVideos',
+                    'allInfoContentAdds',
+                    'parents',
+                    'children',
+                    'edit',
+                    'stack',
+                    'empty'
+                )
+            );
+
         } elseif ($branch->shared === 1) {
 
             if (is_null($branch->facts)) {
