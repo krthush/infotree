@@ -356,6 +356,16 @@ class BranchController extends Controller
                 )
             );
 
+        } elseif ($user->hasRole('admin')) {
+
+            return view(
+                'tree.rename.branches',
+                compact(
+                    'tree',
+                    'branches'
+                )
+            );
+
         } else {
             return back()->withErrors([
                 'You can only edit your own branches.',
@@ -375,6 +385,16 @@ class BranchController extends Controller
         ]);
 
         if ($tree->user_id === $userID) {
+
+            Branch::where('id', request()->id)->update([
+
+                'title' => request('title'),
+
+            ]);
+
+            return back()->with('success', 'Name edited successfully.');
+
+        } elseif ($user->hasRole('admin')) {
 
             Branch::where('id', request()->id)->update([
 

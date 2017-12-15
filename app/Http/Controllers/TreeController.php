@@ -491,6 +491,16 @@ class TreeController extends Controller
 
             return back()->with('success', 'Description edited successfully.');
 
+        } elseif ($user->hasRole('admin')) {
+
+            Tree::where('id',$tree->id)->update([
+
+                'description' => request('description'),
+
+            ]);
+
+            return back()->with('success', 'Description edited successfully.');
+
         } else {
 
             return redirect(route('home'))->withErrors(['This tree is not yours to edit!']);
@@ -510,6 +520,16 @@ class TreeController extends Controller
         ]);
 
         if ($tree->user_id === $userID) {
+
+            Tree::where('id', request()->id)->update([
+
+                'title' => request('title'),
+
+            ]);
+
+            return back()->with('success', 'Name edited successfully.');
+
+        } elseif ($user->hasRole('admin')) {
 
             Tree::where('id', request()->id)->update([
 
