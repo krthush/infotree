@@ -30,6 +30,8 @@
 
         <ul>
 
+        	<li>Add in "duplicate" branch option, to be able to let users copy branches</li>
+
         	<li>Add SAML ("single sign on") login so imperial users can create/login accounts using imperial account</li>
 
         	<li>Implement scraping tool that searches through an admin level blackboard account, checking for updates and then automatically implements them into infotree daily</li>
