@@ -29,7 +29,8 @@ class LeafController extends Controller
                 'link' => 'required'
         ]);
 
-        $userID = auth()->user()->getAuthIdentifier();
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
 
         if ($branch->user_id === $userID) {
 
@@ -69,7 +70,7 @@ class LeafController extends Controller
 
             ]);
 
-            return redirect(route('home'))->with('success', 'New content added successfully.');
+            return back()->with('success', 'New content added successfully.');
 
         } else {
 
@@ -85,7 +86,8 @@ class LeafController extends Controller
                 'id' => 'required',
         ]);
 
-        $userID = auth()->user()->getAuthIdentifier();
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
 
         if ($branch->user_id === $userID) {
 
@@ -97,7 +99,7 @@ class LeafController extends Controller
 
             Leaf::where('id',request('id'))->delete();
 
-            return redirect(route('home'))->with('success', 'Content deleted successfully.');
+            return back()->with('success', 'Content deleted successfully.');
             
         } else {
 
@@ -107,7 +109,7 @@ class LeafController extends Controller
 
     }
 
-    
+
 
     // Branch related methods
     public function show(Branch $branch) {
