@@ -202,6 +202,21 @@ class TreeController extends Controller
 
             return redirect(route('home'))->with('success', 'Tree has been deleted');
 
+        } elseif ($user->hasRole('admin')) {
+
+            $branches = Branch::where('tree_id',$tree_id)->get();
+
+            foreach ($branches as $branch) {
+                $branch->leaves()->delete();
+            }
+
+            Branch::where('tree_id',$tree_id)->delete();
+            Leaf::where('tree_id',$tree_id)->delete();
+
+            $tree->delete();
+
+            return redirect(route('home'))->with('success', 'Tree has been deleted');
+
         } else {
 
             return back()->withErrors([
