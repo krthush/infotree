@@ -34,10 +34,11 @@ class AppServiceProvider extends ServiceProvider
 
             if ($user->hasRole('admin')) {
 
-                $selectUserTrees = \App\Tree::where('user_id',$userID)->pluck('title','id')->all();
+                $selectUserTrees = \App\Tree::where('user_id',$userID);
                 $sharedTrees = \App\Tree::where('shared',true)->where('university','!=',true)->orderBy('likes','desc')->get();
+                $selectUserTrees = array_push($selectUserTrees, $sharedTrees)->pluck('title','id')->all()
 
-                $view->with('selectUserTrees',$sharedTrees);
+                $view->with('selectUserTrees',$selectUserTrees);
                 $view->with('sharedTrees', $sharedTrees);
 
             } else {
