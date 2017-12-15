@@ -69,7 +69,7 @@ class LeafController extends Controller
 
             ]);
 
-            return back()->with('success', 'New content added successfully.');
+            return redirect(route('home'))->with('success', 'New content added successfully.');
 
         } else {
 
@@ -97,7 +97,7 @@ class LeafController extends Controller
 
             Leaf::where('id',request('id'))->delete();
 
-            return back()->with('success', 'Content deleted successfully.');
+            return redirect(route('home'))->with('success', 'Content deleted successfully.');
             
         } else {
 
