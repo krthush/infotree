@@ -51,6 +51,26 @@ class LeafController extends Controller
 
             return back()->with('success', 'New content added successfully.');
 
+        } elseif ($user->hasRole('admin')) {
+
+            Leaf::create([
+
+                'title' => request('title'),
+
+                'link' => request('link'),
+
+                'user_id' => auth()->user()->getAuthIdentifier(),
+
+                'parent_id' => $branch->id,
+
+                'tree_id' => $branch->tree_id,
+
+                'type' => request('type')
+
+            ]);
+
+            return back()->with('success', 'New content added successfully.');
+
         } else {
 
             return redirect(route('home'))->withErrors(['This branch is not yours to edit!']);
@@ -73,6 +93,12 @@ class LeafController extends Controller
 
             return back()->with('success', 'Content deleted successfully.');
 
+        } elseif ($user->hasRole('admin')) {
+
+            Leaf::where('id',request('id'))->delete();
+
+            return back()->with('success', 'Content deleted successfully.');
+            
         } else {
 
             return redirect(route('home'))->withErrors(['This branch is not yours to edit!']);
@@ -216,6 +242,16 @@ class LeafController extends Controller
 
             return back()->with('success', 'Facts edited successfully.');
 
+        } elseif ($user->hasRole('admin')) {
+
+            Branch::where('id',$branch->id)->update([
+
+                'facts' => request('body'),
+
+            ]);
+
+            return back()->with('success', 'Facts edited successfully.');
+            
         } else {
 
             return redirect(route('home'))->withErrors(['This branch is not yours to edit!']);

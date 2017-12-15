@@ -32,12 +32,25 @@ class AppServiceProvider extends ServiceProvider
                 $filteredSharedTrees = \App\Tree::where('shared',true)->where('university','!=',true)->where('likes','>=',$likeCutOff)->orderBy('likes','desc')->take(10)->get();
             }
 
+            if ($user->hasRole('admin')) {
+
+                $selectUserTrees = \App\Tree::where('user_id',$userID)->pluck('title','id')->all();
+                $sharedTrees = \App\Tree::where('shared',true)->where('university','!=',true)->orderBy('likes','desc')->get();
+                $selectUserTrees = array_push($selectUserTrees, $sharedTrees);
+
+                $view->with('selectUserTrees',\App\Tree::where('user_id',$userID)->pluck('title','id')->all());
+                $view->with('sharedTrees', $sharedTrees);
+
+            } else {
+
+                $view->with('selectUserTrees',\App\Tree::where('user_id',$userID)->pluck('title','id')->all());
+                $view->with('sharedTrees',\App\Tree::where('shared',true)->where('university','!=',true)->orderBy('likes','desc')->take(20)->get());
+
+            }
 
             $view->with('filteredSharedTrees',$filteredSharedTrees);
-            $view->with('userTrees',\App\Tree::where('user_id',$userID)->get());
-            $view->with('selectUserTrees',\App\Tree::where('user_id',$userID)->pluck('title','id')->all());            
+            $view->with('userTrees',\App\Tree::where('user_id',$userID)->get());            
             $view->with('uniTrees',\App\Tree::where('shared',true)->where('university',true)->get());
-            $view->with('sharedTrees',\App\Tree::where('shared',true)->where('university','!=',true)->orderBy('likes','desc')->take(20)->get());
 
         });
 
