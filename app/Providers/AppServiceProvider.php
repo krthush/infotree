@@ -34,11 +34,9 @@ class AppServiceProvider extends ServiceProvider
 
             if ($user->hasRole('admin')) {
 
-                // Finding all trees
+                // WARNING!! repeated variable use for ease
                 $selectUserTrees = \App\Tree::where('user_id',$userID)->pluck('title','id')->all();
                 $sharedTrees = \App\Tree::where('shared',true)->where('university','!=',true)->orderBy('likes','desc')->pluck('title','id')->all();
-
-                // Give admins access to all trees
                 $selectUserTrees = array_merge($selectUserTrees, $sharedTrees);
                 $sharedTrees = \App\Tree::where('shared',true)->where('university','!=',true)->orderBy('likes','desc')->get();
 
