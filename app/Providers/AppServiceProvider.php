@@ -34,10 +34,7 @@ class AppServiceProvider extends ServiceProvider
 
             if ($user->hasRole('admin')) {
 
-                $sharedTrees = \App\Tree::where('shared',true)->where('university','!=',true)->orderBy('likes','desc')->get();
-                $selectSharedTrees = \App\Tree::where('shared',true)->where('university','!=',true)->pluck('title','id')->all();
-
-                $view->with('selectSharedTrees',$selectSharedTrees);
+                $view->with('selectSharedTrees', \App\Tree::where('shared',true)->where('university','!=',true)->pluck('title','id')->all());
                 $view->with('sharedTrees',\App\Tree::where('shared',true)->where('university','!=',true)->orderBy('likes','desc')->get());
 
             } else {
