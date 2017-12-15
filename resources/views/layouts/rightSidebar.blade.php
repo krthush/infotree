@@ -98,7 +98,7 @@
                         @isset($selectSharedTrees)
                         <div class="form-group">
                             {!! Form::label('Delete Shared Tree') !!}
-                            {!! Form::select('id', $selectUserTrees, old('id'), ['class'=>'form-control', 'placeholder'=>'Select Tree']) !!}
+                            {!! Form::select('id', $selectSharedTrees, old('id'), ['class'=>'form-control', 'placeholder'=>'Select Tree']) !!}
                         </div>
                         @endisset($selectSharedTrees)                      
                     </div>
