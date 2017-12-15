@@ -34,7 +34,7 @@
 
         	<li>Add SAML ("single sign on") login so imperial users can create/login accounts using imperial account</li>
 
-        	<li>Implement scraping tool that searches through an admin level blackboard account, checking for updates and then automatically implements them into infotree daily</li>
+        	<li>Implement scraping tool that searches through an admin level blackboard account, checking for updates and then automatically implements them into infotree daily. HIGHLIGHLY recommended that a already existing tool is used (free if possible) and it is OKAY to spend funds on it, many tools already work well, don't waste major resource of TIME on reinventing the wheel.</li>
 
 		</ul>
 
