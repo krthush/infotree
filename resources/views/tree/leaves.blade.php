@@ -75,9 +75,39 @@
         </div>
  	</div>
 
+    <div class="col-md-6">
+        <div class="stack midContainer">
+            <div class="midContainerHeader">
+                <div class="midContainerHeaderText">Teaching Videos</div>
+            </div>
+            <div class="{{ $edit }} midContainerContent">
+                <ul class="list">
+                    @foreach($infoVideos as $infoVideo)
+                        <li>
+                            <a href="{{ $infoVideo->link }}" target="_blank">{{ $infoVideo->title }}</a>
+                        </li>
+                    @endforeach
+                    @if(count($infoVideos) === 0)
+                        <li>There are no teaching videos!</li>
+                    @endif
+                </ul>
+            </div>
+                @if ($edit === 'edit')
+                    <div class="editContent">
+                        <div class="editContentButton"><a href="" data-toggle="modal" data-target="#delVid">Delete</a></div>
+                        <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addVid">Add</a></div>
+                    </div>
+                @endif              
+        </div>
+    </div>
+
+</div>
 
 
-  	<div class="col-md-6">
+
+<div class="row">
+
+    <div class="col-md-6">
         <div class="{{ $stack }} midContainer">
             <div class="midContainerHeader">
                 <div class="midContainerHeaderText">Problem Sets / Tutorials / Past Papers</div>
@@ -102,38 +132,6 @@
                 @endif                
         </div>
     </div>
-
-</div>
-
-
-
-<div class="row">
-
-  	<div class="col-md-6">
-        <div class="stack midContainer">
-            <div class="midContainerHeader">
-                <div class="midContainerHeaderText">Teaching Videos</div>
-            </div>
-            <div class="{{ $edit }} midContainerContent">
-                <ul class="list">
-                    @foreach($infoVideos as $infoVideo)
-                        <li>
-                            <a href="{{ $infoVideo->link }}" target="_blank">{{ $infoVideo->title }}</a>
-                        </li>
-                    @endforeach
-                    @if(count($infoVideos) === 0)
-                        <li>There are no teaching videos!</li>
-                    @endif
-                </ul>
-            </div>
-                @if ($edit === 'edit')
-                    <div class="editContent">
-                        <div class="editContentButton"><a href="" data-toggle="modal" data-target="#delVid">Delete</a></div>
-                        <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addVid">Add</a></div>
-                    </div>
-                @endif              
-        </div>
- 	</div>
 
     <div class="col-md-6">
         <div class="stack midContainer">
