@@ -253,15 +253,6 @@
     </div>
 </div>
 
-@if($tree->id === 5 || $tree->id === 13)
-<div class="topStack alert alert-danger alert-block">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    <strong>        
-        N.B. The ME1 branch is still under construction, as such it does not contain all ME1 blackboard links.
-    </strong>
-</div>
-@endif
-
 <script>
     $(function () {
         $(".search-input").keyup(function() {
