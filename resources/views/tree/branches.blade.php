@@ -253,7 +253,7 @@
     </div>
 </div>
 
-@if($tree->id === 5)
+@if($tree->id === 5 || 13)
 <div class="topStack alert alert-danger alert-block">
     <button type="button" class="close" data-dismiss="alert">×</button>
     <strong>        
