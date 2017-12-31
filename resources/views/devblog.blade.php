@@ -42,6 +42,8 @@
 
         <ul>
 
+        	<li>Add a navigation "overview" which shows how user has reach current leaf through branches from root</li>
+
         	<li>Add "edit linked" branches (e.g. users can link certain branches to university so that when they are updated, only they get updated but they can edit other branches</li>      	
 
 			<li>Add a scrolling list of updates below university trees to let user know what changes are being made to university trees.</li>
