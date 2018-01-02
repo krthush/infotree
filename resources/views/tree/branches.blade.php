@@ -281,7 +281,7 @@
                 "case_insensitive": true,
                 "show_only_matches" : true,
                 "show_only_matches_children" : true,
-                // "fuzzy" : true
+                "fuzzy" : true
             },
             "state" : {
                 "key" : "{{ $tree->id }}"
