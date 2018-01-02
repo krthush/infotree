@@ -89,8 +89,9 @@
           <!-- deletetree Modal content-->
         <div class="modal-content">
             <div class="modal-body">
-                <form id="deleteTreeForm" name="deleteTreeForm" method="DELETE" onsubmit="" onreset="" action="">
+                <form id="deleteTreeForm" name="deleteTreeForm" method="POST" onsubmit="" onreset="" action="{{ route('delete-tree') }}">
                     {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
                     <div class="appear midContainer">
                         <div class="appear double midContainerContent">
                             <div class="form-group">
@@ -100,7 +101,7 @@
                         </div>
                         <div class="editContent">
                             <div class="editContentButton">
-                                <button class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; submitForm('/tree/delete-tree')">Delete Tree</button>
+                                <button class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit;">Delete Tree</button>
                             </div>
                         </div>
                     </div>
@@ -114,7 +115,7 @@
                         </div>
                         <div class="editContent">
                             <div class="editContentButton">
-                                <button class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; submitForm('/tree/delete-tree')">Delete Tree</button>
+                                <button class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit;">Delete Tree</button>
                             </div>
                         </div>                    
                     </div>
