@@ -415,7 +415,7 @@ class TreeController extends Controller
         $pseudoTree->delete();
 
         return redirect(route('tree', $addTreeId))->with('success', 'Selected tree successfully added to this tree.');
-            
+        
     }
 
     public function favourite(Tree $tree) {

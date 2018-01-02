@@ -89,38 +89,39 @@
           <!-- deletetree Modal content-->
         <div class="modal-content">
             <div class="modal-body">
-                <form id="deleteTreeForm" name="deleteTreeForm" method="POST" onsubmit="" onreset="" action="{{ route('delete-tree') }}">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-                    <div class="appear midContainer">
-                        <div class="appear double midContainerContent">
-                            <div class="form-group">
-                                {!! Form::label('Delete Tree') !!}
-                                {!! Form::select('id', $selectUserTrees, old('id'), ['class'=>'form-control', 'placeholder'=>'Select Tree']) !!}
+                <div class="appear midContainer">
+                    {!! Form::open(['route' => 'delete-tree', 'method' => 'DELETE']) !!}
+                            <div class="appear double midContainerContent">
+                                <div class="form-group">
+                                    {!! Form::label('Delete Tree') !!}
+                                    {!! Form::select('id', $selectUserTrees, old('id'), ['class'=>'form-control', 'placeholder'=>'Select Tree']) !!}
+                                </div>
                             </div>
-                        </div>
-                        <div class="editContent">
-                            <div class="editContentButton">
-                                <button class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit;">Delete Tree</button>
+                            <div class="editContent">
+                                <div class="editContentButton">
+                                    <button class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Delete Tree</button>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    @isset($selectSharedTrees)
-                    <div class="appear midContainer">
-                        <div class="appear double midContainerContent">
-                            <div class="form-group">
-                                {!! Form::label('Delete Shared Tree') !!}
-                                {!! Form::select('id', $selectSharedTrees, old('id'), ['class'=>'form-control', 'placeholder'=>'Select Tree']) !!}
+                    {!! Form::close()  !!}
+                </div>
+                
+                @isset($selectSharedTrees)
+                <div class="appear midContainer">
+                    {!! Form::open(['route' => 'delete-tree', 'method' => 'DELETE']) !!}
+                                <div class="appear double midContainerContent">
+                                    <div class="form-group">
+                                        {!! Form::label('Delete Shared Tree') !!}
+                                        {!! Form::select('id', $selectSharedTrees, old('id'), ['class'=>'form-control', 'placeholder'=>'Select Tree']) !!}
+                                    </div>
+                                </div> 
+                            <div class="editContent">
+                                <div class="editContentButton">
+                                    <button class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Delete Tree</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="editContent">
-                            <div class="editContentButton">
-                                <button class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit;">Delete Tree</button>
-                            </div>
-                        </div>                    
-                    </div>
-                    @endisset($selectSharedTrees)
-                </form>
+                    {!! Form::close()  !!}
+                </div>
+                @endisset($selectSharedTrees)
             </div>
         </div>          
     </div>
