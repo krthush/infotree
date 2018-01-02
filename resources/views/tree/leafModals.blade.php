@@ -186,7 +186,7 @@
           {!! Form::open(['method' => 'DELETE', 'route'=>['delete-leaf', $branch]]) !!}
               <div class="appear midContainerContent">
                 <div class="form-group">
-                  {!! Form::label('Title') !!}
+                  {!! Form::label('Select Educational Content To Delete') !!}
                   {!! Form::select('id', $allInfoContents, old('id'), ['class'=>'form-control', 'placeholder'=>'Select Content']) !!}
                 </div>
               </div>
@@ -212,7 +212,7 @@
           {!! Form::open(['method' => 'DELETE', 'route'=>['delete-leaf', $branch]]) !!}
               <div class="appear midContainerContent">
                 <div class="form-group">
-                  {!! Form::label('Title') !!}
+                  {!! Form::label('Select Tutorial Content To Delete') !!}
                   {!! Form::select('id', $allInfoTutorials, old('id'), ['class'=>'form-control', 'placeholder'=>'Select Content']) !!}
                 </div>
               </div>
@@ -240,7 +240,7 @@
           {!! Form::open(['method' => 'DELETE', 'route'=>['delete-leaf', $branch]]) !!}
               <div class="appear midContainerContent">
                 <div class="form-group">
-                  {!! Form::label('Title') !!}
+                  {!! Form::label('Select Video Content To Delete') !!}
                   {!! Form::select('id', $allInfoVideos, old('id'), ['class'=>'form-control', 'placeholder'=>'Select Content']) !!}
                 </div>
               </div>
@@ -268,7 +268,7 @@
           {!! Form::open(['method' => 'DELETE', 'route'=>['delete-leaf', $branch]]) !!}
             <div class="appear midContainerContent">
               <div class="form-group">
-                {!! Form::label('Title') !!}
+                {!! Form::label('Select Additional Content To Delete') !!}
                 {!! Form::select('id', $allInfoContentAdds, old('id'), ['class'=>'form-control', 'placeholder'=>'Select Content']) !!}
               </div>
             </div>
