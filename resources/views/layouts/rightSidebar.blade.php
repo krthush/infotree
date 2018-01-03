@@ -69,7 +69,7 @@
                                 {!! Form::label('Add To Tree') !!}
                                 {!! Form::select('userTreeId', $selectUserTrees, old('userTreeId'), ['class'=>'form-control', 'placeholder'=>'Select Tree To Add To']) !!}
                             </div>
-                            <small class="form-text text-muted">Selecting "Add To Tree" adds the current shared tree that is being viewed to the selected tree</small>                       
+                            <small class="form-text text-muted">Selecting "Add To Tree" adds the current tree that is being viewed to your selected tree</small>                       
                         </div>
                         <div class="editContent">
                             <div class="editContentButton">
