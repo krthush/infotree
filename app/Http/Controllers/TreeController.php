@@ -136,7 +136,7 @@ class TreeController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
-        if ($user->hasRole('admin')) {
+        if ($userID === 1) {
 
 	        $tree = Tree::create([
 
@@ -203,6 +203,7 @@ class TreeController extends Controller
             return redirect(route('home'))->with('success', 'Tree has been deleted');
 
         } elseif ($user->hasRole('admin')) {
+            // Semi Bug. Admins can destroy UNIVERSITY trees if they manage to send the request
 
             $branches = Branch::where('tree_id',$tree_id)->get();
 
@@ -237,7 +238,7 @@ class TreeController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
-        if ($user->hasRole('admin')) {
+        if ($userID === 1) {
             $university = true;
         } else {
             $university = false;
