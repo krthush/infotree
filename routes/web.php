@@ -30,6 +30,11 @@ Route::get('/devblog', function() {
 	return view('devblog');
 })->name('devblog');
 
+/* Devblog */
+Route::get('/contact', function() {
+	return view('contact');
+})->name('contact');
+
 
 
 /* Logout */

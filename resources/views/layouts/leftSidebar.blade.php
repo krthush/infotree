@@ -19,12 +19,12 @@
       </div>
     </div>
 
-<!--     <div class="panel panel-default">
-      <a href="/answer" class="sidebarButtons" id="sidebarButton4">Answer</a>
+    <div class="panel panel-default">
+      <a href="{{ route('contact') }}" class="sidebarButtons" id="sidebarButton4">Contact</a>
       <div id="sidebarContent4" class="panel-collapse collapse">
-        <div class="panel-body">Answer a question for others.</div>
+        <div class="panel-body">Report bugs or enquiries</div>
       </div>
-    </div> -->
+    </div>
 
   </div>
 </div>
