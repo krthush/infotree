@@ -78,7 +78,7 @@
     <div class="col-md-6">
         <div class="stack midContainer">
             <div class="midContainerHeader">
-                <div class="midContainerHeaderText">Teaching Videos / Animations</div>
+                <div class="midContainerHeaderText">Teaching Videos / Animations / Pictures</div>
             </div>
             <div class="{{ $edit }} midContainerContent">
                 <ul class="list">
