@@ -72,6 +72,8 @@
 
         	<li>Controller methods have repeated code for Admin access, just create a permission using "Roles" addon so that permissions can be given to users/admins dependant on the situation</li>
 
+        	<li>Let users create "automated" timed uploads/updates (i.e. material is uploaded automatically at different times of the year), make sure to combine this with ranking features</li>
+
 		</ul>		
 
 		<h3>PLANNED MINOR TASKS:</h3>
