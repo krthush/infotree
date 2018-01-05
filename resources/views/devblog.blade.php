@@ -40,7 +40,9 @@
 
         	<li>Add "linked" branches (e.g. users can link certain branches to university so that when they are updated, only they get updated but they can edit other branches - i.e. let users even link their whole tree to original tree</li>
 
-        	<li>If linked branches/trees are introduced, let users suggest revisions - much like github</li>      	
+        	<li>If linked branches/trees are introduced, let users suggest revisions - much like github</li>
+
+        	<li>Allow user to give access to other users to edit their trees (like shareable permissions -> works for communities)</li>      	
 
 			<li>Add a scrolling list of updates below university trees to let user know what changes are being made to university trees.</li>
 
