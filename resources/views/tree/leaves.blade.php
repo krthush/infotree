@@ -68,6 +68,7 @@
             </div>
                 @if ($edit === 'edit')
                     <div class="editContent">
+                        <div class="editContentButton"><a href="" data-toggle="modal" data-target="#renEdu">Rename</a></div>
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#delEdu">Delete</a></div>
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addEdu">Add</a></div>
                     </div>
@@ -94,6 +95,7 @@
             </div>
                 @if ($edit === 'edit')
                     <div class="editContent">
+                        <div class="editContentButton"><a href="" data-toggle="modal" data-target="#renVid">Rename</a></div>
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#delVid">Delete</a></div>
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addVid">Add</a></div>
                     </div>
@@ -126,6 +128,7 @@
             </div>
                 @if ($edit === 'edit')
                     <div class="editContent">
+                        <div class="editContentButton"><a href="" data-toggle="modal" data-target="#renTut">Rename</a></div>
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#delTut">Delete</a></div>
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addTut">Add</a></div>
                     </div>
@@ -152,6 +155,7 @@
             </div>
                 @if ($edit === 'edit')
                     <div class="editContent">
+                        <div class="editContentButton"><a href="" data-toggle="modal" data-target="#renAdd">Rename</a></div>
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#delAdd">Delete</a></div>
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addAdd">Add</a></div>
                     </div>
@@ -176,7 +180,7 @@
                 <ul class="list">
                     @foreach($parents as $parent)
                         <li>
-                            <a href="/branches/{{ $parent->id }}" >{{ $parent->title }}</a>
+                            <a href="{{ route('leaves',$parent->id) }}" >{{ $parent->title }}</a>
                         </li>
                     @endforeach
                     @if(count($parents) === 0)
@@ -198,7 +202,7 @@
                 <ul class="list">
                     @foreach($children as $child)
                         <li>
-                            <a href="/branches/{{ $child->id }}" >{{ $child->title }}</a>
+                            <a href="{{ route('leaves',$child->id) }}" >{{ $child->title }}</a>
                         </li>
                     @endforeach
                     @if(count($children) === 0)
@@ -209,6 +213,14 @@
         </div>
     </div>
 
+</div>
+
+<div class="topStack midHeader">
+    <a class="rawLink" href="{{ route('tree', $tree) }}">
+    <div class="link midContainerHeader">
+        <div class="midHeaderText">Return To Current Tree "{{ $tree->title }}"</div>
+    </div>
+    </a>
 </div>
 
 
@@ -224,17 +236,7 @@
     <div class="editContent">
         <div class="editContentButton"><a href="#">Under Construction</a></div>
     </div>                        
-</div>
-
-
-
-    <div class="topStack midHeader">
-        <a class="rawLink" href="about.html">
-        <div class="link midContainerHeader">
-            <div class="midHeaderText">Ask a new question about {{ $branch->title }}</div>
-        </div>
-        </a>
-    </div> -->
+</div> -->
 
 @include('tree.leafModals')
       

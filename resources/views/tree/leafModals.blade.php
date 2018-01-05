@@ -28,6 +28,7 @@
 
 
 
+<!-- ADD MODALS -->
 <!-- addEdu Modal -->
 <div class="modal fade" id="addEdu" role="dialog">
     <div class="modal-dialog">
@@ -76,12 +77,12 @@
                 {{ csrf_field() }}
                 <div class="appear midContainerContent">                
                     <div class="form-group">
-                      <label>Add Tutorials Or Problem Sets</label>
-                      <input type="text" name="title" class="form-control" placeholder="Enter title for tutorial sheet/problem set" >
+                      <label>Add Problem Set / Tutorial / Past Paper</label>
+                      <input type="text" name="title" class="form-control" placeholder="Enter title for content" >
                     </div>
                     <div class="form-group">
                       <label>Link</label>
-                      <input type="text" name="link" class="form-control" placeholder="Enter URL of tutorial sheet/problem set" >
+                      <input type="text" name="link" class="form-control" placeholder="Enter URL of content" >
                     </div>
                     <div class="form-group hidden">
                       <label>Type</label>
@@ -113,12 +114,12 @@
                 {{ csrf_field() }}
                 <div class="appear midContainerContent">
                     <div class="form-group">
-                      <label>Add Useful Videos</label>
-                      <input type="text" name="title" class="form-control" placeholder="Enter title for video" >
+                      <label>Add Teaching Video / Animation / Picture</label>
+                      <input type="text" name="title" class="form-control" placeholder="Enter title for content" >
                     </div>
                     <div class="form-group">
                       <label>Link</label>
-                      <input type="text" name="link" class="form-control" placeholder="Enter URL of video" >
+                      <input type="text" name="link" class="form-control" placeholder="Enter URL of content" >
                     </div>
                     <div class="form-group hidden">
                       <label>Type</label>
@@ -150,7 +151,7 @@
                 {{ csrf_field() }}
                 <div class="appear midContainerContent">
                     <div class="form-group">
-                      <label>Add any other additional useful content</label>
+                      <label>Add Further Reading / Additional Information</label>
                       <input type="text" name="title" class="form-control" placeholder="Enter title for content" >
                     </div>
                     <div class="form-group">
@@ -176,6 +177,7 @@
 
 
 
+<!-- DEL MODALS -->
 <!-- delEdu Modal -->
 <div class="modal fade" id="delEdu" role="dialog">
     <div class="modal-dialog">
@@ -187,7 +189,7 @@
               <div class="appear midContainerContent">
                 <div class="form-group">
                   {!! Form::label('Select Educational Content To Delete') !!}
-                  {!! Form::select('id', $allInfoContents, old('id'), ['class'=>'form-control', 'placeholder'=>'Select Content']) !!}
+                  {!! Form::select('id', $allInfoContents, old('id'), ['class'=>'form-control', 'placeholder'=>'Select content']) !!}
                 </div>
               </div>
               <div class="editContent">
@@ -212,8 +214,8 @@
           {!! Form::open(['method' => 'DELETE', 'route'=>['delete-leaf', $branch]]) !!}
               <div class="appear midContainerContent">
                 <div class="form-group">
-                  {!! Form::label('Select Tutorial Content To Delete') !!}
-                  {!! Form::select('id', $allInfoTutorials, old('id'), ['class'=>'form-control', 'placeholder'=>'Select Content']) !!}
+                  {!! Form::label('Select Problem Set / Tutorial / Past Paper To Delete') !!}
+                  {!! Form::select('id', $allInfoTutorials, old('id'), ['class'=>'form-control', 'placeholder'=>'Select content']) !!}
                 </div>
               </div>
               <div class="editContent">
@@ -240,8 +242,8 @@
           {!! Form::open(['method' => 'DELETE', 'route'=>['delete-leaf', $branch]]) !!}
               <div class="appear midContainerContent">
                 <div class="form-group">
-                  {!! Form::label('Select Video Content To Delete') !!}
-                  {!! Form::select('id', $allInfoVideos, old('id'), ['class'=>'form-control', 'placeholder'=>'Select Content']) !!}
+                  {!! Form::label('Select Teaching Video / Animation / Picture To Delete') !!}
+                  {!! Form::select('id', $allInfoVideos, old('id'), ['class'=>'form-control', 'placeholder'=>'Select content']) !!}
                 </div>
               </div>
               <div class="editContent">
@@ -268,13 +270,140 @@
           {!! Form::open(['method' => 'DELETE', 'route'=>['delete-leaf', $branch]]) !!}
             <div class="appear midContainerContent">
               <div class="form-group">
-                {!! Form::label('Select Additional Content To Delete') !!}
-                {!! Form::select('id', $allInfoContentAdds, old('id'), ['class'=>'form-control', 'placeholder'=>'Select Content']) !!}
+                {!! Form::label('Select Further Reading / Additional Information') !!}
+                {!! Form::select('id', $allInfoContentAdds, old('id'), ['class'=>'form-control', 'placeholder'=>'Select content']) !!}
               </div>
             </div>
             <div class="editContent">
               <div class="editContentButton">
                 <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Delete</button>
+              </div>
+            </div> 
+          {!! Form::close() !!}
+        </div>
+      </div>
+      
+    </div>
+</div>
+
+
+
+<!-- REN MODALS -->
+<!-- renEdu Modal -->
+<div class="modal fade" id="renEdu" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- renEdu Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          {!! Form::open(['method' => 'PATCH', 'route'=>['rename-leaf', $branch]]) !!}
+              <div class="appear midContainerContent">
+                <div class="form-group">
+                  {!! Form::label('Select Educational Content To Rename') !!}
+                  {!! Form::select('id', $allInfoContents, old('id'), ['class'=>'form-control', 'placeholder'=>'Select content']) !!}
+                </div>
+                <div class="form-group">
+                  <label>New Name for Educational Content</label>
+                  <input type="text" name="title" class="form-control" placeholder="Enter title for content" >
+                </div>
+              </div>
+              <div class="editContent">
+                <div class="editContentButton"><button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Rename</button></div>
+              </div> 
+          {!! Form::close() !!}
+        </div>
+      </div>
+      
+    </div>
+</div>
+
+
+
+<!-- renTut Modal -->
+<div class="modal fade" id="renTut" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- renTut Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          {!! Form::open(['method' => 'PATCH', 'route'=>['rename-leaf', $branch]]) !!}
+              <div class="appear midContainerContent">
+                <div class="form-group">
+                  {!! Form::label('Select Problem Set / Tutorial / Past Paper To Rename') !!}
+                  {!! Form::select('id', $allInfoTutorials, old('id'), ['class'=>'form-control', 'placeholder'=>'Select content']) !!}
+                </div>
+                <div class="form-group">
+                  <label>New Name for Problem Set / Tutorial / Past Paper</label>
+                  <input type="text" name="title" class="form-control" placeholder="Enter title for content" >
+                </div>
+              </div>
+              <div class="editContent">
+                <div class="editContentButton">
+                  <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Rename</button>
+                </div>
+              </div> 
+          {!! Form::close() !!}
+        </div>
+      </div>
+      
+    </div>
+</div>
+
+
+
+<!-- renVid Modal -->
+<div class="modal fade" id="renVid" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- renVid Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          {!! Form::open(['method' => 'PATCH', 'route'=>['rename-leaf', $branch]]) !!}
+              <div class="appear midContainerContent">
+                <div class="form-group">
+                  {!! Form::label('Select Teaching Video / Animation / Picture To Rename') !!}
+                  {!! Form::select('id', $allInfoVideos, old('id'), ['class'=>'form-control', 'placeholder'=>'Select content']) !!}
+                </div>
+                <div class="form-group">
+                  <label>New Name for Teaching Video / Animation / Picture</label>
+                  <input type="text" name="title" class="form-control" placeholder="Enter title for content" >
+                </div>
+              </div>
+              <div class="editContent">
+                <div class="editContentButton">
+                  <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Rename</button>
+                </div>
+              </div> 
+          {!! Form::close() !!}
+        </div>
+      </div>
+      
+    </div>
+</div>
+
+
+
+<!-- renAdd Modal -->
+<div class="modal fade" id="renAdd" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- renAdd Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          {!! Form::open(['method' => 'PATCH', 'route'=>['rename-leaf', $branch]]) !!}
+            <div class="appear midContainerContent">
+              <div class="form-group">
+                {!! Form::label('Select Further Reading / Additional To Rename') !!}
+                {!! Form::select('id', $allInfoContentAdds, old('id'), ['class'=>'form-control', 'placeholder'=>'Select content']) !!}
+              </div>
+              <div class="form-group">
+                  <label>New Name for Further Reading / Additional</label>
+                  <input type="text" name="title" class="form-control" placeholder="Enter title for content" >
+                </div>
+            </div>
+            <div class="editContent">
+              <div class="editContentButton">
+                <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Rename</button>
               </div>
             </div> 
           {!! Form::close() !!}

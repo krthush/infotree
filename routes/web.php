@@ -104,10 +104,11 @@ Route::patch('/{tree}/rename-branch','BranchController@updateName');
 
 
 /* Leaf Routes */
-Route::get('/branches/{branch}','LeafController@show');
-Route::patch('/branches/{branch}','LeafController@update');
+Route::get('/branches/{branch}','LeafController@show')->name('leaves');
+Route::patch('/branches/{branch}','LeafController@fact')->name('fact-branch');
 Route::post('/branches/{branch}/leaves','LeafController@store');
 Route::delete('/branches/{branch}/leaves','LeafController@destroy')->name('delete-leaf');
+Route::patch('/branches/{branch}/leaves','LeafController@rename')->name('rename-leaf');
 
 
 

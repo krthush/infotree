@@ -58,19 +58,7 @@
 
         	<li>Work on securing DO server</li>
 
-			<li>Optimization required, <a href="https://developers.google.com/speed/pagespeed/insights/">google insights</a></li>
-
-			<li>CSS needs CLEAN UP, needs a lot more functionality/better naming system</li>
-
-			<li>Use AJAX everywhere (e.g. start with favourite button, editing overlays, e.t.c) to make whole website more fluids - fewer pages everything done in sync</li>
-
-			<li>Look into to GET vs. PATCH, especially for the likes (atm likes uses get whereas share/favourite uses patch) - this should be a non-problem if AJAX is used for all also preventing use of Read-Only inputs</li>
-
 			<li>Check into safety of using Read-Only inputs, CRSF token should protect against people forging post requests with different inputs</li>
-
-        	<li>Better method of creating Super Admin -> currently based of off first ever created user</li>
-
-        	<li>Controller methods have repeated code for Admin access, just create a permission using "Roles" addon so that permissions can be given to users/admins dependant on the situation</li>
 
         	<li>Let users create "automated" timed uploads/updates (i.e. material is uploaded automatically at different times of the year), make sure to combine this with ranking features</li>
 
@@ -95,8 +83,6 @@
 			<li>Add better labels for each page (on browser tab heading)</li>
 			
 			<li>Fix left sidebar accordian animations (use a plugin?)</li>
-
-			<li>Leaf controller needs some CLEAN UP when fetching leaves (many variables passed with somewhat repeated code)</li>
 						
 		</ul>
 
@@ -110,8 +96,32 @@
 			<li>Enterering is prevented on registration form so that users are forced to view modal with terms and conditions</li>
 
 		</ul>
+
+		<h3>CLEAN UP / EFFICIENCY:</h3>
+		<ul>
+
+			<li>Routes need consistent naming + routing, names of routes are somewhat confusing and used inconsistently</li>
+
+        	<li>Better method of creating Super Admin -> currently based of off first ever created user</li>			
+
+			<li>Leaf controller needs some CLEAN UP when fetching leaves (many variables passed with somewhat repeated code)</li>
+
+        	<li>Controller methods have repeated code for Admin access, just create a permission using "Roles" addon so that permissions can be given to users/admins dependant on the situation</li>
+
+			<li>Optimization required, <a href="https://developers.google.com/speed/pagespeed/insights/">google insights</a></li>
+
+			<li>CSS needs CLEAN UP, needs a lot more functionality/better naming system</li>
+
+			<li>Use AJAX everywhere (e.g. start with favourite button, editing overlays, e.t.c) to make whole website more fluids - fewer pages everything done in sync</li>
+
+			<li>Look into to GET vs. PATCH, especially for the likes (atm likes uses get whereas share/favourite uses patch) - this should be a non-problem if AJAX is used for all also preventing use of Read-Only inputs</li>
+
+		</ul>
+
 		<h3>FINISHED TASKS:</h3>
 		<ul>
+
+			<li>Users can edit leaves and now current tree is shown on branch pages</li>
 
 			<li>Implement "Clone Add" to clone tree and add it under a specific user's tree</li>
 

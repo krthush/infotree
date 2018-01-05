@@ -109,6 +109,45 @@ class LeafController extends Controller
 
     }
 
+    public function rename(Branch $branch) {
+
+        $this->validate(request(), [
+                'title' => 'required',
+                'id' => 'required'
+        ]);
+
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
+
+        if ($branch->user_id === $userID) {
+
+            Leaf::where('id', request()->id)->update([
+
+                'title' => request('title'),
+
+            ]);
+
+            return back()->with('success', 'Name edited successfully.');
+
+        } elseif ($user->hasRole('admin')) {
+
+            Leaf::where('id', request()->id)->update([
+
+                'title' => request('title'),
+
+            ]);
+
+            return back()->with('success', 'Name edited successfully.');
+
+        } else {
+            return back()->withErrors([
+                'You can only edit your own branches.',
+                'Please create a new clone tree and do your edits there!'
+            ]);
+        }
+
+    }
+
 
 
     // Branch related methods
@@ -116,6 +155,7 @@ class LeafController extends Controller
 
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
+        $tree = Tree::where('id',$branch->tree_id)->first();
         $id = $branch->id;
         $parent_id = $branch->parent_id;
 
@@ -149,6 +189,7 @@ class LeafController extends Controller
             return view(
                 'tree.leaves',
                 compact(
+                    'tree',
                     'branch',
                     'infoContents',
                     'infoTutorials',
@@ -174,6 +215,7 @@ class LeafController extends Controller
             return view(
                 'tree.leaves',
                 compact(
+                    'tree',
                     'branch',
                     'infoContents',
                     'infoTutorials',
@@ -204,6 +246,7 @@ class LeafController extends Controller
             return view(
                 'tree.leaves',
                 compact(
+                    'tree',
                     'branch',
                     'infoContents',
                     'infoTutorials',
@@ -228,7 +271,7 @@ class LeafController extends Controller
         }
     }
 
-    public function update(Branch $branch) {
+    public function fact(Branch $branch) {
 
         $this->validate(request(), [
                 'body' => 'max:65535',

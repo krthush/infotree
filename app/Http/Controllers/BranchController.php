@@ -414,13 +414,13 @@ class BranchController extends Controller
 
     public function updateName(Tree $tree) {
 
-        $user = auth()->user();
-        $userID = $user->getAuthIdentifier();
-
         $this->validate(request(), [
                 'title' => 'required',
                 'id' => 'required'
         ]);
+
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
 
         if ($tree->user_id === $userID) {
 
