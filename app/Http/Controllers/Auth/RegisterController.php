@@ -51,13 +51,21 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
 
-        $customMessages = [
-            'exists' => 'Email provided is not registered for alpha testing. Currently infotree is in closed alpha and only registered emails are allowed. Please contact Thush and ask to be added to the mailing list.'
-        ];
+        // Closed Alpha
+        // $customMessages = [
+        //     'exists' => 'Email provided is not registered for alpha testing. Currently infotree is in closed alpha and only registered emails are allowed. Please contact Thush and ask to be added to the mailing list.'
+        // ];
 
+        // return Validator::make($data, [
+        //     'name' => 'required|string|max:255',
+        //     'email' => 'required|string|email|max:255|unique:users|exists:emails,email',
+        //     'password' => 'required|string|min:6|confirmed',
+        // ], $customMessages);
+
+        // Open Alpha
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users|exists:emails,email',
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ], $customMessages);
     }

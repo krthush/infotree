@@ -74,6 +74,8 @@
 
         	<li>Let users create "automated" timed uploads/updates (i.e. material is uploaded automatically at different times of the year), make sure to combine this with ranking features</li>
 
+        	<li>Allow for updates/merging of similar trees much like what github does (i.e. let users propose revisions to trees, which admins can allow)</li>
+
 		</ul>		
 
 		<h3>PLANNED MINOR TASKS:</h3>
