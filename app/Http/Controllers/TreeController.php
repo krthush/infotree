@@ -494,7 +494,8 @@ class TreeController extends Controller
         $this->validate(request(), [
                 'description' => 'max:100'
         ]);
-
+        
+        $user = auth()->user();
         $userID = auth()->user()->getAuthIdentifier();
 
         if ($tree->user_id === $userID) {
