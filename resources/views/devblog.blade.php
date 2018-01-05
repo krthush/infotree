@@ -30,11 +30,7 @@
 
         <ul>
 
-        	<li>Add in "duplicate" branch option, to be able to let users copy branches</li>
-
         	<li>Add SAML ("single sign on") login so imperial users can create/login accounts using imperial account</li>
-
-        	<li>Implement scraping tool that searches through an admin level blackboard account, checking for updates and then automatically implements them into infotree daily. HIGHLIGHLY recommended that a already existing tool is used (free if possible) and it is OKAY to spend funds on it, many tools already work well, don't waste major resource of TIME on reinventing the wheel.</li>
 
 		</ul>
 
@@ -42,9 +38,9 @@
 
         <ul>
 
-        	<li>Add a navigation "overview" which shows how user has reach current leaf through branches from root</li>
+        	<li>Add "linked" branches (e.g. users can link certain branches to university so that when they are updated, only they get updated but they can edit other branches - i.e. let users even link their whole tree to original tree</li>
 
-        	<li>Add "edit linked" branches (e.g. users can link certain branches to university so that when they are updated, only they get updated but they can edit other branches</li>      	
+        	<li>If linked branches/trees are introduced, let users suggest revisions - much like github</li>      	
 
 			<li>Add a scrolling list of updates below university trees to let user know what changes are being made to university trees.</li>
 
@@ -64,11 +60,15 @@
 
         	<li>Allow for updates/merging of similar trees much like what github does (i.e. let users propose revisions to trees, which admins can allow)</li>
 
+        	<li>Implement scraping tool that searches through an admin level blackboard account, checking for updates and then automatically implements them into infotree daily. HIGHLIGHLY recommended that a already existing tool is used (free if possible) and it is OKAY to spend funds on it, many tools already work well, don't waste major resource of TIME on reinventing the wheel.</li>
+
 		</ul>		
 
 		<h3>PLANNED MINOR TASKS:</h3>
 
 		<ul>
+
+        	<li>Add in "duplicate" branch option, to be able to let users copy branches</li>
 
 			<li>Make errors on forms consist, atm double errors shown - some in form and some as closeable box</li>
 
