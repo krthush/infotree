@@ -1,5 +1,7 @@
 <div class="col-md-2">
  <div class="panel-group hidden-sm hidden-xs" aria-multiselectable="true">
+
+    @empty($infoContents)
     <div class="panel panel-default">
       <a href="{{ route('mytree') }}" class="sidebarButtons" id="sidebarButton1">My Tree</a>
       <div id="sidebarContent1" class="panel-collapse collapse">
@@ -25,12 +27,12 @@
         <div class="panel-body">Report bugs or enquiries</div>
       </div>
     </div>
+    @endempty
 
-  </div>
+
   @isset($infoContents)
-        <div class="splitter"></div>
 
-        <div class="stack midContainer">
+        <div class="midContainer">
             <div class="midContainerHeader">
                 <div class="midContainerHeaderText">Tree Navigation</div>
             </div>
@@ -63,5 +65,7 @@
               </ul>                    
             </div>               
         </div>   
-  @endisset()
+  @endisset
+
+  </div>
 </div>
