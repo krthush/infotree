@@ -47,6 +47,14 @@
 </div>
 @endif
 
+<div class="hidden-lg hidden-md topStack midHeader">
+    <a class="rawLink" href="{{ route('tree', $tree) }}">
+    <div class="link midContainerHeader">
+        <div class="midHeaderText">Return To Current Tree "{{ $tree->title }}"</div>
+    </div>
+    </a>
+</div>
+
 <div class="row">
 
   	<div class="col-md-6">
