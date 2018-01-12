@@ -159,6 +159,7 @@ class LeafController extends Controller
         $id = $branch->id;
         $parent_id = $branch->parent_id;
 
+        // Note $infoContents is used with isset() for leftSidebar to identify a 'leaf' page
         $infoContents = Leaf::where('parent_id',$id)->where('type','edu')->get();
         $infoTutorials = Leaf::where('parent_id',$id)->where('type','tut')->get();
         $infoVideos = Leaf::where('parent_id',$id)->where('type','vid')->get();
@@ -184,7 +185,6 @@ class LeafController extends Controller
         if ($branch->user_id === $userID) {
 
             $edit = 'edit';
-            $stack = 'stack';
 
             return view(
                 'tree.leaves',
@@ -202,7 +202,6 @@ class LeafController extends Controller
                     'parents',
                     'children',
                     'edit',
-                    'stack',
                     'empty'
                 )
             );
@@ -210,7 +209,6 @@ class LeafController extends Controller
         } elseif ($user->hasRole('admin')) {
 
             $edit = 'edit';
-            $stack = 'stack';
 
             return view(
                 'tree.leaves',
@@ -228,18 +226,11 @@ class LeafController extends Controller
                     'parents',
                     'children',
                     'edit',
-                    'stack',
                     'empty'
                 )
             );
 
         } elseif ($branch->shared === 1) {
-
-            if (is_null($branch->facts)) {
-                $stack = '';
-            } else {
-                $stack = 'stack';
-            }
 
             $edit = '';
 
@@ -259,7 +250,6 @@ class LeafController extends Controller
                     'parents',
                     'children',
                     'edit',
-                    'stack',
                     'empty'
                 )
             );
