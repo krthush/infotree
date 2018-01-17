@@ -106,8 +106,9 @@
                 "check_callback" : true,
                 "dblclick_toggle" :false,
                 "themes" : {
-                  "variant" : "large",
-                  "dots" : "true"
+                    "name" : "proton",
+                    "responsive" : "true",
+                    "variant" : "large",
                 }
             },
             "types" : {

@@ -20,12 +20,15 @@
 
 
 	<!-- jsTree -->
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.3/themes/default/style.min.css" />
+<!-- 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.3/themes/default/style.min.css" /> -->
+	<link rel="stylesheet" href="/dist/themes/proton/style.min.css" />
 
 
 	<!-- Scripts required in head-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.3/jstree.min.js"></script>
+	<script src="/dist/libs/jquery.js"></script>
+	<script src="/dist/jstree.min.js"></script>
+<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.3/jstree.min.js"></script> -->
 	<script src="/js/jstreeplugins.js"></script>
 
 

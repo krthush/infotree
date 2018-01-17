@@ -141,8 +141,9 @@
                 "check_callback" : false,
                 "dblclick_toggle" :false,
                 "themes" : {
-                  "variant" : "large",
-                  "dots" : "true"
+                    "name" : "proton",
+                    "responsive" : "true",
+                    "variant" : "large",
                 }
             },
             "types" : {
