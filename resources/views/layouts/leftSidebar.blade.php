@@ -1,7 +1,6 @@
 <div class="col-md-2">
  <div class="panel-group hidden-sm hidden-xs" aria-multiselectable="true">
-
-    @empty($infoContents)
+  
     <div class="panel panel-default">
       <a href="{{ route('mytree') }}" class="sidebarButtons" id="sidebarButton1">My Tree</a>
       <div id="sidebarContent1" class="panel-collapse collapse">
@@ -27,45 +26,6 @@
         <div class="panel-body">Report bugs or enquiries</div>
       </div>
     </div>
-    @endempty
-
-
-  @isset($infoContents)
-
-        <div class="midContainer">
-            <div class="midContainerHeader">
-                <div class="midContainerHeaderText">Tree Navigation</div>
-            </div>
-            <div class="midContainerContent">
-              <div>Return To Current Tree:</div>
-              <ul class="list">
-                  <a href="{{ route('tree', $tree) }}">{{ $tree->title }}</a>
-              </ul>
-              <div>Previous Branches:</div>
-              <ul class="list">
-                  @foreach($parents as $parent)
-                      <li>
-                          <a href="{{ route('leaves',$parent->id) }}" >{{ $parent->title }}</a>
-                      </li>
-                  @endforeach
-                  @if(count($parents) === 0)
-                      <li>There is no parent branch!</li>
-                  @endif
-              </ul>
-              <div>Further Branches:</div>
-              <ul class="list">
-                  @foreach($children as $child)
-                      <li>
-                          <a href="{{ route('leaves',$child->id) }}" >{{ $child->title }}</a>
-                      </li>
-                  @endforeach
-                  @if(count($children) === 0)
-                      <li>There are no children branches!</li>
-                  @endif
-              </ul>                    
-            </div>               
-        </div>   
-  @endisset
 
   </div>
 </div>

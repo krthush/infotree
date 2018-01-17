@@ -173,6 +173,66 @@
 
 </div>
 
+
+
+<div class="row">
+
+    <div class="col-md-10 col-md-offset-1 splitter"></div>
+
+    <div class="col-md-6">
+        <div class="stack midContainer">
+            <div class="midContainerHeader">
+                <div class="midContainerHeaderText">Previous Branches</div>
+            </div>
+            <div class="midContainerContent">
+                <ul class="list">
+                    @foreach($parents as $parent)
+                        <li>
+                            <a href="{{ route('leaves',$parent->id) }}" >{{ $parent->title }}</a>
+                        </li>
+                    @endforeach
+                    @if(count($parents) === 0)
+                        <li>There is no parent branch!</li>
+                    @endif
+                </ul>                    
+            </div>               
+        </div>
+    </div>
+
+
+
+    <div class="col-md-6">
+        <div class="stack midContainer">
+            <div class="midContainerHeader">
+                <div class="midContainerHeaderText">Further Branches</div>
+            </div>
+            <div class="midContainerContent">
+                <ul class="list">
+                    @foreach($children as $child)
+                        <li>
+                            <a href="{{ route('leaves',$child->id) }}" >{{ $child->title }}</a>
+                        </li>
+                    @endforeach
+                    @if(count($children) === 0)
+                        <li>There are no children branches!</li>
+                    @endif
+                </ul>                    
+            </div>              
+        </div>
+    </div>
+
+</div>
+
+<div class="topStack midHeader">
+    <a class="rawLink" href="{{ route('tree', $tree) }}">
+    <div class="link midContainerHeader">
+        <div class="midHeaderText">Return To Current Tree "{{ $tree->title }}"</div>
+    </div>
+    </a>
+</div>
+
+
+
 <!-- <div class="stack midContainer">
     <div class="midContainerHeader">
         <div class="midContainerHeaderText">Questions And Answers On {{ $branch->title }}</div>
