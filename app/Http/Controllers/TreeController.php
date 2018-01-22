@@ -61,6 +61,8 @@ class TreeController extends Controller
         $userID = $user->getAuthIdentifier();
 
         $branches = Branch::where('tree_id',$tree->id)->where('parent_id',0)->get();
+        $global = $tree->global;
+        $shared = $tree->shared;
 
         if ($tree->description == '' ) {
             $empty = 1;
@@ -68,10 +70,9 @@ class TreeController extends Controller
             $empty = 0;
         }
 
-    	if ($tree->user_id === $userID) {
+    	if ($tree->user_id === $userID || $user->hasRole('admin')) {
 
     		$edit = 1;
-    		$shared = $tree->shared;
             $favourite = $tree->favourite;
 
     		return view(
@@ -82,32 +83,14 @@ class TreeController extends Controller
                     'empty',
 	            	'edit',
 	            	'shared',
-                    'favourite'
+                    'favourite',
+                    'global'
 	            )
 	        );
 
-        } elseif ($user->hasRole('admin')) {
-
-            $edit = 1;
-            $shared = $tree->shared;
-            $favourite = $tree->favourite;
-
-            return view(
-                'tree.branches',
-                compact(
-                    'tree',
-                    'branches',
-                    'empty',
-                    'edit',
-                    'shared',
-                    'favourite'
-                )
-            );
-
-        } elseif ($tree->shared === 1) {
+        } elseif ($shared === 1) {
 
         	$edit = 0;
-        	$shared = 1;
 
         	return view(
 	            'tree.branches',
@@ -116,7 +99,8 @@ class TreeController extends Controller
 	                'branches',
                     'empty',
 	            	'edit',
-	            	'shared'
+	            	'shared',
+                    'global'
 	            )
 	        );
             
@@ -187,24 +171,8 @@ class TreeController extends Controller
         $tree_id = request()->id;
 
 
-        if ($tree->user_id === $userID) {
-
-            $branches = Branch::where('tree_id',$tree_id)->get();
-
-            foreach ($branches as $branch) {
-                $branch->leaves()->delete();
-            }
-
-            Branch::where('tree_id',$tree_id)->delete();
-            Leaf::where('tree_id',$tree_id)->delete();
-
-            $tree->delete();
-
-            return redirect(route('home'))->with('success', 'Tree has been deleted');
-
-        } elseif ($user->hasRole('admin')) {
+        if ($tree->user_id === $userID || $user->hasRole('admin')) {
             // Semi Bug. Admins can destroy UNIVERSITY trees if they manage to send the request
-
             $branches = Branch::where('tree_id',$tree_id)->get();
 
             foreach ($branches as $branch) {
@@ -465,24 +433,88 @@ class TreeController extends Controller
 
         if ($tree->user_id === $userID) {
 
-            Tree::where('id',request('id'))->update([
+            if ($tree->shared === 0) {
 
-                'shared' => true
+                Tree::where('id',request('id'))->update([
 
-            ]);
+                    'shared' => true
 
-            Branch::where('tree_id',$tree->id)->update([
+                ]);
 
-                'shared' => true
+                Branch::where('tree_id',$tree->id)->update([
 
-            ]);
+                    'shared' => true
 
-            return back()->with('success', 'Tree has been shared.');
+                ]);
+
+                return back()->with('success', 'Tree has been shared.');
+
+            } else {
+
+                Tree::where('id',request('id'))->update([
+
+                    'shared' => false
+
+                ]);
+
+                Branch::where('tree_id',$tree->id)->update([
+
+                    'shared' => false
+
+                ]);
+
+                return back()->with('success', 'Tree sharing has been stopped.');
+
+            }
 
         } else {
 
             return back()->withErrors([
                 'You can only share your own trees.'
+            ]);
+
+        }
+
+    }
+
+    public function global(Tree $tree) {
+
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
+
+        $this->validate(request(), [
+            'id' => 'required',
+        ]);
+
+
+        if ($tree->user_id === $userID) {
+
+            if ($tree->global === 0) {
+
+                Tree::where('id',request('id'))->update([
+
+                    'global' => true
+
+                ]);
+
+                return back()->with('success', 'Access to tree has been made global.');
+
+            } else {
+
+                Tree::where('id',request('id'))->update([
+
+                    'global' => false
+
+                ]);
+
+                return back()->with('success', 'Access to tree restricted to you alone.');
+
+            }
+
+        } else {
+
+            return back()->withErrors([
+                'You can only edit access of your own trees.'
             ]);
 
         }
@@ -498,18 +530,8 @@ class TreeController extends Controller
         $user = auth()->user();
         $userID = auth()->user()->getAuthIdentifier();
 
-        if ($tree->user_id === $userID) {
+        if ($tree->user_id === $userID || $user->hasRole('admin')) {
             
-            Tree::where('id',$tree->id)->update([
-
-                'description' => request('description'),
-
-            ]);
-
-            return back()->with('success', 'Description edited successfully.');
-
-        } elseif ($user->hasRole('admin')) {
-
             Tree::where('id',$tree->id)->update([
 
                 'description' => request('description'),
@@ -536,17 +558,7 @@ class TreeController extends Controller
                 'id' => 'required'
         ]);
 
-        if ($tree->user_id === $userID) {
-
-            Tree::where('id', request()->id)->update([
-
-                'title' => request('title'),
-
-            ]);
-
-            return back()->with('success', 'Name edited successfully.');
-
-        } elseif ($user->hasRole('admin')) {
+        if ($tree->user_id === $userID || $user->hasRole('admin')) {
 
             Tree::where('id', request()->id)->update([
 

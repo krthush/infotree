@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Tree extends Model
 {
-    protected $fillable = ['title','user_id','university','shared','favourite','likes','description'];
+    protected $fillable = ['title','user_id','university','shared','favourite','likes','description','global'];
 
     /**
      * Get the index name for the model.

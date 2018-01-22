@@ -28,7 +28,14 @@
             <ul class="list">
                 @foreach($sharedTrees as $sharedTree)
                     <li>
-                        <a href="/tree/{{ $sharedTree->id }}">{{ $sharedTree->title }}</a>
+                        <a href="/tree/{{ $sharedTree->id }}">
+                            {{ $sharedTree->title }}
+                            @if ($sharedTree->global === 1)
+                                <span class="rightSideBar glyphicon glyphicon-globe"></span>
+                            @else
+                                <span class="rightSideBar glyphicon glyphicon-user"></span>
+                            @endif
+                        </a>
                     </li>
                 @endforeach
             </ul>                    
@@ -37,7 +44,14 @@
             <ul class="list">
                 @foreach($filteredSharedTrees as $filteredSharedTree)
                     <li>
-                        <a href="/tree/{{ $filteredSharedTree->id }}">{{ $filteredSharedTree->title }}</a>
+                        <a href="/tree/{{ $filteredSharedTree->id }}">
+                            {{ $filteredSharedTree->title }}
+                            @if ($filteredSharedTree->global === 1)
+                                <span class="rightSideBar glyphicon glyphicon-globe"></span>
+                            @else
+                                <span class="rightSideBar glyphicon glyphicon-user"></span>
+                            @endif
+                        </a>
                     </li>
                 @endforeach
             </ul>                    

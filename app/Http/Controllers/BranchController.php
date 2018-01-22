@@ -31,17 +31,7 @@ class BranchController extends Controller
         $userID = $user->getAuthIdentifier();
         $branches = Branch::where('tree_id',$tree->id)->where('parent_id',0)->get();
 
-        if ($tree->user_id === $userID) {
-
-            return view(
-                'tree.add.branches',
-                compact(
-                    'tree',
-                    'branches'
-                )
-            );
-
-        } elseif ($user->hasRole('admin')) {
+        if ($tree->user_id === $userID || $user->hasRole('admin')) {
 
             return view(
                 'tree.add.branches',
@@ -220,17 +210,7 @@ class BranchController extends Controller
         $userID = $user->getAuthIdentifier();
         $branches = Branch::where('tree_id',$tree->id)->where('parent_id',0)->get();
 
-        if ($tree->user_id === $userID) {
-
-            return view(
-                'tree.delete.branches',
-                compact(
-                    'tree',
-                    'branches'
-                )
-            );
-
-        } elseif ($user->hasRole('admin')) {
+        if ($tree->user_id === $userID || $user->hasRole('admin')) {
 
             return view(
                 'tree.delete.branches',
@@ -257,25 +237,7 @@ class BranchController extends Controller
                 'id' => 'required',
         ]);
 
-        if ($tree->user_id === $userID) {
-
-            // Getting the parent branch
-            $parent = Branch::findOrFail(request()->id);
-            // Getting all children ids
-            $array_of_ids = $this->getChildren($parent);
-            // Appending the parent category id
-            array_push($array_of_ids, request()->id);
-            // Destroying all of them
-            Branch::destroy($array_of_ids);
-
-            // Destruction of related leaves
-            foreach ($array_of_ids as $id) {
-                Leaf::where('parent_id',$id)->delete();
-            }
-
-            return back()->with('success', 'Branch deleted successfully.');
-
-        } elseif ($user->hasRole('admin')) {
+        if ($tree->user_id === $userID  || $user->hasRole('admin')) {
 
             // Getting the parent branch
             $parent = Branch::findOrFail(request()->id);
@@ -321,17 +283,7 @@ class BranchController extends Controller
         $userID = $user->getAuthIdentifier();
         $branches = Branch::where('tree_id',$tree->id)->where('parent_id',0)->get();
 
-        if ($tree->user_id === $userID) {
-
-            return view(
-                'tree.moveBranches',
-                compact(
-                    'tree',
-                    'branches'
-                )
-            );
-
-        } elseif ($user->hasRole('admin')) {
+        if ($tree->user_id === $userID || $user->hasRole('admin')) {
 
             return view(
                 'tree.moveBranches',
@@ -384,17 +336,7 @@ class BranchController extends Controller
         $userID = $user->getAuthIdentifier();
         $branches = Branch::where('tree_id',$tree->id)->where('parent_id',0)->get();
 
-        if ($tree->user_id === $userID) {
-
-            return view(
-                'tree.rename.branches',
-                compact(
-                    'tree',
-                    'branches'
-                )
-            );
-
-        } elseif ($user->hasRole('admin')) {
+        if ($tree->user_id === $userID || $user->hasRole('admin')) {
 
             return view(
                 'tree.rename.branches',
@@ -422,17 +364,7 @@ class BranchController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
-        if ($tree->user_id === $userID) {
-
-            Branch::where('id', request()->id)->update([
-
-                'title' => request('title'),
-
-            ]);
-
-            return back()->with('success', 'Name edited successfully.');
-
-        } elseif ($user->hasRole('admin')) {
+        if ($tree->user_id === $userID || $user->hasRole('admin')) {
 
             Branch::where('id', request()->id)->update([
 

@@ -31,28 +31,9 @@ class LeafController extends Controller
 
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
+        $tree = Tree::where('id',$branch->tree_id)->first();
 
-        if ($branch->user_id === $userID) {
-
-            Leaf::create([
-
-                'title' => request('title'),
-
-                'link' => request('link'),
-
-                'user_id' => auth()->user()->getAuthIdentifier(),
-
-                'parent_id' => $branch->id,
-
-                'tree_id' => $branch->tree_id,
-
-                'type' => request('type')
-
-            ]);
-
-            return back()->with('success', 'New content added successfully.');
-
-        } elseif ($user->hasRole('admin')) {
+        if ($branch->user_id === $userID || $user->hasRole('admin') || $tree->global === 1) {
 
             Leaf::create([
 
@@ -88,14 +69,9 @@ class LeafController extends Controller
 
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
+        $tree = Tree::where('id',$branch->tree_id)->first();
 
-        if ($branch->user_id === $userID) {
-
-            Leaf::where('id',request('id'))->delete();
-
-            return back()->with('success', 'Content deleted successfully.');
-
-        } elseif ($user->hasRole('admin')) {
+        if ($branch->user_id === $userID || $user->hasRole('admin') || $tree->global === 1) {
 
             Leaf::where('id',request('id'))->delete();
 
@@ -118,18 +94,9 @@ class LeafController extends Controller
 
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
+        $tree = Tree::where('id',$branch->tree_id)->first();
 
-        if ($branch->user_id === $userID) {
-
-            Leaf::where('id', request()->id)->update([
-
-                'title' => request('title'),
-
-            ]);
-
-            return back()->with('success', 'Name edited successfully.');
-
-        } elseif ($user->hasRole('admin')) {
+        if ($branch->user_id === $userID || $user->hasRole('admin') || $tree->global === 1) {
 
             Leaf::where('id', request()->id)->update([
 
@@ -173,40 +140,13 @@ class LeafController extends Controller
         $parents = Branch::where('id',$parent_id)->get();
         $children = Branch::where('parent_id',$id)->get();
 
-
-
         if ($branch->facts == '' ) {
             $empty = 1;
         } else {
             $empty = 0;
-        }       
+        }
 
-
-        if ($branch->user_id === $userID) {
-
-            $edit = 'edit';
-
-            return view(
-                'tree.leaves',
-                compact(
-                    'tree',
-                    'branch',
-                    'infoContents',
-                    'infoTutorials',
-                    'infoVideos',
-                    'infoContentAdds',
-                    'allInfoContents',
-                    'allInfoTutorials',
-                    'allInfoVideos',
-                    'allInfoContentAdds',
-                    'parents',
-                    'children',
-                    'edit',
-                    'empty'
-                )
-            );
-
-        } elseif ($user->hasRole('admin')) {
+        if ($branch->user_id === $userID || $user->hasRole('admin') || $tree->global === 1) {
 
             $edit = 'edit';
 
@@ -267,20 +207,12 @@ class LeafController extends Controller
                 'body' => 'max:65535',
         ]);
 
-        $userID = auth()->user()->getAuthIdentifier();
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
+        $tree = Tree::where('id',$branch->tree_id)->first();
 
-        if ($branch->user_id === $userID) {
+        if ($branch->user_id === $userID || $user->hasRole('admin') || $tree->global === 1) {
             
-            Branch::where('id',$branch->id)->update([
-
-                'facts' => request('body'),
-
-            ]);
-
-            return back()->with('success', 'Facts edited successfully.');
-
-        } elseif ($user->hasRole('admin')) {
-
             Branch::where('id',$branch->id)->update([
 
                 'facts' => request('body'),
