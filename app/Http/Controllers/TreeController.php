@@ -487,7 +487,7 @@ class TreeController extends Controller
         ]);
 
 
-        if ($tree->user_id === $userID) {
+        if ($tree->user_id === $userID|| $user->hasRole('admin')) {
 
             if ($tree->global === 0) {
 
@@ -507,7 +507,7 @@ class TreeController extends Controller
 
                 ]);
 
-                return back()->with('success', 'Access to tree restricted to you alone.');
+                return back()->with('success', 'Access to tree restricted to owner.');
 
             }
 

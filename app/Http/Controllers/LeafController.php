@@ -123,6 +123,7 @@ class LeafController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
         $tree = Tree::where('id',$branch->tree_id)->first();
+        $branches = Branch::where('tree_id',$tree->id)->where('parent_id',0)->get();
         $id = $branch->id;
         $parent_id = $branch->parent_id;
 
@@ -136,9 +137,6 @@ class LeafController extends Controller
         $allInfoTutorials = Leaf::where('parent_id',$id)->where('type','tut')->pluck('title','id')->all();
         $allInfoVideos = Leaf::where('parent_id',$id)->where('type','vid')->pluck('title','id')->all();
         $allInfoContentAdds = Leaf::where('parent_id',$id)->where('type','add')->pluck('title','id')->all();
-
-        $parents = Branch::where('id',$parent_id)->get();
-        $children = Branch::where('parent_id',$id)->get();
 
         if ($branch->facts == '' ) {
             $empty = 1;
@@ -155,6 +153,7 @@ class LeafController extends Controller
                 compact(
                     'tree',
                     'branch',
+                    'branches',
                     'infoContents',
                     'infoTutorials',
                     'infoVideos',
@@ -163,8 +162,6 @@ class LeafController extends Controller
                     'allInfoTutorials',
                     'allInfoVideos',
                     'allInfoContentAdds',
-                    'parents',
-                    'children',
                     'edit',
                     'empty'
                 )
@@ -179,6 +176,7 @@ class LeafController extends Controller
                 compact(
                     'tree',
                     'branch',
+                    'branches',
                     'infoContents',
                     'infoTutorials',
                     'infoVideos',
@@ -187,8 +185,6 @@ class LeafController extends Controller
                     'allInfoTutorials',
                     'allInfoVideos',
                     'allInfoContentAdds',
-                    'parents',
-                    'children',
                     'edit',
                     'empty'
                 )

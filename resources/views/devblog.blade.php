@@ -30,6 +30,8 @@
 
         <ul>
 
+        	<li>Fix front end of "leaf" pages</li>
+
         	<li>Add SAML ("single sign on") login so imperial users can create/login accounts using imperial account</li>
 
 		</ul>
