@@ -46,10 +46,6 @@
 			window.location.replace("http://homestead.app/trees")
 	    });
 
-		if (sessionStorage.scrollTop != "undefined") {
-			$(window).scrollTop(sessionStorage.scrollTop);
-		}
-
 	});
 </script>
 <script type="text/javascript">
@@ -107,6 +103,10 @@
 
 		var branchId = $('#branchTitle').data("id");
 	    $("#jstreeSidebar").jstree().open_node(branchId);
+
+		if (sessionStorage.scrollTop != "undefined") {
+			$(window).scrollTop(sessionStorage.scrollTop);
+		}
 
 	});
 </script>
