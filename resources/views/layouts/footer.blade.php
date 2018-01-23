@@ -88,8 +88,9 @@
 			  }
 			},
 			"search": {
-			  "case_insensitive": true,
-			  // "fuzzy" : true
+				"case_insensitive": true,
+                "show_only_matches" : true,
+                "show_only_matches_children" : true,
 			}
 		}).bind("select_node.jstree", function (e, data) {
 		  	var href = data.node.a_attr.href;
