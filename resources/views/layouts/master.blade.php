@@ -18,7 +18,7 @@
   @include('layouts.leftSidebar')    
 
     <!-- Content for page-->
-    <div class="col-md-8">    
+    <div class="col-md-8 smallpadding">    
 
       @yield('content')
 

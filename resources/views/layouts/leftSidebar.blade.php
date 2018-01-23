@@ -1,4 +1,4 @@
-<div class="col-md-2">
+<div class="col-md-2 smallpadding">
     @isset($infoContents)
     <div class="panel-group hidden-sm hidden-xs" aria-multiselectable="true">
       <div class="panel panel-default">
