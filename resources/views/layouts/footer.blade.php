@@ -58,6 +58,7 @@
 		form.action = action;
 		form.submit();
 	}
+
 </script>
 <script>
 	$(window).scroll(function() {
@@ -69,8 +70,8 @@
 	$(function() {
 
 		$(".search-input").keyup(function() {
-		  var searchString = $(this).val();
-		  $('#jstreeSidebar').jstree('search', searchString);
+		  	var searchString = $(this).val();
+		  	$('#jstreeSidebar').jstree('search', searchString);
 		});
 
 		$('#jstreeSidebar').jstree({
@@ -95,14 +96,17 @@
 			  // "fuzzy" : true
 			}
 		}).bind("select_node.jstree", function (e, data) {
-		  var href = data.node.a_attr.href;
-		  document.location.href = href;
+		  	var href = data.node.a_attr.href;
+		  	document.location.href = href;
 		});
 
 	    setTimeout(function() {
-			var searchString = $(".search-input").val();
-			$('#jstreeSidebar').jstree('search', searchString);	    	
+			var branchTitle = $('#branchTitle').data("title");
+			$('#jstreeSidebar').jstree('search', branchTitle);
 	    }, 100);
+
+		var branchId = $('#branchTitle').data("id");
+	    $("#jstreeSidebar").jstree().open_node(branchId);
 
 	});
 </script>

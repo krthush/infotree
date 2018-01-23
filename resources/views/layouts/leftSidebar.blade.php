@@ -10,16 +10,16 @@
     </div>
     <div class="midContainer hidden-sm hidden-xs">
       <div class="midContainerHeader">
-        <div class="midContainerHeaderText">Navigation</div>
+        <div class="midContainerHeaderText" id="branchTitle" data-title="{{ $branch->title }}" data-id="{{ $branch->id }}">Navigation</div>
       </div>
       <div class="midContainerContent jstreeSidebar">
         <div>
-          <input class="search-input form-control short" value="{{ $branch->title }}">
+          <input class="search-input form-control short" placeholder="Search">
         </div>
         <div id="jstreeSidebar">
           <ul>
               @foreach($branches as $branch)
-                  <li class="leaf">
+                  <li class="leaf" id="{{ $branch->id }}">
                       <a href="/branches/{{ $branch->id }}">{{ $branch->title }}</a>
                       @if(count($branch->childs))
                           @include('tree.showBranchChildren',['childs' => $branch->childs])
