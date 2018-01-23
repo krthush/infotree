@@ -20,7 +20,7 @@
           <ul>
               @foreach($branches as $branch)
                   <li class="leaf" id="{{ $branch->id }}">
-                      <a href="/branches/{{ $branch->id }}">{{ $branch->title }}</a>
+                      <a href="/branches/{{ $branch->id }}">{{ $branch->title }}<p class="hiddenText">{{ $branch->id }}</p></a>
                       @if(count($branch->childs))
                           @include('tree.showBranchChildren',['childs' => $branch->childs])
                       @endif

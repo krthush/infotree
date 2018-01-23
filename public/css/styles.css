@@ -356,6 +356,14 @@ span.right {
 .jstreeSidebar.midContainerContent {
 	margin-right: 30px;
 }
+.hiddenText {
+	font-size: 0px;
+	margin: 0px;
+	padding: 2px;
+	line-height: 0px;
+}
+
+
 
 /* BOOTSTRAP CHANGES */
 .tooltip-inner {

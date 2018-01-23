@@ -97,12 +97,11 @@
 		  	document.location.href = href;
 		});
 
+		var branchId = $('#branchTitle').data("id");
 	    setTimeout(function() {
-			var branchTitle = $('#branchTitle').data("title");
-			$('#jstreeSidebar').jstree('search', branchTitle);
+			$('#jstreeSidebar').jstree('search', branchId);
 	    }, 100);
 
-		var branchId = $('#branchTitle').data("id");
 	    $("#jstreeSidebar").jstree().open_node(branchId);
 
 		if (sessionStorage.scrollTop != "undefined") {
