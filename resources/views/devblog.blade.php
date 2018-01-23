@@ -30,8 +30,6 @@
 
         <ul>
 
-        	<li>Add something to signify peoples have no trees, on the right sidebar</li>
-
         	<li>Fix front end of "leaf" pages</li>
 
         	<li>Add SAML ("single sign on") login so imperial users can create/login accounts using imperial account</li>

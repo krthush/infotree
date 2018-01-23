@@ -357,6 +357,7 @@ span.right {
 	margin-right: 30px;
 }
 .hiddenText {
+	 /* THIS IS VERY BAD FOR SEARCH ENGINES */
 	font-size: 0px;
 	margin: 0px;
 	padding: 2px;

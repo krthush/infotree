@@ -20,6 +20,9 @@
     </div>
     <div class="edit midContainerContent">
         <ul class="list">
+            @if(count($userTrees) === 0)
+                <p>You currently have no trees! Please create a tree using the controls below.</p>
+            @endif
             @foreach($userTrees as $userTree)
                 <li>
                     <a href="/tree/{{ $userTree->id }}">{{ $userTree->title }}</a>
