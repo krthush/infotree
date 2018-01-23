@@ -68,3 +68,45 @@
 		  }
 		});
 	</script>
+@isset($infoContents)
+<script>     
+	$( window ).on( "load", function() {
+	  var searchString = $(".search-input").val();
+	  $('#jstreeSidebar').jstree('search', searchString);
+	});
+
+	$(function () {
+
+		$(".search-input").keyup(function() {
+		  var searchString = $(this).val();
+		  $('#jstreeSidebar').jstree('search', searchString);
+		});
+
+		$('#jstreeSidebar').jstree({
+			// Plugins
+			"plugins" : ["noselectedstate", "types", "search", "show_matches_children"],
+			// Parameters
+			"core" : { 
+			  "check_callback" : false,
+			  "dblclick_toggle" :false,
+			  "themes" : {
+			      "name" : "proton",
+			      "responsive" : "true",
+			  }
+			},
+			"types" : {
+			  "default" : {
+			      "icon" : "glyphicon glyphicon-leaf"
+			  }
+			},
+			"search": {
+			  "case_insensitive": true,
+			  // "fuzzy" : true
+			}
+		}).bind("select_node.jstree", function (e, data) {
+		  var href = data.node.a_attr.href;
+		  document.location.href = href;
+		});
+	});
+</script>
+@endisset
