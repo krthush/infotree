@@ -57,89 +57,89 @@
             @if ($edit === 1)
 
                 @if ($shared === 0)
-                <div class="midHeaderButton" data-toggle="tooltip" title="Share Tree">
-                    <div class="hidden">
-                        <form id="shareTreeForm" action="{{ route('share-tree', $tree) }}" method="POST">
-                            {{ csrf_field() }}
-                            <input name="_method" type="hidden" value="PATCH">
-                            <input type="text" name="id" value="{{ $tree->id }}" readonly>
-                        </form>
-                    </div>         
-                    <button class="btn btn-primary" type="submit" form="shareTreeForm" value="Submit">
-                        <span class="glyphicon glyphicon-share"></span>
-                    </button>
-                </div>
+                    <div class="midHeaderButton" data-toggle="tooltip" title="Share Tree">
+                        <div class="hidden">
+                            <form id="shareTreeForm" action="{{ route('share-tree', $tree) }}" method="POST">
+                                {{ csrf_field() }}
+                                <input name="_method" type="hidden" value="PATCH">
+                                <input type="text" name="id" value="{{ $tree->id }}" readonly>
+                            </form>
+                        </div>         
+                        <button class="btn btn-primary" type="submit" form="shareTreeForm" value="Submit">
+                            <span class="glyphicon glyphicon-share"></span>
+                        </button>
+                    </div>
                 @else
-                <div class="midHeaderButton" data-toggle="tooltip" title="Stop Sharing Tree">
-                    <div class="hidden">
-                        <form id="shareTreeForm" action="{{ route('share-tree', $tree) }}" method="POST">
-                            {{ csrf_field() }}
-                            <input name="_method" type="hidden" value="PATCH">
-                            <input type="text" name="id" value="{{ $tree->id }}" readonly>
-                        </form>
-                    </div>         
-                    <button class="btn btn-primary" type="submit" form="shareTreeForm" value="Submit">
-                        <span class="glyphicon glyphicon-lock"></span>
-                    </button>
-                </div>
+                    <div class="midHeaderButton" data-toggle="tooltip" title="Stop Sharing Tree">
+                        <div class="hidden">
+                            <form id="shareTreeForm" action="{{ route('share-tree', $tree) }}" method="POST">
+                                {{ csrf_field() }}
+                                <input name="_method" type="hidden" value="PATCH">
+                                <input type="text" name="id" value="{{ $tree->id }}" readonly>
+                            </form>
+                        </div>         
+                        <button class="btn btn-primary" type="submit" form="shareTreeForm" value="Submit">
+                            <span class="glyphicon glyphicon-lock"></span>
+                        </button>
+                    </div>
                 @endif
 
                 @if ($global === 0)
-                <div class="midHeaderButton" data-toggle="tooltip" title="Global Access">
-                    <div class="hidden">
-                        <form id="globalTreeForm" action="{{ route('global-tree', $tree) }}" method="POST">
-                            {{ csrf_field() }}
-                            <input name="_method" type="hidden" value="PATCH">
-                            <input type="text" name="id" value="{{ $tree->id }}" readonly>
-                        </form>
-                    </div>         
-                    <button class="btn btn-primary" type="submit" form="globalTreeForm" value="Submit">
-                        <span class="glyphicon glyphicon-globe"></span>
-                    </button>
-                </div>
+                    <div class="midHeaderButton" data-toggle="tooltip" title="Global Access">
+                        <div class="hidden">
+                            <form id="globalTreeForm" action="{{ route('global-tree', $tree) }}" method="POST">
+                                {{ csrf_field() }}
+                                <input name="_method" type="hidden" value="PATCH">
+                                <input type="text" name="id" value="{{ $tree->id }}" readonly>
+                            </form>
+                        </div>         
+                        <button class="btn btn-primary" type="submit" form="globalTreeForm" value="Submit">
+                            <span class="glyphicon glyphicon-globe"></span>
+                        </button>
+                    </div>
                 @else
-                <div class="midHeaderButton" data-toggle="tooltip" title="Personal Access">
-                    <div class="hidden">
-                        <form id="globalTreeForm" action="{{ route('global-tree', $tree) }}" method="POST">
-                            {{ csrf_field() }}
-                            <input name="_method" type="hidden" value="PATCH">
-                            <input type="text" name="id" value="{{ $tree->id }}" readonly>
-                        </form>
-                    </div>         
-                    <button class="btn btn-primary" type="submit" form="globalTreeForm" value="Submit">
-                        <span class="glyphicon glyphicon-user"></span>
-                    </button>
-                </div>
+                    <div class="midHeaderButton" data-toggle="tooltip" title="Personal Access">
+                        <div class="hidden">
+                            <form id="globalTreeForm" action="{{ route('global-tree', $tree) }}" method="POST">
+                                {{ csrf_field() }}
+                                <input name="_method" type="hidden" value="PATCH">
+                                <input type="text" name="id" value="{{ $tree->id }}" readonly>
+                            </form>
+                        </div>         
+                        <button class="btn btn-primary" type="submit" form="globalTreeForm" value="Submit">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </button>
+                    </div>
                 @endif                
 
                 @if ($favourite === 0)
-                <div class="midHeaderButton" data-toggle="tooltip" title="Favourite Tree">
-                    <div class="hidden">
-                        <form id="favouriteTreeForm" action="/{{ $tree->id }}/favourite-tree" method="POST">
-                            {{ csrf_field() }}
-                            <input name="_method" type="hidden" value="PATCH">
-                            <input type="text" name="id" value="{{ $tree->id }}" readonly>
-                        </form>
+                    <div class="midHeaderButton" data-toggle="tooltip" title="Favourite Tree">
+                        <div class="hidden">
+                            <form id="favouriteTreeForm" action="/{{ $tree->id }}/favourite-tree" method="POST">
+                                {{ csrf_field() }}
+                                <input name="_method" type="hidden" value="PATCH">
+                                <input type="text" name="id" value="{{ $tree->id }}" readonly>
+                            </form>
+                        </div>
+                        <button class="btn btn-primary" type="submit" form="favouriteTreeForm" value="Submit">
+                            <span class="glyphicon glyphicon-star"></span>
+                        </button>
                     </div>
-                    <button class="btn btn-primary" type="submit" form="favouriteTreeForm" value="Submit">
-                        <span class="glyphicon glyphicon-star"></span>
-                    </button>
-                </div>
                 @endif
 
-            <div class="midHeaderButton" data-toggle="tooltip" title="Edit Tree">
-                <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-edit">&ensp;</span><span class="caret"></span>
-                    </button>
-                  <ul class="dropdown-menu">
-                    <li><a href="{{ route('add-branch', $tree) }}">Add</a></li>
-                    <li><a href="{{ route('delete-branch', $tree) }}">Delete</a></li>
-                    <li><a href="{{ route('move-branch', $tree) }}">Move</a></li>
-                    <li><a href="{{ route('rename-branch', $tree) }}">Rename</a></li>
-                  </ul>
+                <div class="midHeaderButton" data-toggle="tooltip" title="Edit Tree">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-edit">&ensp;</span><span class="caret"></span>
+                        </button>
+                      <ul class="dropdown-menu">
+                        <li><a href="{{ route('add-branch', $tree) }}">Add</a></li>
+                        <li><a href="{{ route('delete-branch', $tree) }}">Delete</a></li>
+                        <li><a href="{{ route('move-branch', $tree) }}">Move</a></li>
+                        <li><a href="{{ route('rename-branch', $tree) }}">Rename</a></li>
+                      </ul>
+                    </div>
                 </div>
-            </div>
             @endif
 
         </div>
@@ -260,89 +260,89 @@
 
             @if ($edit === 1)
                 @if ($shared === 0)
-                <div class="midHeaderButton" data-toggle="tooltip" title="Share Tree">
-                    <div class="hidden">
-                        <form id="shareTreeForm" action="{{ route('share-tree', $tree) }}" method="POST">
-                            {{ csrf_field() }}
-                            <input name="_method" type="hidden" value="PATCH">
-                            <input type="text" name="id" value="{{ $tree->id }}" readonly>
-                        </form>
-                    </div>         
-                    <button class="btn btn-primary" type="submit" form="shareTreeForm" value="Submit">
-                        <span class="glyphicon glyphicon-share"></span>
-                    </button>
-                </div>
+                    <div class="midHeaderButton" data-toggle="tooltip" title="Share Tree">
+                        <div class="hidden">
+                            <form id="shareTreeForm" action="{{ route('share-tree', $tree) }}" method="POST">
+                                {{ csrf_field() }}
+                                <input name="_method" type="hidden" value="PATCH">
+                                <input type="text" name="id" value="{{ $tree->id }}" readonly>
+                            </form>
+                        </div>         
+                        <button class="btn btn-primary" type="submit" form="shareTreeForm" value="Submit">
+                            <span class="glyphicon glyphicon-share"></span>
+                        </button>
+                    </div>
                 @else
-                <div class="midHeaderButton" data-toggle="tooltip" title="Stop Sharing Tree">
-                    <div class="hidden">
-                        <form id="shareTreeForm" action="{{ route('share-tree', $tree) }}" method="POST">
-                            {{ csrf_field() }}
-                            <input name="_method" type="hidden" value="PATCH">
-                            <input type="text" name="id" value="{{ $tree->id }}" readonly>
-                        </form>
-                    </div>         
-                    <button class="btn btn-primary" type="submit" form="shareTreeForm" value="Submit">
-                        <span class="glyphicon glyphicon-lock"></span>
-                    </button>
-                </div>
+                    <div class="midHeaderButton" data-toggle="tooltip" title="Stop Sharing Tree">
+                        <div class="hidden">
+                            <form id="shareTreeForm" action="{{ route('share-tree', $tree) }}" method="POST">
+                                {{ csrf_field() }}
+                                <input name="_method" type="hidden" value="PATCH">
+                                <input type="text" name="id" value="{{ $tree->id }}" readonly>
+                            </form>
+                        </div>         
+                        <button class="btn btn-primary" type="submit" form="shareTreeForm" value="Submit">
+                            <span class="glyphicon glyphicon-lock"></span>
+                        </button>
+                    </div>
                 @endif
 
                 @if ($global === 0)
-                <div class="midHeaderButton" data-toggle="tooltip" title="Global Access">
-                    <div class="hidden">
-                        <form id="globalTreeForm" action="{{ route('global-tree', $tree) }}" method="POST">
-                            {{ csrf_field() }}
-                            <input name="_method" type="hidden" value="PATCH">
-                            <input type="text" name="id" value="{{ $tree->id }}" readonly>
-                        </form>
-                    </div>         
-                    <button class="btn btn-primary" type="submit" form="globalTreeForm" value="Submit">
-                        <span class="glyphicon glyphicon-globe"></span>
-                    </button>
-                </div>
+                    <div class="midHeaderButton" data-toggle="tooltip" title="Global Access">
+                        <div class="hidden">
+                            <form id="globalTreeForm" action="{{ route('global-tree', $tree) }}" method="POST">
+                                {{ csrf_field() }}
+                                <input name="_method" type="hidden" value="PATCH">
+                                <input type="text" name="id" value="{{ $tree->id }}" readonly>
+                            </form>
+                        </div>         
+                        <button class="btn btn-primary" type="submit" form="globalTreeForm" value="Submit">
+                            <span class="glyphicon glyphicon-globe"></span>
+                        </button>
+                    </div>
                 @else
-                <div class="midHeaderButton" data-toggle="tooltip" title="Personal Access">
-                    <div class="hidden">
-                        <form id="globalTreeForm" action="{{ route('global-tree', $tree) }}" method="POST">
-                            {{ csrf_field() }}
-                            <input name="_method" type="hidden" value="PATCH">
-                            <input type="text" name="id" value="{{ $tree->id }}" readonly>
-                        </form>
-                    </div>         
-                    <button class="btn btn-primary" type="submit" form="globalTreeForm" value="Submit">
-                        <span class="glyphicon glyphicon-user"></span>
-                    </button>
-                </div>
+                    <div class="midHeaderButton" data-toggle="tooltip" title="Personal Access">
+                        <div class="hidden">
+                            <form id="globalTreeForm" action="{{ route('global-tree', $tree) }}" method="POST">
+                                {{ csrf_field() }}
+                                <input name="_method" type="hidden" value="PATCH">
+                                <input type="text" name="id" value="{{ $tree->id }}" readonly>
+                            </form>
+                        </div>         
+                        <button class="btn btn-primary" type="submit" form="globalTreeForm" value="Submit">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </button>
+                    </div>
                 @endif
 
                 @if ($favourite === 0)
-                <div class="midHeaderButton" data-toggle="tooltip" title="Favourite Tree">
-                    <div class="hidden">
-                        <form id="favouriteTreeForm" action="/{{ $tree->id }}/favourite-tree" method="POST">
-                            {{ csrf_field() }}
-                            <input name="_method" type="hidden" value="PATCH">
-                            <input type="text" name="id" value="{{ $tree->id }}" readonly>
-                        </form>
+                    <div class="midHeaderButton" data-toggle="tooltip" title="Favourite Tree">
+                        <div class="hidden">
+                            <form id="favouriteTreeForm" action="/{{ $tree->id }}/favourite-tree" method="POST">
+                                {{ csrf_field() }}
+                                <input name="_method" type="hidden" value="PATCH">
+                                <input type="text" name="id" value="{{ $tree->id }}" readonly>
+                            </form>
+                        </div>
+                        <button class="btn btn-primary" type="submit" form="favouriteTreeForm" value="Submit">
+                            <span class="glyphicon glyphicon-star"></span>
+                        </button>
                     </div>
-                    <button class="btn btn-primary" type="submit" form="favouriteTreeForm" value="Submit">
-                        <span class="glyphicon glyphicon-star"></span>
-                    </button>
-                </div>
                 @endif
 
-            <div class="midHeaderButton" data-toggle="tooltip" title="Edit Tree">
-                <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-edit">&ensp;</span><span class="caret"></span>
-                    </button>
-                  <ul class="dropdown-menu">
-                    <li><a href="{{ route('add-branch', $tree) }}">Add</a></li>
-                    <li><a href="{{ route('delete-branch', $tree) }}">Delete</a></li>
-                    <li><a href="{{ route('move-branch', $tree) }}">Move</a></li>
-                    <li><a href="{{ route('rename-branch', $tree) }}">Rename</a></li>
-                  </ul>
+                <div class="midHeaderButton" data-toggle="tooltip" title="Edit Tree">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-edit">&ensp;</span><span class="caret"></span>
+                        </button>
+                      <ul class="dropdown-menu">
+                        <li><a href="{{ route('add-branch', $tree) }}">Add</a></li>
+                        <li><a href="{{ route('delete-branch', $tree) }}">Delete</a></li>
+                        <li><a href="{{ route('move-branch', $tree) }}">Move</a></li>
+                        <li><a href="{{ route('rename-branch', $tree) }}">Rename</a></li>
+                      </ul>
+                    </div>
                 </div>
-            </div>
             @endif
         </div>
     </div>

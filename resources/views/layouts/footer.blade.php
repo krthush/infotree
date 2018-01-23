@@ -66,12 +66,7 @@
 </script>
 @isset($infoContents)
 <script>     
-	$( window ).on( "load", function() {
-	  var searchString = $(".search-input").val();
-	  $('#jstreeSidebar').jstree('search', searchString);
-	});
-
-	$(function () {
+	$(function() {
 
 		$(".search-input").keyup(function() {
 		  var searchString = $(this).val();
@@ -103,6 +98,12 @@
 		  var href = data.node.a_attr.href;
 		  document.location.href = href;
 		});
+
+	    setTimeout(function() {
+			var searchString = $(".search-input").val();
+			$('#jstreeSidebar').jstree('search', searchString);	    	
+	    }, 100);
+
 	});
 </script>
 @endisset

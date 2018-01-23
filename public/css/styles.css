@@ -157,17 +157,6 @@ span.right {
 #showLessContainer2 {
 	display: none;
 }
-/* PLEASE NOTE USE OF 'IMPORTANT' HERE */
-.jstree-anchor {
-    /*enable wrapping*/
-    white-space : normal !important;
-    /*ensure lower nodes move down*/
-    height : auto !important;
-    /*offset icon width*/
-}
-.jstreeSidebar.midContainerContent {
-	margin-right: 30px;
-}
 
 
 
@@ -349,7 +338,17 @@ span.right {
 #treeDesc {
 	text-align:center;
 }
-
+/* PLEASE NOTE USE OF 'IMPORTANT' HERE */
+.jstree-anchor {
+    /*enable wrapping*/
+    white-space : normal !important;
+    /*ensure lower nodes move down*/
+    height : auto !important;
+    /*offset icon width*/
+}
+.jstreeSidebar.midContainerContent {
+	margin-right: 30px;
+}
 
 /* BOOTSTRAP CHANGES */
 .tooltip-inner {
