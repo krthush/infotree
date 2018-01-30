@@ -26,7 +26,12 @@ class HomeController extends Controller
     
     public function index()
     {
-        return view('home');
+        $topTree = \App\Tree::where('shared',true)->where('university','!=',true)->orderBy('likes','desc')->first();
+        return redirect(route('tree', $topTree->id));
     }
 
+    public function home() 
+    {
+        return view('home');
+    }
 }

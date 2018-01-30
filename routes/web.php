@@ -21,7 +21,8 @@ Route::get('/', 'WelcomeController@welcome')->name('welcome');
 
 
 /* Home Controller Routes */
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/index', 'HomeController@index')->name('index');
+Route::get('/home', 'HomeController@home')->name('home');
 
 
 
