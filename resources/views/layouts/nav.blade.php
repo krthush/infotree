@@ -7,7 +7,7 @@
     <ul class="nav navbar-nav navbar-right">
       @if (Route::has('login'))
         @auth
-            <li><a href="{{ route('home') }}">{{ Auth::user()->name }}</a></li>
+            <li><a href="{{ route('index') }}">{{ Auth::user()->name }}</a></li>
             <li><a href="{{ route('logout') }}">Log Out</a></li>
         @else
             <li><a href="{{ route('login') }}">Login</a></li>
