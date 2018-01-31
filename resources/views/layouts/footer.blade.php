@@ -7,9 +7,11 @@
 <!-- Bootstrap -->
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
 <!-- Custom JS -->
 <script src="/js/custom.js"></script>
+<!-- Masonary Script -->
+<script src="/js/masonry.pkgd.min.js"></script>
+
 <script>
 	$(function() {
 			
@@ -46,6 +48,11 @@
 			window.location.replace("http://homestead.app/trees")
 	    });
 
+	    $('.grid').masonry({
+		  // options
+		  itemSelector: '.grid-item'
+		});
+
 	});
 </script>
 <script type="text/javascript">
@@ -61,6 +68,7 @@
 		sessionStorage.scrollTop = $(this).scrollTop();
 	});
 </script>
+
 @isset($infoContents)
 <script>     
 	$(function() {

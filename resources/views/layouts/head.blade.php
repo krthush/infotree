@@ -5,7 +5,8 @@
 	<title>infotree</title>
 
 
-
+	<!-- W3.CSS -->
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
     <!-- Latest compiled and minified CSS -->
@@ -20,15 +21,12 @@
 
 
 	<!-- jsTree -->
-<!-- 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.3/themes/default/style.min.css" /> -->
 	<link rel="stylesheet" href="/dist/themes/proton/style.min.css" />
 
 
 	<!-- Scripts required in head-->
 	<script src="/dist/libs/jquery.js"></script>
 	<script src="/dist/jstree.min.js"></script>
-<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.3/jstree.min.js"></script> -->
 	<script src="/js/jstreeplugins.js"></script>
 
 

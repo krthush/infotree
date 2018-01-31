@@ -55,24 +55,51 @@
     </a>
 </div>
 
-<div class="row">
+@if($childBranches->count())
+<div class="stack midContainer">
+    <div class="midContainerHeader">
+        <div class="midContainerHeaderText">Folders</div>
+    </div>
+    <div class="midContainerContent">
+        <div class="icons container">
+            @foreach($childBranches as $childbranch)
+                <div class="col-sm-4 folder">
+                    <a class="rawLink" href="{{ route('leaves', $childbranch->id) }}">
+                        <div class="col-xs-4">
+                            <img src="/images/folder.png" class="img-circle">
+                        </div>
+                        <div class="col-xs-8">
+                            <h5>{{ $childbranch->title }}</h4>
+                        </div>
+                    </a>
+                </div>                        
+            @endforeach
+        </div>                    
+    </div>               
+</div>
+@endif
 
-  	<div class="col-md-6">
+<div class="grid">
+@if($infoContents->count())
+  	<div class="col-md-6 grid-item">
         <div class="stack midContainer">
         	<div class="midContainerHeader">
             	<div class="midContainerHeaderText">Educational Content</div>
             </div>
             <div class="{{ $edit }} midContainerContent">
-            	<ul class="list">
+            	<div class="icons container">
                     @foreach($infoContents as $infoContent)
-                        <li>
-                            <a href="{{ $infoContent->link }}" target="_blank">{{ $infoContent->title }}</a>
-                        </li>
+                            <a class="rawLink" href="{{ $infoContent->link }}" target="_blank">
+                                <div class="icon">
+                                    <img src="/images/document.png" class="img-circle">
+                                    <h4>{{ $infoContent->title }}</h4>
+                                </div>
+                            </a>                      
                     @endforeach
                     @if(count($infoContents) === 0)
-                        <li>There is no educational content!</li>
+                        <div>There is no educational content!</div>
                     @endif
-                </ul>                    
+                </div>                    
             </div>
                 @if ($edit === 'edit')
                     <div class="editContent">
@@ -83,56 +110,60 @@
                 @endif                
         </div>
  	</div>
+@endif
 
-    <div class="col-md-6">
+@if($infoVideos->count())
+    <div class="col-md-6 grid-item">
         <div class="stack midContainer">
             <div class="midContainerHeader">
                 <div class="midContainerHeaderText">Teaching Videos / Animations / Pictures</div>
             </div>
             <div class="{{ $edit }} midContainerContent">
-                <ul class="list">
+                <div class="icons container">
                     @foreach($infoVideos as $infoVideo)
-                        <li>
-                            <a href="{{ $infoVideo->link }}" target="_blank">{{ $infoVideo->title }}</a>
-                        </li>
+                            <a class="rawLink" href="{{ $infoVideo->link }}" target="_blank">
+                                <div class="icon">
+                                    <img src="/images/videocameraclassic.png" class="img-circle">
+                                    <h4>{{ $infoVideo->title }}</h4>
+                                </div>
+                            </a>                       
                     @endforeach
                     @if(count($infoVideos) === 0)
-                        <li>There are no teaching videos!</li>
+                        <div>There is no educational content!</div>
                     @endif
-                </ul>
+                </div>
             </div>
-                @if ($edit === 'edit')
-                    <div class="editContent">
-                        <div class="editContentButton"><a href="" data-toggle="modal" data-target="#renVid">Rename</a></div>
-                        <div class="editContentButton"><a href="" data-toggle="modal" data-target="#delVid">Delete</a></div>
-                        <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addVid">Add</a></div>
-                    </div>
-                @endif              
+            @if ($edit === 'edit')
+                <div class="editContent">
+                    <div class="editContentButton"><a href="" data-toggle="modal" data-target="#renVid">Rename</a></div>
+                    <div class="editContentButton"><a href="" data-toggle="modal" data-target="#delVid">Delete</a></div>
+                    <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addVid">Add</a></div>
+                </div>
+            @endif              
         </div>
     </div>
+@endif
 
-</div>
-
-
-
-<div class="row">
-
-    <div class="col-md-6">
+@if($infoTutorials->count())
+    <div class="col-md-6 grid-item">
         <div class="stack midContainer">
             <div class="midContainerHeader">
                 <div class="midContainerHeaderText">Problem Sets / Tutorials / Past Papers</div>
             </div>
             <div class="{{ $edit }} midContainerContent">
-                <ul class="list">
+                <div class="icons container">
                     @foreach($infoTutorials as $infoTutorial)
-                        <li>
-                            <a href="{{ $infoTutorial->link }}" target="_blank">{{ $infoTutorial->title }}</a>
-                        </li>
+                            <a class="rawLink" href="{{ $infoTutorial->link }}" target="_blank">
+                                <div class="icon">
+                                    <img src="/images/compose.png" class="img-circle">
+                                    <h4>{{ $infoTutorial->title }}</h4>
+                                </div>
+                            </a>                       
                     @endforeach
-                    @if(count($infoTutorials) === 0)
-                        <li>There are no problem sets / tutorials / past papers!</li>
+                    @if(count($infoVideos) === 0)
+                        <div>There is no educational content!</div>
                     @endif
-                </ul>                    
+                </div>                    
             </div>
                 @if ($edit === 'edit')
                     <div class="editContent">
@@ -143,8 +174,10 @@
                 @endif                
         </div>
     </div>
+@endif
 
-    <div class="col-md-6">
+@if($infoContentAdds->count())
+    <div class="col-md-6 grid-item">
         <div class="stack midContainer">
             <div class="midContainerHeader">
                 <div class="midContainerHeaderText">Further Reading / Additional Information</div>
@@ -152,9 +185,12 @@
             <div class="{{ $edit }} midContainerContent">
                 <ul class="list">
                     @foreach($infoContentAdds as $infoContentAdd)
-                        <li>
-                            <a href="{{ $infoContentAdd->link }}" target="_blank">{{ $infoContentAdd->title }}</a>
-                        </li>
+                            <a class="rawLink" href="{{ $infoContentAdd->link }}" target="_blank">
+                                <div class="icon">
+                                    <img src="/images/document.png" class="img-circle">
+                                    <h4>{{ $infoContentAdd->title }}</h4>
+                                </div>
+                            </a>                      
                     @endforeach
                     @if(count($infoContentAdds) === 0)
                         <li>There is no further reading / additional information!</li>
@@ -170,8 +206,10 @@
                 @endif                       
         </div>
     </div>
+@endif
 
 </div>
+
 
 <!-- <div class="stack midContainer">
     <div class="midContainerHeader">

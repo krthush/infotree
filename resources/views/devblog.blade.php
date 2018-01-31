@@ -30,7 +30,7 @@
 
         <ul>
 
-        	<li>Fix front end of "leaf" pages</li>
+			<li>Improve search engine feature for searching branches such that leaf links are also suggested (using elastic search)</li>
 
         	<li>Add SAML ("single sign on") login so imperial users can create/login accounts using imperial account</li>
 
@@ -47,8 +47,6 @@
         	<li>Allow user to give access to other users to edit their trees (like shareable permissions -> works for communities)</li>      	
 
 			<li>Add a scrolling list of updates below university trees to let user know what changes are being made to university trees.</li>
-
-			<li>Improve search engine feature for searching branches such that leaf links are also suggested</li>
 
 			<li>Add a filters section to shared trees - allow users to change rating cut off?</li>
 
@@ -124,6 +122,8 @@
 
 		<h3>FINISHED TASKS:</h3>
 		<ul>
+
+        	<li>Fix front end of "leaf" pages</li>
 
 			<li>Users can edit leaves and now current tree is shown on branch pages</li>
 

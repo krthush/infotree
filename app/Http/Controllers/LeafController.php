@@ -126,6 +126,7 @@ class LeafController extends Controller
         $branches = Branch::where('tree_id',$tree->id)->where('parent_id',0)->get();
         $id = $branch->id;
         $parent_id = $branch->parent_id;
+        $childBranches = Branch::where('tree_id',$tree->id)->where('parent_id', $branch->id)->get();
 
         // Note $infoContents is used with isset() for leftSidebar to identify a 'leaf' page
         $infoContents = Leaf::where('parent_id',$id)->where('type','edu')->get();
@@ -154,6 +155,7 @@ class LeafController extends Controller
                     'tree',
                     'branch',
                     'branches',
+                    'childBranches',
                     'infoContents',
                     'infoTutorials',
                     'infoVideos',
@@ -177,6 +179,7 @@ class LeafController extends Controller
                     'tree',
                     'branch',
                     'branches',
+                    'childBranches',
                     'infoContents',
                     'infoTutorials',
                     'infoVideos',
