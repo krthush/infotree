@@ -7,7 +7,7 @@
 
 	<!-- W3.CSS -->
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<!-- Bootstrap -->
+	<!-- Bootstrap Font-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
     <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">

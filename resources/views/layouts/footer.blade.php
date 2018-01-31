@@ -50,7 +50,7 @@
 
 	    $('.grid').masonry({
 		  // options
-		  itemSelector: '.grid-item'
+		  itemSelector: '.grid-item',
 		});
 
 	});

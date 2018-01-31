@@ -60,11 +60,11 @@
     <div class="midContainerHeader">
         <div class="midContainerHeaderText">Folders</div>
     </div>
-    <div class="midContainerContent">
+    <div class="{{ $edit }} midContainerContent">
         <div class="icons container">
             @foreach($childBranches as $childbranch)
                 <div class="col-sm-4 folder">
-                    <a class="rawLink" href="{{ $childbranch->link }}" target="_blank">
+                    <a class="rawLink" href="{{ route('leaves', $childbranch->id) }}" >
                         <div class="icon">
                             <img src="/images/folder.png" class="img-circle">
                             <h4>{{ $childbranch->title }}</h4>
@@ -73,6 +73,20 @@
                 </div>                        
             @endforeach
         </div>                    
+    </div>
+    <div class="editContent">
+        @if($infoContents->count()==0)
+            <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addEdu">Add Educational Content</a></div>
+        @endif
+        @if($infoVideos->count()==0)
+            <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addVid">Add Tutorial Content</a></div>
+        @endif
+        @if($infoTutorials->count()==0)
+            <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addTut">Add Video Content</a></div>
+        @endif
+        @if($infoContentAdds->count()==0)
+            <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addAdd">Add Additional Content</a></div>
+        @endif
     </div>               
 </div>
 @endif
@@ -205,10 +219,7 @@
         </div>
     </div>
 @endif
-
 </div>
-
-
 <!-- <div class="stack midContainer">
     <div class="midContainerHeader">
         <div class="midContainerHeaderText">Questions And Answers On {{ $branch->title }}</div>
