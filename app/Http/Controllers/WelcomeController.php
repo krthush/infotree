@@ -12,7 +12,7 @@ class WelcomeController extends Controller
     {
         if (auth()->check()) {
 
-            return redirect(route('index'));
+            return redirect(route('home'));
 
         } else {
 
