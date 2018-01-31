@@ -64,12 +64,10 @@
         <div class="icons container">
             @foreach($childBranches as $childbranch)
                 <div class="col-sm-4 folder">
-                    <a class="rawLink" href="{{ route('leaves', $childbranch->id) }}">
-                        <div class="col-xs-4">
+                    <a class="rawLink" href="{{ $childbranch->link }}" target="_blank">
+                        <div class="icon">
                             <img src="/images/folder.png" class="img-circle">
-                        </div>
-                        <div class="col-xs-8">
-                            <h5>{{ $childbranch->title }}</h4>
+                            <h4>{{ $childbranch->title }}</h4>
                         </div>
                     </a>
                 </div>                        
@@ -81,7 +79,7 @@
 
 <div class="grid">
 @if($infoContents->count())
-  	<div class="col-md-6 grid-item">
+  	<div class="col-sm-6 grid-item">
         <div class="stack midContainer">
         	<div class="midContainerHeader">
             	<div class="midContainerHeaderText">Educational Content</div>
@@ -92,7 +90,7 @@
                             <a class="rawLink" href="{{ $infoContent->link }}" target="_blank">
                                 <div class="icon">
                                     <img src="/images/document.png" class="img-circle">
-                                    <h4>{{ $infoContent->title }}</h4>
+                                    <h4 class="break-word">{{ $infoContent->title }}</h4>
                                 </div>
                             </a>                      
                     @endforeach
@@ -113,7 +111,7 @@
 @endif
 
 @if($infoVideos->count())
-    <div class="col-md-6 grid-item">
+    <div class="col-sm-6 grid-item">
         <div class="stack midContainer">
             <div class="midContainerHeader">
                 <div class="midContainerHeaderText">Teaching Videos / Animations / Pictures</div>
@@ -145,7 +143,7 @@
 @endif
 
 @if($infoTutorials->count())
-    <div class="col-md-6 grid-item">
+    <div class="col-sm-6 grid-item">
         <div class="stack midContainer">
             <div class="midContainerHeader">
                 <div class="midContainerHeaderText">Problem Sets / Tutorials / Past Papers</div>
@@ -177,7 +175,7 @@
 @endif
 
 @if($infoContentAdds->count())
-    <div class="col-md-6 grid-item">
+    <div class="col-sm-6 grid-item">
         <div class="stack midContainer">
             <div class="midContainerHeader">
                 <div class="midContainerHeaderText">Further Reading / Additional Information</div>
