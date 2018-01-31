@@ -145,8 +145,8 @@
         </div>
     </div>
     <div class="midContainerContent">
-        <div>
-            <input class="search-input form-control short" placeholder="Search for branches in the tree">
+        <div class="padBottom">
+            <input class="search-input form-control input-lg" placeholder="Search for branches in the tree">
         </div>
         <span class="glyphicon glyphicon-tree-deciduous" id="treeIcon"></span>
         <div id="jstree">

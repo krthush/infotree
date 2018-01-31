@@ -160,7 +160,7 @@
                                 </div>
                             </a>                       
                     @endforeach
-                    @if(count($infoVideos) === 0)
+                    @if(count($infoTutorials) === 0)
                         <div>There is no educational content!</div>
                     @endif
                 </div>                    
@@ -187,7 +187,7 @@
                     @foreach($infoContentAdds as $infoContentAdd)
                             <a class="rawLink" href="{{ $infoContentAdd->link }}" target="_blank">
                                 <div class="icon">
-                                    <img src="/images/document.png" class="img-circle">
+                                    <img src="/images/news.png" class="img-circle">
                                     <h4>{{ $infoContentAdd->title }}</h4>
                                 </div>
                             </a>                      
