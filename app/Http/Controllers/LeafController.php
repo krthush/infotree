@@ -226,5 +226,17 @@ class LeafController extends Controller
 
         }
 
-    }     	
+    }
+
+    public function search(Request $request) {
+
+        if($request->ajax()) {
+
+            $leaves=Leaf::where('title','LIKE','%'.$request->search."%")->get();
+
+            return $leaves;
+        }
+
+    }
+
 }

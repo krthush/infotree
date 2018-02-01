@@ -123,3 +123,8 @@ Route::get('/{tree}/like-tree', 'LikeController@likeTree')->name('like-tree');
 Route::get('/test', function() {
 	return view('test');
 });
+
+
+
+/* Search Routes */
+Route::get('/search','LeafController@search')->name('search');

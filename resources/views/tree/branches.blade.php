@@ -146,7 +146,7 @@
     </div>
     <div class="midContainerContent">
         <div class="padBottom">
-            <input class="search-input form-control input-lg" placeholder="Search for branches in the tree">
+            <input id="search" class="search-input form-control input-lg" placeholder="Search for branches in the tree">
         </div>
         <span class="glyphicon glyphicon-tree-deciduous" id="treeIcon"></span>
         <div id="jstree">
@@ -387,7 +387,6 @@
             document.location.href = href;
         });
 
-
         // // Need to fix this AJAX method
         // $('#submitFavouriteTree').click(function() {
 
@@ -405,6 +404,31 @@
         //         }
         //     }); //end of ajax
         // });
+    });
+</script>
+
+<script>
+    $('#search').on('keyup',function(){
+
+        var value = $(this).val();         
+        $.ajax({
+         
+            type : "GET",
+             
+            url : '/search',
+             
+            data: {
+                "search": value
+            },             
+            success:function(data){
+                console.log(data);             
+            },
+            error:function(){ 
+                alert("Error!!!!");
+            }
+         
+        });    
+     
     });
 </script>
 @endsection

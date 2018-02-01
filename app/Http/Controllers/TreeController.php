@@ -232,7 +232,6 @@ class TreeController extends Controller
             $newBranch->parent_id = $branch->id;
             $newBranch->parent_orig_id = $branch->parent_id;
             $newBranch->save();
-
         }            
 
         foreach ($treeLeaves as $leaf) {

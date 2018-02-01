@@ -5,8 +5,6 @@
 	<title>infotree</title>
 
 
-	<!-- W3.CSS -->
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<!-- Bootstrap Font-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
     <!-- Latest compiled and minified CSS -->
@@ -28,7 +26,7 @@
 	<script src="/dist/libs/jquery.js"></script>
 	<script src="/dist/jstree.min.js"></script>
 	<script src="/js/jstreeplugins.js"></script>
-
+	
 
 
 	<!-- Metas -->
