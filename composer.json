@@ -7,10 +7,12 @@
     "require": {
         "php": ">=7.0.0",
         "aacotroneo/laravel-saml2": "^0.11.0",
+        "algolia/algoliasearch-client-php": "^1.25",
         "cybercog/laravel-ban": "^3.0",
         "fideloper/proxy": "~3.3",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.5.*",
+        "laravel/scout": "^3.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
         "spatie/laravel-permission": "^2.7"

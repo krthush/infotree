@@ -167,6 +167,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Cog\Laravel\Ban\Providers\BanServiceProvider::class,
         Aacotroneo\Saml2\Saml2ServiceProvider::class,
+        Laravel\Scout\ScoutServiceProvider::class,
 
         /*
          * Package Service Providers...

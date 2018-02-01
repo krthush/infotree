@@ -2,10 +2,13 @@
 
 namespace App;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 
 class Leaf extends Model
 {
+    use Searchable;
+
     protected $fillable = ['title','user_id','parent_id','tree_id','link','type'];
 
     /**
@@ -27,5 +30,9 @@ class Leaf extends Model
     public function tree()
     {
         return $this->belongsTo(Profile::class);
+    }
+    public function searchableAs()
+    {
+        return 'leaves_index';
     }
 }
