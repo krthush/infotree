@@ -102,6 +102,8 @@
 		<h3>CLEAN UP / EFFICIENCY:</h3>
 		<ul>
 
+			<li>Indexing with agolia makes cloning tree method VERY slow (currently not used). Need to check up on database tuning, make better database OR make the controller method far more efficient!!</li>
+
 			<li>Routes need consistent naming + routing, names of routes are somewhat confusing and used inconsistently</li>
 
         	<li>Better method of creating Super Admin -> currently based of off first ever created user</li>			
