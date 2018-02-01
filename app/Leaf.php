@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Leaf extends Model
 {
-    use Searchable;
+    // use Searchable;
 
     protected $fillable = ['title','user_id','parent_id','tree_id','link','type'];
 
@@ -31,8 +31,8 @@ class Leaf extends Model
     {
         return $this->belongsTo(Profile::class);
     }
-    public function searchableAs()
-    {
-        return 'leaves_index';
-    }
+    // public function searchableAs()
+    // {
+    //     return 'leaves_index';
+    // }
 }

@@ -258,7 +258,6 @@ class TreeController extends Controller
 
         foreach ($newBranches as $newBranch) {
 
-
             $parent = Branch::where('tree_id',$newTree->id)->where('parent_id','=',$newBranch->parent_orig_id)->first();
 
             if ($parent) {
