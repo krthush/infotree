@@ -146,7 +146,7 @@
     </div>
     <div class="midContainerContent">
         <div class="padBottom">
-            <input id="search" class="search-input form-control input-lg" placeholder="Search for branches in the tree">
+            <input id="search" class="search-input form-control input-lg" placeholder="Search" data-treeId="{{ $tree->id }}">
         </div>
         <span class="glyphicon glyphicon-tree-deciduous" id="treeIcon"></span>
         <div id="jstree">
@@ -348,6 +348,19 @@
     </div>
 </div>
 
+<div class="stack midContainer">
+    <div class="midContainerHeader">
+        <div class="midContainerHeaderText">Search To See Leaves</div>
+    </div>
+    <div class="midContainerContent">
+        <div class="icons container">
+
+            <!-- Space for added content -->
+
+        </div>                    
+    </div>             
+</div>
+
 <script>
     $(function () {
         $(".search-input").keyup(function() {
@@ -408,9 +421,22 @@
 </script>
 
 <script>
-    $('#search').on('keyup',function(){
+    function debounce(func, wait, immediate) {
+        var timeout;
+        return function() {
+            var context = this, args = arguments;
+            var later = function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    };
 
-        var value = $(this).val();         
+    function AJAX(value, treeId) {
         $.ajax({
          
             type : "GET",
@@ -418,16 +444,38 @@
             url : '/search',
              
             data: {
-                "search": value
+                "search": value,
+                "treeId": treeId
             },             
             success:function(data){
-                console.log(data);             
+                $.each(data,function(k, v) {
+                    $(".icons.container").append(
+                            $('<a class="rawLink" target="_blank">').attr("href",v.link).append(
+                                $('<div class="icon">').append(
+                                    $('<img src="/images/document.png" class="img-circle">').add(
+                                        $('<h4 class="break-word">').append(v.title)
+                                    )
+                                )
+                            )
+                    );
+                });             
             },
             error:function(){ 
                 alert("Error!!!!");
             }
          
-        });    
+        });
+    };
+
+    var AJAXDebounced = debounce(AJAX, 100);
+
+    $('#search').on('keyup',function(){
+        $(".icons.container").empty();
+
+        var value = $(this).val();
+        var treeId = this.getAttribute("data-treeId");
+
+        AJAXDebounced(value, treeId);    
      
     });
 </script>

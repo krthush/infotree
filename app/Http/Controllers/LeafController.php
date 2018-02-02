@@ -232,7 +232,7 @@ class LeafController extends Controller
 
         if($request->ajax()) {
 
-            $leaves=Leaf::where('title','LIKE','%'.$request->search."%")->get();
+            $leaves=Leaf::where('tree_id',$request->treeId)->where('title', 'like', '%' . $request->search . '%')->limit(10)->get();
 
             return $leaves;
         }
