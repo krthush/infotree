@@ -467,7 +467,7 @@
         });
     };
 
-    var AJAXDebounced = debounce(AJAX, 100);
+    var AJAXDebounced = debounce(AJAX, 250);
 
     $('#search').on('keyup',function(){
         $(".icons.container").empty();
