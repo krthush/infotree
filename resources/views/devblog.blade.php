@@ -30,15 +30,13 @@
 
         <ul>
 
-			<li>Improve search engine feature for searching branches such that leaf links are also suggested (using elastic search)</li>
-
-        	<li>Add SAML ("single sign on") login so imperial users can create/login accounts using imperial account</li>
-
 		</ul>
 
         <h3>PLANNED MAJOR TASKS:</h3>
 
         <ul>
+
+        	<li>Add SAML ("single sign on") login so imperial users can create/login accounts using imperial account</li>
 
         	<li>Add "linked" branches (e.g. users can link certain branches to university so that when they are updated, only they get updated but they can edit other branches - i.e. let users even link their whole tree to original tree</li>
 
@@ -63,6 +61,8 @@
         	<li>Allow for updates/merging of similar trees much like what github does (i.e. let users propose revisions to trees, which admins can allow)</li>
 
         	<li>Implement scraping tool that searches through an admin level blackboard account, checking for updates and then automatically implements them into infotree daily. HIGHLIGHLY recommended that a already existing tool is used (free if possible) and it is OKAY to spend funds on it, many tools already work well, don't waste major resource of TIME on reinventing the wheel.</li>
+
+			<li>Improve search engine feature for searching branches such that leaf links are also suggested (using elastic search)</li>
 
 		</ul>		
 
@@ -124,6 +124,8 @@
 
 		<h3>FINISHED TASKS:</h3>
 		<ul>
+
+			<li>AJAX Search. Method "seems" efficient enough. Only uses like - this should be fine for now - but improvement should be there to "smart search" both leaves and tree at once. Efficiency might also become an issure using this method, but unknown.</li>
 
         	<li>Fix front end of "leaf" pages</li>
 
