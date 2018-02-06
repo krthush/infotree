@@ -35,13 +35,16 @@
                         <div class="panel-body">
                             <div class="welcome">
                               <p class="text">
-                                The closed alpha version of the website is up! You can now start personalizing your study space and share it with each other.
+                                The open alpha version of the website is up! You can now start personalizing your study space and share it with each other.
                               </p>
                               @if (Auth::guest())
                                 <p class="text">
                                   Please login or register so that you can start to use infotree!
                                 </p>   
                               @endif
+                              <p class="text">
+                                <b>N.B. The website only houses ME2 data currently, but it serves as a proof of concept for all subjects.</b>
+                              </p>
                             </div>
                             <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                                 {{ csrf_field() }}

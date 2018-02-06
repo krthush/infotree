@@ -433,6 +433,10 @@ span.right {
 }
 .grid {
 }
+.editButtonsOutside {
+	padding-top: 30px;
+	margin-top: 30px;
+}
 
 
 /* CAROUSEL */
