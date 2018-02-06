@@ -36,11 +36,19 @@
 
         <ul>
 
+        	<li>Implement scraping plugin that searches through a blackboard account, checking for updates and then automatically imports them into infotree daily. There may exsist profiles for different types of websites, allowing for users to quickly setup website scraping and create trees.</li>
+
         	<li>Add SAML ("single sign on") login so imperial users can create/login accounts using imperial account</li>
 
-        	<li>Add "linked" branches (e.g. users can link certain branches to university so that when they are updated, only they get updated but they can edit other branches - i.e. let users even link their whole tree to original tree</li>
+        	<li>Stackover like idea: Add reputation that builds as users EFFECTIVELY user the website (create trees which are liked a lot, answer questions succesfully, etc.)</li>
+
+        	<li>Bounty idea linked to reputation: Make users be able to put bounties up on specific questions - if users don't fairly manage bounties reputation takes a hit. Weightings of reputation will need to managed very carefully</li>
+
+        	<li>Github like idea: Add "linked" branches (e.g. users can link certain branches to university so that when they are updated, only they get updated but they can edit other branches - i.e. let users even link their whole tree to original tree</li>
 
         	<li>If linked branches/trees are introduced, let users suggest revisions - much like github</li>
+
+        	<li>Allow for updates/merging of similar trees much like what github does (i.e. let users propose revisions to trees, which admins can allow)</li>
 
         	<li>Allow user to give access to other users to edit their trees (like shareable permissions -> works for communities)</li>      	
 
@@ -50,19 +58,11 @@
 
 			<li>Add &#34;year&#34; class for branches/leaves - to sort content out by year, make sure to make it such that higher years can still see lower year shared content just with less priority (i.e. only shown if &#34;show more&#34; selected + higher popularity limit)</li>
 
-			<li>Leaf page needs better UI in general, add editing overlay for leaf page (just one button on top left "edit") then all "add"s appear and Xs appear for deletion, also allow for reordering of list (maybe use sortable?) - this will also lead to CLEAN UP of multiple pages. Maybe add a feature where you can create "leaf types" so user can choose what type of information to collect together (like videos, lectures, etc)</li>
-
         	<li>Work on securing DO server</li>
 
 			<li>Check into safety of using Read-Only inputs, CRSF token should protect against people forging post requests with different inputs</li>
 
         	<li>Let users create "automated" timed uploads/updates (i.e. material is uploaded automatically at different times of the year), make sure to combine this with ranking features</li>
-
-        	<li>Allow for updates/merging of similar trees much like what github does (i.e. let users propose revisions to trees, which admins can allow)</li>
-
-        	<li>Implement scraping tool that searches through an admin level blackboard account, checking for updates and then automatically implements them into infotree daily. HIGHLIGHLY recommended that a already existing tool is used (free if possible) and it is OKAY to spend funds on it, many tools already work well, don't waste major resource of TIME on reinventing the wheel.</li>
-
-			<li>Improve search engine feature for searching branches such that leaf links are also suggested (using elastic search)</li>
 
 		</ul>		
 
@@ -102,6 +102,8 @@
 		<h3>CLEAN UP / EFFICIENCY:</h3>
 		<ul>
 
+			<li>Improve search engine feature for searching branches such that leaf links are also suggested (using elastic search)</li>
+
 			<li>Indexing with agolia makes cloning tree method VERY slow (currently not used). Need to check up on database tuning, make better database OR make the controller method far more efficient!!</li>
 
 			<li>Routes need consistent naming + routing, names of routes are somewhat confusing and used inconsistently</li>
@@ -124,6 +126,8 @@
 
 		<h3>FINISHED TASKS:</h3>
 		<ul>
+
+			<li>Leaf page needs better UI in general, add editing overlay for leaf page (just one button on top left "edit") then all "add"s appear and Xs appear for deletion, also allow for reordering of list (maybe use sortable?) - this will also lead to CLEAN UP of multiple pages. Maybe add a feature where you can create "leaf types" so user can choose what type of information to collect together (like videos, lectures, etc)</li>
 
 			<li>AJAX Search. Method "seems" efficient enough. Only uses like - this should be fine for now - but improvement should be there to "smart search" both leaves and tree at once. Efficiency might also become an issure using this method, but unknown.</li>
 
