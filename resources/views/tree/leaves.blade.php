@@ -79,10 +79,10 @@
             <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addEdu">Add Educational Content</a></div>
         @endif
         @if($infoVideos->count()==0)
-            <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addVid">Add Tutorial Content</a></div>
+            <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addVid">Add Video Content</a></div>
         @endif
         @if($infoTutorials->count()==0)
-            <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addTut">Add Video Content</a></div>
+            <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addTut">Add Tutorial Content</a></div>
         @endif
         @if($infoContentAdds->count()==0)
             <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addAdd">Add Additional Content</a></div>
