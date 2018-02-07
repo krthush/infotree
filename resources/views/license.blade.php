@@ -147,6 +147,9 @@
 			<a target="_blank" href="https://www.Vecteezy.com/">Vector Graphics by Vecteezy!</a>
 			<br>
 			<br>
+			<a href="https://www.freepik.com/free-photos-vectors/cloud">Cloud vector created by Freepik</a>
+			<br>
+			<br>
 			Also massive thanks to all my friends and family who have helped me along with this project!
     </div>
 </div>
