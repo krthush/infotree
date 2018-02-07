@@ -122,6 +122,14 @@
 
 			<li>Look into to GET vs. PATCH, especially for the likes (atm likes uses get whereas share/favourite uses patch) - this should be a non-problem if AJAX is used for all also preventing use of Read-Only inputs</li>
 
+			<li>Use more minified code (minify JS, CSS, HTML)</li>
+
+			<li>Leverage less browser cache (some htcaccess shit to store stuff in cache for longer)</li>
+
+			<li>Avoid JS loading in top of window</li>
+
+			<li>Prevent page redirects?</li>
+
 		</ul>
 
 		<h3>FINISHED TASKS:</h3>
