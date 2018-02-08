@@ -30,13 +30,15 @@
 
         <ul>
 
+        	<li>Implement scraping plugin that searches through a blackboard account, checking for updates and then automatically imports them into infotree daily. There may exsist profiles for different types of websites, allowing for users to quickly setup website scraping and create trees.</li>
+
+        	<li>Create an mini linked tree system</li>
+
 		</ul>
 
         <h3>PLANNED MAJOR TASKS:</h3>
 
         <ul>
-
-        	<li>Implement scraping plugin that searches through a blackboard account, checking for updates and then automatically imports them into infotree daily. There may exsist profiles for different types of websites, allowing for users to quickly setup website scraping and create trees.</li>
 
         	<li>Add SAML ("single sign on") login so imperial users can create/login accounts using imperial account</li>
 
