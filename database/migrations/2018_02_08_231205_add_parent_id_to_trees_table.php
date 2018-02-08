@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddGlobalToTreesTable extends Migration
+class AddParentIdToTreesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddGlobalToTreesTable extends Migration
     public function up()
     {
         Schema::table('trees', function (Blueprint $table) {
-            $table->boolean('global')->default(false);
+            $table->integer('parent_id')->nullable()->default(0);
         });
     }
 
@@ -26,7 +26,7 @@ class AddGlobalToTreesTable extends Migration
     public function down()
     {
         Schema::table('trees', function (Blueprint $table) {
-            $table->dropColumn('global');
+            $table->dropColumn('parent_id');
         });
     }
 }

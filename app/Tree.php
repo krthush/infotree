@@ -30,6 +30,12 @@ class Tree extends Model
         return $this->hasMany(Leaf::class);
     }
 
+    // parents
+    public function parent()
+    {
+       return $this->belongsTo('App\Tree','parent_id');
+    }
+
     public function likes()
     {
         return $this->morphToMany('App\User', 'likeable')->whereDeletedAt(null);
