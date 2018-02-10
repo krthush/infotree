@@ -8,6 +8,12 @@
               <div class="panel-body">Navigate to your favourite tree "{{ $myTree->title }}"</div>
             </div>
           </div>
+        <div class="panel panel-default">
+          <a href="{{ route('tree', $tree) }}" class="sidebarButtons" id="sidebarButton2">{{ $tree->title }}</a>
+          <div id="sidebarContent2" class="panel-collapse collapse">
+            <div class="panel-body">Return To Current Tree</div>
+          </div>
+        </div>
       @else
         <div class="panel panel-default">
           <a href="{{ route('tree', $tree) }}" class="sidebarButtons" id="sidebarButton1">{{ $tree->title }}</a>
