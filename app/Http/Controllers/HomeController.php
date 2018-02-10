@@ -31,7 +31,19 @@ class HomeController extends Controller
 
     public function home() 
     {
-        $topTree = \App\Tree::where('shared',true)->where('university','!=',true)->orderBy('likes','desc')->first();
+
+        if (auth()->user()) {
+
+            $user = auth()->user();
+            $userID = $user->getAuthIdentifier();
+
+            $myTree = Tree::where('user_id',$userID)->where('favourite',true)->first();
+
+            return redirect(route('tree', $myTree->id));
+
+        }
+
+        $topTree = Tree::where('shared',true)->where('university','!=',true)->orderBy('likes','desc')->first();
         return redirect(route('tree', $topTree->id));
     }
 }
