@@ -55,7 +55,7 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('layouts.leftSidebar', function($view) {
 
-            if (auth()) {
+            if (auth()->user()) {
 
                 $user = auth()->user();
                 $userID = $user->getAuthIdentifier();
