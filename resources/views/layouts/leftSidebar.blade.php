@@ -54,7 +54,7 @@
           <div class="panel panel-default">
             <a href="{{ route('mytree') }}" class="sidebarButtons" id="sidebarButton1">My Tree</a>
             <div id="sidebarContent1" class="panel-collapse collapse">
-              <div class="panel-body">Please set a favourite tree.</div>
+              <div class="panel-body">Navigate to your favourite tree.</div>
             </div>
           </div>
         @endisset  

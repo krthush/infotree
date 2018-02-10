@@ -55,10 +55,16 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('layouts.leftSidebar', function($view) {
 
-            $user = auth()->user();
-            $userID = $user->getAuthIdentifier();
+            if (auth()) {
 
-            $myTree = \App\Tree::where('user_id',$userID)->where('favourite',true)->first();
+                $user = auth()->user();
+                $userID = $user->getAuthIdentifier();
+
+                $myTree = \App\Tree::where('user_id',$userID)->where('favourite',true)->first();
+
+            } else {
+                $myTree= null;
+            }
        
             $view->with('myTree',$myTree);
 
