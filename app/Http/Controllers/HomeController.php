@@ -39,7 +39,11 @@ class HomeController extends Controller
 
             $myTree = Tree::where('user_id',$userID)->where('favourite',true)->first();
 
-            return redirect(route('tree', $myTree->id));
+            if($myTree) {
+
+                return redirect(route('tree', $myTree->id));
+            
+            }
 
         }
 
