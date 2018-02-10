@@ -63,14 +63,6 @@
 
 	});
 </script>
-<script type="text/javascript">
-	function submitForm(action) {
-		var form = document.getElementById('addTreeForm');
-		form.action = action;
-		form.submit();
-	}
-
-</script>
 <script>
 	$(window).scroll(function() {
 		sessionStorage.scrollTop = $(this).scrollTop();

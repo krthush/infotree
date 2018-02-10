@@ -26,7 +26,12 @@ class Branch extends Model
 
     public function childs() 
     {
-        return $this->hasMany('App\Branch','parent_id','id') ;
+        return $this->hasMany('App\Branch','parent_id') ;
+    }
+
+    // Each branch may have a parent
+    public function parent() {
+        return $this->belongsTo('App\Branch','parent_id');
     }
 
     public function leaves()

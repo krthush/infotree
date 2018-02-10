@@ -29,7 +29,12 @@ class BranchController extends Controller
 
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
-        $branches = Branch::where('tree_id',$tree->id)->where('parent_id',0)->get();
+
+        //include current tree and all its parents, SEE getParentsAttribute() TREE MODEL
+        $arrayOfTreeIDs = $tree->parents->pluck('id')->toArray();
+        array_push($arrayOfTreeIDs, $tree->id);
+        // branches to contain all branches of all trees - main tree then its heirachy upwards
+        $branches = Branch::whereIn('tree_id', $arrayOfTreeIDs)->where('parent_id',0)->get();
 
         if ($tree->user_id === $userID || $user->hasRole('admin')) {
 
@@ -37,6 +42,7 @@ class BranchController extends Controller
                 'tree.add.branches',
                 compact(
                     'tree',
+                    'arrayOfTreeIDs',
                     'branches'
                 )
             );
@@ -44,7 +50,7 @@ class BranchController extends Controller
         } else {
             return back()->withErrors([
                 'You can only edit your own branches.',
-                'Please create a new clone tree and do your edits there!'
+                'Please create a new tree or linked tree and do your edits there!'
             ]);
         }
     }
@@ -195,7 +201,7 @@ class BranchController extends Controller
         } else {
             return back()->withErrors([
                 'You can only edit your own branches.',
-                'Please create a new clone tree and do your edits there!'
+                'Please create a new tree or linked tree and do your edits there!'
             ]);
         }
 
@@ -208,7 +214,12 @@ class BranchController extends Controller
 
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
-        $branches = Branch::where('tree_id',$tree->id)->where('parent_id',0)->get();
+
+        //include current tree and all its parents, SEE getParentsAttribute() TREE MODEL
+        $arrayOfTreeIDs = $tree->parents->pluck('id')->toArray();
+        array_push($arrayOfTreeIDs, $tree->id);
+        // branches to contain all branches of all trees - main tree then its heirachy upwards
+        $branches = Branch::whereIn('tree_id', $arrayOfTreeIDs)->where('parent_id',0)->get();
 
         if ($tree->user_id === $userID || $user->hasRole('admin')) {
 
@@ -216,14 +227,15 @@ class BranchController extends Controller
                 'tree.delete.branches',
                 compact(
                     'tree',
+                    'arrayOfTreeIDs',
                     'branches'
                 )
             );
 
         } else {
             return back()->withErrors([
-                'You can only edit your own branches.',
-                'Please create a new clone tree and do your edits there!'
+                'You can only delete your own branches.',
+                'Please create a new tree or copy tree and do your edits there!'
             ]);
         }
     }
@@ -237,12 +249,13 @@ class BranchController extends Controller
                 'id' => 'required',
         ]);
 
-        if ($tree->user_id === $userID  || $user->hasRole('admin')) {
+        // branch being deleted
+        $branch = Branch::findOrFail(request()->id);
 
-            // Getting the parent branch
-            $parent = Branch::findOrFail(request()->id);
-            // Getting all children ids
-            $array_of_ids = $this->getChildren($parent);
+        if ($branch->user_id === $userID  || $user->hasRole('admin')) {
+
+            // Getting all children ids of branch being deleted
+            $array_of_ids = $this->getChildren($branch);
             // Appending the parent category id
             array_push($array_of_ids, request()->id);
             // Destroying all of them
@@ -257,14 +270,14 @@ class BranchController extends Controller
 
         } else {
             return back()->withErrors([
-                'You can only edit your own branches.',
-                'Please create a new clone tree and do your edits there!'
+                'You can only delete your own branches.',
+                'Please create a separate tree to "unlink" branches.'
             ]);
         }
-
     
     }
 
+    // for delete function
     private function getChildren($branch) {
         $ids = [];
         foreach ($branch->childs as $bra) {
@@ -281,22 +294,28 @@ class BranchController extends Controller
 
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
-        $branches = Branch::where('tree_id',$tree->id)->where('parent_id',0)->get();
+
+        //include current tree and all its parents, SEE getParentsAttribute() TREE MODEL
+        $arrayOfTreeIDs = $tree->parents->pluck('id')->toArray();
+        array_push($arrayOfTreeIDs, $tree->id);
+        // branches to contain all branches of all trees - main tree then its heirachy upwards
+        $branches = Branch::whereIn('tree_id', $arrayOfTreeIDs)->where('parent_id',0)->get();
 
         if ($tree->user_id === $userID || $user->hasRole('admin')) {
 
             return view(
-                'tree.moveBranches',
+                'tree.move.branches',
                 compact(
                     'tree',
+                    'arrayOfTreeIDs',
                     'branches'
                 )
             );
 
         } else {
             return back()->withErrors([
-                'You can only edit your own branches.',
-                'Please create a new clone tree and do your edits there!'
+                'You can only move your own branches.',
+                'Please create a separate tree to "unlink" branches.'
             ]);
         }
     }
@@ -316,13 +335,17 @@ class BranchController extends Controller
                 if($branchParentIds[$x]=='#') {
                     $branchParentIds[$x] = 0;
                     $branch = Branch::findOrFail($branchIds[$x]);
-                    Branch::where('id', $branch->id)->update(['parent_id' => $branchParentIds[$x],]);
+                    if($branch->user_id === $userID || $user->hasRole('admin')) {
+                        Branch::where('id', $branch->id)->update(['parent_id' => $branchParentIds[$x],]);
+                    }
                 } else {
                     $branch = Branch::findOrFail($branchIds[$x]);
-                    Branch::where('id', $branch->id)->update(['parent_id' => $branchParentIds[$x],]);
+                    if($branch->user_id === $userID || $user->hasRole('admin')) {
+                        Branch::where('id', $branch->id)->update(['parent_id' => $branchParentIds[$x],]);
+                    }
                 }
             }
-
+            
             return $branchParentIds;
         }
     }
@@ -334,7 +357,12 @@ class BranchController extends Controller
 
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
-        $branches = Branch::where('tree_id',$tree->id)->where('parent_id',0)->get();
+
+        //include current tree and all its parents, SEE getParentsAttribute() TREE MODEL
+        $arrayOfTreeIDs = $tree->parents->pluck('id')->toArray();
+        array_push($arrayOfTreeIDs, $tree->id);
+        // branches to contain all branches of all trees - main tree then its heirachy upwards
+        $branches = Branch::whereIn('tree_id', $arrayOfTreeIDs)->where('parent_id',0)->get();
 
         if ($tree->user_id === $userID || $user->hasRole('admin')) {
 
@@ -342,14 +370,15 @@ class BranchController extends Controller
                 'tree.rename.branches',
                 compact(
                     'tree',
+                    'arrayOfTreeIDs',
                     'branches'
                 )
             );
 
         } else {
             return back()->withErrors([
-                'You can only edit your own branches.',
-                'Please create a new clone tree and do your edits there!'
+                'You can only rename your own branches.',
+                'Please create a separate tree to "unlink" branches.'
             ]);
         }
     }
@@ -364,7 +393,10 @@ class BranchController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
-        if ($tree->user_id === $userID || $user->hasRole('admin')) {
+        // branch being renamed
+        $branch = Branch::findOrFail(request()->id);
+
+        if ($branch->user_id === $userID || $user->hasRole('admin')) {
 
             Branch::where('id', request()->id)->update([
 
@@ -376,8 +408,8 @@ class BranchController extends Controller
 
         } else {
             return back()->withErrors([
-                'You can only edit your own branches.',
-                'Please create a new clone tree and do your edits there!'
+                'You can only rename your own branches.',
+                'Please create a separate tree to "unlink" branches.'
             ]);
         }
 

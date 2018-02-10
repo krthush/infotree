@@ -22,7 +22,7 @@
 
 <div class="alert alert-info alert-dismissable">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-    <strong>Delete {{ $tree->title }}'s Branches!</strong> Please select a branch to delete... or <a href="{{ route('tree', $tree) }}"> click here </a>to go back!
+    <strong>Delete {{ $tree->title }}'s Branches!</strong> Please select a branch to delete.
 </div>
 
 <div class="midContainer">
@@ -32,12 +32,19 @@
         <div id="jstree">
             <ul>
                 @foreach($branches as $branch)
+                    @if(in_array($branch->tree_id, $arrayOfTreeIDs))
                     <li class="leaf">
-                        <a href="" data-toggle="modal" data-target="#{{ $branch->id }}">{{ $branch->title }}</a>
+                        <a href="" data-toggle="modal" data-target="#{{ $branch->id }}">
+                            {{ $branch->title }}
+                            @if($branch->tree_id!=$tree->id)
+                            <b> - linked</b>
+                            @endif
+                        </a>
                         @if(count($branch->childs))
                             @include('tree.delete.children',['childs' => $branch->childs])
                         @endif
                     </li>
+                    @endif
                 @endforeach
             </ul>
         </div>

@@ -36,48 +36,27 @@
 </div>
 
 
-<div class="modal fade" id="addTree" role="dialog">
+<div class="modal fade" id="newTree" role="dialog">
     <div class="modal-dialog">
       <!-- newtree Modal content-->
         <div class="modal-content">
             <div class="modal-body">
-                <form id="addTreeForm" name="addTreeForm" method="POST" onsubmit="" onreset="" action="">
+                <form id="addTreeForm" name="addTreeForm" method="POST" onsubmit="" onreset="" action="{{ route('new-tree') }}">
                     {{ csrf_field() }}
                     <div class="appear midContainer">
-                        <div class="appear double midContainerContent">
+                        <div class="appear midContainerContent">
                             <div class="form-group">
                                 <label>Create New Tree</label>
                                 <input class="form-control" type="text" name="title" placeholder="Enter name of new tree" >
                             </div>
-                            @isset($tree)
-                                <small class="form-text text-muted">Selecting "Clone New Tree" creates a new tree based on current shared tree that is being viewed</small>
-                            @endisset                        
+                                <small class="form-text text-muted">Create a fresh new tree that has no prior links.</small>             
                         </div>
                         <div class="editContent">
                             <div class="editContentButton">
-                                @isset($tree)
-                                <button class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; submitForm('/{{ $tree->id }}/clone-tree')">Clone New Tree</button>
-                                @endisset
-                                <button class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; submitForm('/tree/new-tree')">New Tree</button>                            
+                                <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">New Tree</button>                            
                             </div>
                         </div>
                     </div>
-                    @isset($tree)
-                    <div class="appear midContainer">
-                        <div class="appear double midContainerContent">
-                            <div class="form-group">
-                                {!! Form::label('Add To Tree') !!}
-                                {!! Form::select('userTreeId', $selectUserTrees, old('userTreeId'), ['class'=>'form-control', 'placeholder'=>'Select Tree To Add To']) !!}
-                            </div>
-                            <small class="form-text text-muted">Selecting "Add To Tree" adds the current tree that is being viewed to your selected tree</small>                       
-                        </div>
-                        <div class="editContent">
-                            <div class="editContentButton">
-                                <button class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; submitForm('/{{ $tree->id }}/add-tree')">Add To Tree</button>
-                            </div>
-                        </div>
-                    </div>
-                    @endisset($tree) 
                 </form>
             </div>
         </div>       

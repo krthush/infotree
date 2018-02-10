@@ -72,6 +72,8 @@
 
 		<ul>
 
+			<li>Make it clearer which parts are being seen by other users (global vs shared vs e.t.c) - especially on leaf pages</li>
+
         	<li>Add in "duplicate" branch option, to be able to let users copy branches</li>
 
 			<li>Make errors on forms consist, atm double errors shown - some in form and some as closeable box</li>

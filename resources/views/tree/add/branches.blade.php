@@ -22,7 +22,7 @@
 
 <div class="alert alert-info alert-dismissable">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-    <strong>Add Branches under {{ $tree->title }}!</strong> Please select a branch or the tree to add to... or<a href="{{ route('tree', $tree) }}"> click here </a>to go back!
+    <strong>Add Branches under {{ $tree->title }}!</strong> Please select a branch or the tree to add to.
 </div>
 
 <div class="midContainer">
@@ -34,12 +34,14 @@
         <div id="jstree">
             <ul>
                 @foreach($branches as $branch)
+                    @if(in_array($branch->tree_id, $arrayOfTreeIDs))
                     <li class="leaf">
                         <a href="" data-toggle="modal" data-target="#{{ $branch->id }}">{{ $branch->title }}</a>
                         @if(count($branch->childs))
                             @include('tree.add.children',['childs' => $branch->childs])
                         @endif
                     </li>
+                    @endif
                 @endforeach
             </ul>
         </div>

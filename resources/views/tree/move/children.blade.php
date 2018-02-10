@@ -1,15 +1,16 @@
 <ul>
 @foreach($childs as $child)
 	@if(in_array($child->tree_id, $arrayOfTreeIDs))
-	<li class="leaf">
-	    <a href="" data-toggle="modal" data-target="#{{ $child->id }}">
+	<li class="leaf" id="{{ $child->id }}" >
+	    <a href="/branches/{{ $child->id }}">
 	    	{{ $child->title }}
 	    	@if($child->tree_id!=$tree->id)
 	            <b> - linked</b>
             @endif
+	    	<p class="hiddenText">{{ $child->id }}</p>
 	    </a>
 		@if(count($child->childs))
-            @include('tree.rename.children',['childs' => $child->childs])
+            @include('tree.move.children',['childs' => $child->childs])
         @endif
 	</li>
 	@endif

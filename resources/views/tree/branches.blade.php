@@ -111,22 +111,48 @@
                         </button>
                     </div>
                 @endif                
+            @endif
 
-                @if ($favourite === 0)
-                    <div class="midHeaderButton" data-toggle="tooltip" title="Favourite Tree">
-                        <div class="hidden">
-                            <form id="favouriteTreeForm" action="/{{ $tree->id }}/favourite-tree" method="POST">
-                                {{ csrf_field() }}
-                                <input name="_method" type="hidden" value="PATCH">
-                                <input type="text" name="id" value="{{ $tree->id }}" readonly>
-                            </form>
-                        </div>
-                        <button class="btn btn-primary" type="submit" form="favouriteTreeForm" value="Submit">
-                            <span class="glyphicon glyphicon-star"></span>
-                        </button>
-                    </div>
-                @endif
+            @if($favouriteID!=$tree->id)
+            <div class="midHeaderButton" data-toggle="tooltip" title="Favourite Tree">
+                <div class="hidden">
+                    <form id="favouriteTreeForm" action="{{ route('favourite-tree', $tree)}}" method="POST">
+                        {{ csrf_field() }}
+                        <input name="_method" type="hidden" value="PATCH">
+                        <input type="text" name="id" value="{{ $tree->id }}" readonly>
+                    </form>
+                </div>
+                <button class="btn btn-primary" type="submit" form="favouriteTreeForm" value="Submit">
+                    <span class="glyphicon glyphicon-heart"></span>
+                </button>
+            </div>
+            @endif
 
+            <div class="midHeaderButton" data-toggle="tooltip" title="Link Tree">
+                <a data-toggle="modal" data-target="#linkTree">
+                    <button class="btn btn-primary" type="button">
+                        <span class="glyphicon glyphicon-link"></span>
+                    </button>
+                </a>
+            </div>
+
+            <div class="midHeaderButton" data-toggle="tooltip" title="Copy Tree">
+                <a data-toggle="modal" data-target="#copyTree">
+                    <button class="btn btn-primary" type="button">
+                        <span class="glyphicon glyphicon-duplicate"></span>
+                    </button>
+                </a>
+            </div>
+
+            <div class="midHeaderButton" data-toggle="tooltip" title="Add Tree">
+                <a data-toggle="modal" data-target="#addTree">
+                    <button class="btn btn-primary" type="button">
+                        <span class="glyphicon glyphicon-open-file"></span>
+                    </button>
+                </a>
+            </div>
+
+            @if ($edit === 1)
                 <div class="midHeaderButton" data-toggle="tooltip" title="Edit Tree">
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -152,12 +178,14 @@
         <div id="jstree">
             <ul>
                 @foreach($branches as $branch)
+                    @if(in_array($branch->tree_id, $arrayOfTreeIDs))
                     <li class="leaf">
                         <a href="/branches/{{ $branch->id }}">{{ $branch->title }}</a>
                         @if(count($branch->childs))
                             @include('tree.showBranchChildren',['childs' => $branch->childs])
                         @endif
                     </li>
+                    @endif
                 @endforeach
             </ul>
         </div> 
@@ -194,35 +222,6 @@
         </div>
     @endif
 @endif
-
-<!-- editFact Modal -->
-<div class="modal fade" id="editDesc" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- editFact Modal content-->
-      <div class="modal-content">
-        <div class="modal-body">
-              <form method="POST" action="{{ route('description-tree', $tree) }}">
-                {{ csrf_field() }}
-                {{ method_field('PATCH') }}
-                  <div class="appear midContainerContent">
-                    <div class="form-group">
-                      <label>Edit Description</label>                      
-                      <input id="description" name="description" class="form-control" placeholder="Please enter description here" ></input>
-                    </div>
-                    <small class="form-text text-muted">Please enter a description shorter than 10 words</small>
-                  </div>
-                  <div class="editContent">
-                    <div class="editContentButton">
-                      <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Submit</button>
-                    </div>
-                  </div> 
-            </form>
-        </div>
-      </div>
-      
-    </div>
-</div>
 
 <div class="topStack midHeader hidden-md hidden-lg hidden-sm">
     <div class="midContainerHeader">
@@ -314,22 +313,59 @@
                         </button>
                     </div>
                 @endif
+            @endif
 
-                @if ($favourite === 0)
-                    <div class="midHeaderButton" data-toggle="tooltip" title="Favourite Tree">
-                        <div class="hidden">
-                            <form id="favouriteTreeForm" action="/{{ $tree->id }}/favourite-tree" method="POST">
-                                {{ csrf_field() }}
-                                <input name="_method" type="hidden" value="PATCH">
-                                <input type="text" name="id" value="{{ $tree->id }}" readonly>
-                            </form>
-                        </div>
-                        <button class="btn btn-primary" type="submit" form="favouriteTreeForm" value="Submit">
-                            <span class="glyphicon glyphicon-star"></span>
-                        </button>
-                    </div>
-                @endif
+            @if($favouriteID!=$tree->id)
+            <div class="midHeaderButton" data-toggle="tooltip" title="Favourite Tree">
+                <div class="hidden">
+                    <form id="favouriteTreeForm" action="{{ route('favourite-tree', $tree)}}" method="POST">
+                        {{ csrf_field() }}
+                        <input name="_method" type="hidden" value="PATCH">
+                        <input type="text" name="id" value="{{ $tree->id }}" readonly>
+                    </form>
+                </div>
+                <button class="btn btn-primary" type="submit" form="favouriteTreeForm" value="Submit">
+                    <span class="glyphicon glyphicon-heart"></span>
+                </button>
+            </div>
+            @endif
 
+            <div class="midHeaderButton" data-toggle="tooltip" title="Link Tree">
+                <div class="hidden">
+                    <form id="linkTreeForm" action="{{ route('link-tree', $tree)}}" method="POST">
+                        {{ csrf_field() }}
+                        <input type="text" name="id" value="{{ $tree->id }}" readonly>
+                    </form>
+                </div>
+                <button class="btn btn-primary" type="submit" form="linkTreeForm" value="Submit">
+                    <span class="glyphicon glyphicon-link"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="topStack midHeader hidden-md hidden-lg hidden-sm">
+    <div class="midContainerHeader">        
+        <div class="midContainerHeaderButtonContainer hidden-lg hidden-md hidden-sm">
+
+            <div class="midHeaderButton" data-toggle="tooltip" title="Copy Tree">
+                <a data-toggle="modal" data-target="#copyTree">
+                    <button class="btn btn-primary" type="button">
+                        <span class="glyphicon glyphicon-duplicate"></span>
+                    </button>
+                </a>
+            </div>
+
+            <div class="midHeaderButton" data-toggle="tooltip" title="Add Tree">
+                <a data-toggle="modal" data-target="#addTree">
+                    <button class="btn btn-primary" type="button">
+                        <span class="glyphicon glyphicon-open-file"></span>
+                    </button>
+                </a>
+            </div>
+
+            @if ($edit === 1)
                 <div class="midHeaderButton" data-toggle="tooltip" title="Edit Tree">
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
@@ -359,6 +395,122 @@
 
         </div>                    
     </div>             
+</div>
+
+<!-- MODALS -->
+
+<!-- editFact Modal -->
+<div class="modal fade" id="editDesc" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- editFact Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+              <form method="POST" action="{{ route('description-tree', $tree) }}">
+                {{ csrf_field() }}
+                {{ method_field('PATCH') }}
+                  <div class="appear midContainerContent">
+                    <div class="form-group">
+                      <label>Edit Description</label>                      
+                      <input id="description" name="description" class="form-control" placeholder="Please enter description here" ></input>
+                    </div>
+                    <small class="form-text text-muted">Please enter a description shorter than 10 words</small>
+                  </div>
+                  <div class="editContent">
+                    <div class="editContentButton">
+                      <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Submit</button>
+                    </div>
+                  </div> 
+            </form>
+        </div>
+      </div>
+      
+    </div>
+</div>
+
+<div class="modal fade" id="copyTree" role="dialog">
+    <div class="modal-dialog">
+      <!-- newTree Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <form id="copyTreeForm" name="copyTreeForm" method="POST" onsubmit="" onreset="" action="{{ route('clone-tree', $tree) }}">
+                    {{ csrf_field() }}
+                    <div class="appear midContainer">
+                        <div class="appear midContainerContent">
+                            <div class="form-group">
+                                <label>Copy Current Tree</label>
+                                <input class="form-control" type="text" name="title" placeholder="Enter name of new tree" >
+                            </div>
+                            <small class="form-text text-muted">
+                                This creates a new tree <b>unlinked</b> based on current tree that is being viewed. Changes to original tree will not be tracked but tree can be fully edited.
+                            </small>                        
+                        </div>
+                        <div class="editContent">
+                            <div class="editContentButton">
+                                <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Copy Tree</button>                       
+                            </div>
+                        </div>
+                    </div> 
+                </form>
+            </div>
+        </div>       
+    </div>
+</div>
+
+<div class="modal fade" id="addTree" role="dialog">
+    <div class="modal-dialog">
+      <!-- addTree Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <form id="addTreeForm" name="addTreeForm" method="POST" onsubmit="" onreset="" action="{{ route('add-tree', $tree) }}">
+                    {{ csrf_field() }}
+                    <div class="appear midContainer">
+                        <div class="appear midContainerContent">
+                            <div class="form-group">
+                                {!! Form::label('Add To Tree') !!}
+                                {!! Form::select('userTreeId', $selectUserTrees, old('userTreeId'), ['class'=>'form-control', 'placeholder'=>'Select Tree To Add To']) !!}
+                            </div>
+                            <small class="form-text text-muted">Add the current tree <b>(unlinked)</b> that is being viewed to a selected tree. Changes to original tree will not be tracked but tree can be fully edited.</small>                       
+                        </div>
+                        <div class="editContent">
+                            <div class="editContentButton">
+                                <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Add Tree</button>
+                            </div>
+                        </div>
+                    </div> 
+                </form>
+            </div>
+        </div>       
+    </div>
+</div>
+
+<div class="modal fade" id="linkTree" role="dialog">
+    <div class="modal-dialog">
+      <!-- linkTree Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <form id="linkTreeForm" name="linkTreeForm" method="POST" onsubmit="" onreset="" action="{{ route('link-tree', $tree) }}">
+                    {{ csrf_field() }}
+                    <div class="appear midContainer">
+                        <div class="appear midContainerContent">
+                            <div class="form-group">
+                                <label>Link Current Tree</label>
+                                <input class="form-control" type="text" name="title" placeholder="Enter name of new tree" >
+                            </div>
+                            <small class="form-text text-muted">
+                                This creates a new tree <b>linked</b> based on current tree that is being viewed. Changes to original tree will be tracked but tree can not be fully edited.
+                            </small>                        
+                        </div>
+                        <div class="editContent">
+                            <div class="editContentButton">
+                                <button type="submit" class="btn btn-primary" onclick="this.disabled=true;this.value='Submitting...'; this.form.submit();">Link Tree</button>                       
+                            </div>
+                        </div>
+                    </div> 
+                </form>
+            </div>
+        </div>       
+    </div>
 </div>
 
 <script>

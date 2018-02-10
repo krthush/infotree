@@ -85,6 +85,7 @@ Route::post('/tree/new-tree','TreeController@store')->name('new-tree');
 Route::post('/{tree}/clone-tree','TreeController@clone')->name('clone-tree');
 Route::post('/{tree}/add-tree','TreeController@add')->name('add-tree');
 Route::delete('/tree/delete-tree','TreeController@destroy')->name('delete-tree');
+Route::post('/{tree}/link-tree','TreeController@link')->name('link-tree');
 Route::patch('/{tree}/favourite-tree','TreeController@favourite')->name('favourite-tree');
 Route::patch('/{tree}/share-tree','TreeController@share')->name('share-tree');
 Route::patch('/{tree}/global-tree','TreeController@global')->name('global-tree');

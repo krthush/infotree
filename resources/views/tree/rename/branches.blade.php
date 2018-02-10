@@ -50,12 +50,19 @@
         <div id="jstree">
             <ul>
                 @foreach($branches as $branch)
+                    @if(in_array($branch->tree_id, $arrayOfTreeIDs))
                     <li class="leaf">
-                        <a href="" data-toggle="modal" data-target="#{{ $branch->id }}">{{ $branch->title }}</a>
+                        <a href="" data-toggle="modal" data-target="#{{ $branch->id }}">
+                            {{ $branch->title }}
+                            @if($branch->tree_id!=$tree->id)
+                            <b> - linked</b>
+                            @endif
+                        </a>
                         @if(count($branch->childs))
                             @include('tree.rename.children',['childs' => $branch->childs])
                         @endif
                     </li>
+                    @endif
                 @endforeach
             </ul>
         </div>

@@ -10,7 +10,7 @@
                 </a>
             </div>
              <div class="midHeaderButton" data-toggle="tooltip" title="New Tree">
-                <a data-toggle="modal" data-target="#addTree">
+                <a data-toggle="modal" data-target="#newTree">
                     <button class="btn btn-primary" type="button">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
@@ -39,7 +39,7 @@
             </a>
         </div>
          <div class="midHeaderButton" data-toggle="tooltip" title="New Tree">
-            <a data-toggle="modal" data-target="#addTree">
+            <a data-toggle="modal" data-target="#newTree">
                 <button class="btn btn-primary" type="button">
                     <span class="glyphicon glyphicon-plus"></span>
                 </button>

@@ -33,10 +33,9 @@ class TreeController extends Controller
 
         if ($myTree) {
             return redirect(route('tree', $myTree));
-        } elseif ($uniTree) {
-            return redirect(route('tree', $uniTree))->withErrors(['You have no favourite tree, please create or select one!']);;
         } else {
-            return redirect(route('welcome'))->withErrors(['You have no favourite tree, please create or select one!']);
+            $topTree = \App\Tree::where('shared',true)->where('university','!=',true)->orderBy('likes','desc')->first();
+            return redirect(route('tree', $topTree->id))->withErrors(['You have no favourite tree, please create or select one!']);
         }
 
     }
@@ -60,7 +59,12 @@ class TreeController extends Controller
         $user = auth()->user();
         $userID = $user->getAuthIdentifier();
 
-        $branches = Branch::where('tree_id',$tree->id)->where('parent_id',0)->get();
+        //include current tree and all its parents, SEE getParentsAttribute() TREE MODEL
+        $arrayOfTreeIDs = $tree->parents->pluck('id')->toArray();
+        array_push($arrayOfTreeIDs, $tree->id);
+        // branches to contain all branches of all trees - main tree then its heirachy upwards
+        $branches = Branch::whereIn('tree_id', $arrayOfTreeIDs)->where('parent_id',0)->get();
+
         $global = $tree->global;
         $shared = $tree->shared;
 
@@ -70,20 +74,31 @@ class TreeController extends Controller
             $empty = 0;
         }
 
+        $selectUserTrees=Tree::where('user_id',$userID)->pluck('title','id')->all();
+
+        $favourite=Tree::where('user_id',$userID)->where('favourite', 1)->first();
+
+        if ($favourite) {
+            $favouriteID = $favourite->id;
+        } else {
+            $favouriteID = 0;
+        }
+
     	if ($tree->user_id === $userID || $user->hasRole('admin')) {
 
     		$edit = 1;
-            $favourite = $tree->favourite;
 
     		return view(
 	            'tree.branches',
 	            compact(
 	                'tree',
+                    'arrayOfTreeIDs',
+                    'selectUserTrees',
 	                'branches',
                     'empty',
 	            	'edit',
 	            	'shared',
-                    'favourite',
+                    'favouriteID',
                     'global'
 	            )
 	        );
@@ -96,10 +111,13 @@ class TreeController extends Controller
 	            'tree.branches',
 	            compact(
 	                'tree',
+                    'arrayOfTreeIDs',
+                    'selectUserTrees',
 	                'branches',
                     'empty',
 	            	'edit',
 	            	'shared',
+                    'favouriteID',
                     'global'
 	            )
 	        );
@@ -170,19 +188,17 @@ class TreeController extends Controller
         $tree = Tree::findOrFail(request()->id);
         $tree_id = request()->id;
 
+        // Getting all children ids of Tree being deleted
+        $array_of_ids = $this->getChildren($tree);
+        // Appending the parent category id
+        array_push($array_of_ids, request()->id);
+
 
         if ($tree->user_id === $userID || $user->hasRole('admin')) {
-            // Semi Bug. Admins can destroy UNIVERSITY trees if they manage to send the request
-            $branches = Branch::where('tree_id',$tree_id)->get();
 
-            foreach ($branches as $branch) {
-                $branch->leaves()->delete();
-            }
-
-            Branch::where('tree_id',$tree_id)->delete();
-            Leaf::where('tree_id',$tree_id)->delete();
-
-            $tree->delete();
+            Branch::whereIn('tree_id',$array_of_ids)->delete();
+            Leaf::whereIn('tree_id',$array_of_ids)->delete();
+            Tree::whereIn('id',$array_of_ids)->delete();
 
             return redirect(route('home'))->with('success', 'Tree has been deleted');
 
@@ -196,8 +212,17 @@ class TreeController extends Controller
 
     }
 
-    /* not very efficient code -> long load time */
-    public function clone(Tree $tree) {
+    // for destroy function
+    private function getChildren($tree) {
+        $ids = [];
+        foreach ($tree->childs as $tre) {
+            $ids[] = $tre->id;
+            $ids = array_merge($ids, $this->getChildren($tre));
+        }
+        return $ids;
+    }
+
+    public function link(Tree $tree) {
 
         $this->validate(request(), [
                 'title' => 'required',
@@ -218,12 +243,50 @@ class TreeController extends Controller
 
             'user_id' => $userID,
 
-            'university' => $university
+            'university' => $university,
+
+            'parent_id' => $tree->id
 
         ]);
 
-        $treeBranches = Branch::where('tree_id',$tree->id)->get();
-        $treeLeaves = Leaf::where('tree_id', $tree->id)->get();
+        $insertedId = $newTree->id;
+
+        if ($university === true) {
+            return redirect(route('tree', $insertedId))->with('success', 'New linked uni tree added successfully.');
+        } else {
+            return redirect(route('tree', $insertedId))->with('success', 'New linked tree added successfully.');
+        }
+            
+    }
+    
+    /* not very efficient code -> long load time */
+    public function clone(Tree $tree) {
+
+        $this->validate(request(), [
+                'title' => 'required',
+        ]);
+
+        $user = auth()->user();
+        $userID = $user->getAuthIdentifier();
+
+        if ($userID === 1) {
+            $university = true;
+        } else {
+            $university = false;
+        }
+
+        $newTree = Tree::create([
+            'title' => request('title'),
+            'user_id' => $userID,
+            'university' => $university
+        ]);
+
+        //include current tree and all its parents, SEE getParentsAttribute() TREE MODEL
+        $arrayOfTreeIDs = $tree->parents->pluck('id')->toArray();
+        array_push($arrayOfTreeIDs, $tree->id);
+        // branches to contain all branches of all trees - main tree then its heirachy upwards
+        $treeBranches = Branch::whereIn('tree_id', $arrayOfTreeIDs)->get();
+        $treeLeaves = Leaf::whereIn('tree_id', $arrayOfTreeIDs)->get();
 
         foreach ($treeBranches as $branch) {
             $newBranch = $branch->replicate();
@@ -232,7 +295,7 @@ class TreeController extends Controller
             $newBranch->parent_id = $branch->id;
             $newBranch->parent_orig_id = $branch->parent_id;
             $newBranch->save();
-        }            
+        }         
 
         foreach ($treeLeaves as $leaf) {
             $newLeaf = $leaf->replicate();
@@ -242,23 +305,18 @@ class TreeController extends Controller
         }
 
         $newLeaves = Leaf::where('tree_id',$newTree->id)->get();
-
         $newBranches = Branch::where('tree_id',$newTree->id)->orderBy('id','desc')->get();
 
         foreach ($newLeaves as $newLeaf) {
-
             $parent = Branch::where('tree_id',$newTree->id)->where('parent_id','=',$newLeaf->parent_id)->first();
             if ($parent) {
                 $newLeaf->parent_id = $parent->id;
                 $newLeaf->save();
             }
-
         }
 
         foreach ($newBranches as $newBranch) {
-
             $parent = Branch::where('tree_id',$newTree->id)->where('parent_id','=',$newBranch->parent_orig_id)->first();
-
             if ($parent) {
                 $newBranch->parent_id = $parent->id;
                 $newBranch->save();
@@ -277,7 +335,6 @@ class TreeController extends Controller
 
         ]);
 
-
         $insertedId = $newTree->id;
 
         if ($university === true) {
@@ -286,7 +343,7 @@ class TreeController extends Controller
             return redirect(route('tree', $insertedId))->with('success', 'New cloned tree added successfully.');
         }
             
-    }    
+    }
 
     /* Somewhat unelegant code based on clone code, wasted time creating pseudo new tree */
     public function add(Tree $tree) {
@@ -411,10 +468,44 @@ class TreeController extends Controller
             return back()->with('success', 'Tree has been favourited.');
 
         } else {
-            return back()->withErrors([
-                'You can only favourite your own tree.',
-                'Please create a new clone tree and favourite it instead!'
+
+            if ($userID === 1) {
+                $university = true;
+            } else {
+                $university = false;
+            }
+
+            $newTree = Tree::create([
+
+                'title' => $tree->title,
+
+                'user_id' => $userID,
+
+                'university' => $university,
+
+                'parent_id' => $tree->id
+
             ]);
+
+            $insertedId = $newTree->id;
+
+            Tree::where('user_id',$userID)->update([
+
+                'favourite' => false
+
+            ]);
+
+            Tree::where('id',$insertedId)->update([
+
+                'favourite' => true
+
+            ]);
+
+            if ($university === true) {
+                return redirect(route('tree', $insertedId))->with('success', 'New linked uni tree added and favourited successfully.');
+            } else {
+                return redirect(route('tree', $insertedId))->with('success', 'New linked tree added and favourited successfully.');
+            }
         }
 
     }
@@ -540,7 +631,10 @@ class TreeController extends Controller
 
         } else {
 
-            return redirect(route('home'))->withErrors(['This tree is not yours to edit!']);
+            return back()->withErrors([
+                'You can only edit the description for your own tree.',
+                'Please create a new unlinked tree and do your edits there!'
+            ]);
 
         }
 
@@ -568,8 +662,8 @@ class TreeController extends Controller
 
         } else {
             return back()->withErrors([
-                'You can only edit your own branches and tree.',
-                'Please create a new clone tree and do your edits there!'
+                'You can only edit the name your own branches and tree.',
+                'Please create a new unlinked tree and do your edits there!'
             ]);
         }
 

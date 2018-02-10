@@ -22,7 +22,12 @@
 
 <div class="alert alert-info alert-dismissable">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-    <strong>Move {{ $tree->title }}'s Branches!</strong> Please move branches and submit to store changes... or <a href="{{ route('tree', $tree) }}"> click here </a>to go back!
+    <strong>Move {{ $tree->title }}'s Branches!</strong> Please move branches and submit to store changes.
+</div>
+
+<div class="alert alert-danger alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+    <strong>You cannot move linked branches.</strong> Any changes made to linked branches will be ignored.
 </div>
 
 <div class="midContainer">
@@ -32,12 +37,19 @@
         <div id="jstree">
             <ul>
                 @foreach($branches as $branch)
+                    @if(in_array($branch->tree_id, $arrayOfTreeIDs))
                     <li class="leaf" id="{{ $branch->id }}">
-                        <a href="branches/{{ $branch->id }}">{{ $branch->title }}</a>
+                        <a href="branches/{{ $branch->id }}">
+                            {{ $branch->title }}
+                            @if($branch->tree_id!=$tree->id)
+                                <b> - linked</b>
+                            @endif
+                        </a>
                         @if(count($branch->childs))
-                            @include('tree.showBranchChildren',['childs' => $branch->childs])
+                            @include('tree.move.children',['childs' => $branch->childs])
                         @endif
                     </li>
+                    @endif
                 @endforeach
             </ul>
         </div>

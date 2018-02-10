@@ -31,6 +31,7 @@ class Leaf extends Model
     {
         return $this->belongsTo(Profile::class);
     }
+
     // public function searchableAs()
     // {
     //     return 'leaves_index';

@@ -43,10 +43,24 @@ class AppServiceProvider extends ServiceProvider
 
             }
 
+            $myTree = \App\Tree::where('user_id',$userID)->where('favourite',true)->first();
+
+            $view->with('myTree',$myTree);
             $view->with('filteredSharedTrees',$filteredSharedTrees);
             $view->with('userTrees',\App\Tree::where('user_id',$userID)->get());
             $view->with('selectUserTrees',\App\Tree::where('user_id',$userID)->pluck('title','id')->all());
             $view->with('uniTrees',\App\Tree::where('shared',true)->where('university',true)->get());
+
+        });
+
+        view()->composer('layouts.leftSidebar', function($view) {
+
+            $user = auth()->user();
+            $userID = $user->getAuthIdentifier();
+
+            $myTree = \App\Tree::where('user_id',$userID)->where('favourite',true)->first();
+       
+            $view->with('myTree',$myTree);
 
         });
 

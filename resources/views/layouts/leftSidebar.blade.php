@@ -1,12 +1,21 @@
 <div class="col-md-2 smallpadding">
     @isset($infoContents)
     <div class="panel-group hidden-sm hidden-xs" aria-multiselectable="true">
-      <div class="panel panel-default">
-        <a href="{{ route('tree', $tree) }}" class="sidebarButtons" id="sidebarButton1">{{ $tree->title }}</a>
-        <div id="sidebarContent1" class="panel-collapse collapse">
-          <div class="panel-body">Return To Current Tree</div>
-        </div>
-      </div>
+      @isset($myTree)
+          <div class="panel panel-default">
+            <a href="{{ route('mytree') }}" class="sidebarButtons" id="sidebarButton1">My Tree</a>
+            <div id="sidebarContent1" class="panel-collapse collapse">
+              <div class="panel-body">Navigate to your favourite tree "{{ $myTree->title }}"</div>
+            </div>
+          </div>
+      @else
+        <div class="panel panel-default">
+          <a href="{{ route('tree', $tree) }}" class="sidebarButtons" id="sidebarButton1">{{ $tree->title }}</a>
+          <div id="sidebarContent1" class="panel-collapse collapse">
+            <div class="panel-body">Return To Current Tree</div>
+          </div>
+        </div>      
+      @endisset
     </div>
     <div class="midContainer hidden-sm hidden-xs">
       <div class="midContainerHeader">
@@ -19,25 +28,36 @@
         <div id="jstreeSidebar">
           <ul>
               @foreach($branches as $branch)
+                  @if(in_array($branch->tree_id, $arrayOfTreeIDs))
                   <li class="leaf" id="{{ $branch->id }}">
                       <a href="/branches/{{ $branch->id }}">{{ $branch->title }}<p class="hiddenText">{{ $branch->id }}</p></a>
                       @if(count($branch->childs))
                           @include('tree.showBranchChildren',['childs' => $branch->childs])
                       @endif
                   </li>
+                  @endif
               @endforeach
           </ul>
         </div>
       </div>
     </div>      
     @else
-        <div class="panel-group hidden-sm hidden-xs" aria-multiselectable="true">    
+        <div class="panel-group hidden-sm hidden-xs" aria-multiselectable="true">
+        @isset($myTree)
+            <div class="panel panel-default">
+              <a href="{{ route('mytree') }}" class="sidebarButtons" id="sidebarButton1">My Tree</a>
+              <div id="sidebarContent1" class="panel-collapse collapse">
+                <div class="panel-body">Navigate to your favourite tree "{{ $myTree->title }}"</div>
+              </div>
+            </div>
+        @else            
           <div class="panel panel-default">
             <a href="{{ route('mytree') }}" class="sidebarButtons" id="sidebarButton1">My Tree</a>
             <div id="sidebarContent1" class="panel-collapse collapse">
-              <div class="panel-body">Navigate to your favourite Tree</div>
+              <div class="panel-body">Please set a favourite tree.</div>
             </div>
-          </div>  
+          </div>
+        @endisset  
           <div class="panel panel-default">
             <a href="{{ route('trees') }}" class="sidebarButtons" id="sidebarButton2">All Trees</a>
             <div id="sidebarContent2" class="panel-collapse collapse">

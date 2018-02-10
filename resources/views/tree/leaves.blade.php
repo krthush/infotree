@@ -25,25 +25,21 @@
             <div class="midContainerHeader">
                 <div class="midContainerHeaderText">{{ $branch->title }}</div>        
             </div>
-        </div>
-        @if ($edit === 'edit')        
+        </div>       
         <div class="padLeft topStack">
             Please <a href="" data-toggle="modal" data-target="#editFact">click here</a> if you would like to add some facts for {{ $branch->title }}
-        </div>
-        @endif    
+        </div>    
 @else
 <div class="midContainer">
 	<div class="midContainerHeader">
     	<div class="midContainerHeaderText">{{ $branch->title }}</div>        
     </div>
-    <div class="{{ $edit }} midContainerContent">
+    <div class="edit midContainerContent">
         {!! nl2br(e($branch->facts)) !!}
     </div>
-        @if ($edit === 'edit')
             <div class="editContent">
                 <div class="editContentButton"><a href="" data-toggle="modal" data-target="#editFact">Edit</a></div>
             </div>
-        @endif 
 </div>
 @endif
 
@@ -60,9 +56,10 @@
     <div class="midContainerHeader">
         <div class="midContainerHeaderText">Folders</div>
     </div>
-    <div class="{{ $edit }} midContainerContent">
+    <div class="edit midContainerContent">
         <div class="icons container">
             @foreach($childBranches as $childbranch)
+                @if(in_array($childbranch->tree_id, $arrayOfTreeIDs))
                 <div class="col-sm-4 folder">
                     <a class="rawLink" href="{{ route('leaves', $childbranch->id) }}" >
                         <div class="icon">
@@ -70,7 +67,8 @@
                             <h4>{{ $childbranch->title }}</h4>
                         </div>
                     </a>
-                </div>                        
+                </div>
+                @endif                        
             @endforeach
         </div>                    
     </div>
@@ -87,7 +85,7 @@
         @if($infoContentAdds->count()==0)
             <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addAdd">Add Additional Content</a></div>
         @endif
-    </div>               
+    </div>             
 </div>
 @else
 <div class="editButtonsOutside midContainer">
@@ -115,7 +113,7 @@
         	<div class="midContainerHeader">
             	<div class="midContainerHeaderText">Educational Content</div>
             </div>
-            <div class="{{ $edit }} midContainerContent">
+            <div class="edit midContainerContent">
             	<div class="icons container">
                     @foreach($infoContents as $infoContent)
                             <a class="rawLink" href="{{ $infoContent->link }}" target="_blank">
@@ -130,13 +128,11 @@
                     @endif
                 </div>                    
             </div>
-                @if ($edit === 'edit')
                     <div class="editContent">
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#renEdu">Rename</a></div>
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#delEdu">Delete</a></div>
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addEdu">Add</a></div>
-                    </div>
-                @endif                
+                    </div>                
         </div>
  	</div>
 @endif
@@ -147,7 +143,7 @@
             <div class="midContainerHeader">
                 <div class="midContainerHeaderText">Teaching Videos / Animations / Pictures</div>
             </div>
-            <div class="{{ $edit }} midContainerContent">
+            <div class="edit midContainerContent">
                 <div class="icons container">
                     @foreach($infoVideos as $infoVideo)
                             <a class="rawLink" href="{{ $infoVideo->link }}" target="_blank">
@@ -162,13 +158,11 @@
                     @endif
                 </div>
             </div>
-            @if ($edit === 'edit')
                 <div class="editContent">
                     <div class="editContentButton"><a href="" data-toggle="modal" data-target="#renVid">Rename</a></div>
                     <div class="editContentButton"><a href="" data-toggle="modal" data-target="#delVid">Delete</a></div>
                     <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addVid">Add</a></div>
-                </div>
-            @endif              
+                </div>            
         </div>
     </div>
 @endif
@@ -179,7 +173,7 @@
             <div class="midContainerHeader">
                 <div class="midContainerHeaderText">Problem Sets / Tutorials / Past Papers</div>
             </div>
-            <div class="{{ $edit }} midContainerContent">
+            <div class="edit midContainerContent">
                 <div class="icons container">
                     @foreach($infoTutorials as $infoTutorial)
                             <a class="rawLink" href="{{ $infoTutorial->link }}" target="_blank">
@@ -194,13 +188,11 @@
                     @endif
                 </div>                    
             </div>
-                @if ($edit === 'edit')
                     <div class="editContent">
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#renTut">Rename</a></div>
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#delTut">Delete</a></div>
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addTut">Add</a></div>
-                    </div>
-                @endif                
+                    </div>           
         </div>
     </div>
 @endif
@@ -211,7 +203,7 @@
             <div class="midContainerHeader">
                 <div class="midContainerHeaderText">Further Reading / Additional Information</div>
             </div>
-            <div class="{{ $edit }} midContainerContent">
+            <div class="edit midContainerContent">
                 <ul class="list">
                     @foreach($infoContentAdds as $infoContentAdd)
                             <a class="rawLink" href="{{ $infoContentAdd->link }}" target="_blank">
@@ -226,13 +218,11 @@
                     @endif
                 </ul>
             </div>
-                @if ($edit === 'edit')
                     <div class="editContent">
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#renAdd">Rename</a></div>
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#delAdd">Delete</a></div>
                         <div class="editContentButton"><a href="" data-toggle="modal" data-target="#addAdd">Add</a></div>
-                    </div>
-                @endif                       
+                    </div>                  
         </div>
     </div>
 @endif
@@ -241,7 +231,7 @@
     <div class="midContainerHeader">
         <div class="midContainerHeaderText">Questions And Answers On {{ $branch->title }}</div>
     </div>
-    <div class="{{ $edit }} midContainerContent">
+    <div class="edit midContainerContent">
         <ul class="list">
             Under Construction
         </ul>
