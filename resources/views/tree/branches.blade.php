@@ -329,6 +329,13 @@
                 </button>
             </div>
             @endif
+        </div>
+    </div>
+</div>
+
+<div class="topStack midHeader hidden-md hidden-lg hidden-sm">
+    <div class="midContainerHeader">        
+        <div class="midContainerHeaderButtonContainer hidden-lg hidden-md hidden-sm">
 
             <div class="midHeaderButton" data-toggle="tooltip" title="Link Tree">
                 <div class="hidden">
@@ -341,13 +348,6 @@
                     <span class="glyphicon glyphicon-link"></span>
                 </button>
             </div>
-        </div>
-    </div>
-</div>
-
-<div class="topStack midHeader hidden-md hidden-lg hidden-sm">
-    <div class="midContainerHeader">        
-        <div class="midContainerHeaderButtonContainer hidden-lg hidden-md hidden-sm">
 
             <div class="midHeaderButton" data-toggle="tooltip" title="Copy Tree">
                 <a data-toggle="modal" data-target="#copyTree">
