@@ -30,9 +30,9 @@
 
         <ul>
 
-        	<li>Implement scraping plugin that searches through a blackboard account, checking for updates and then automatically imports them into infotree daily. There may exsist profiles for different types of websites, allowing for users to quickly setup website scraping and create trees.</li>
+        	<li>Creating mass rename leaf page so that branches + leaves can be all renamed in a few forms (will be a band aid to current search engine feature)</li>
 
-        	<li>Create an mini linked tree system</li>
+        	<li>Implement scraping plugin that searches through a blackboard account, checking for updates and then automatically imports them into infotree daily. There may exsist profiles for different types of websites, allowing for users to quickly setup website scraping and create trees.</li>
 
 		</ul>
 
@@ -45,8 +45,6 @@
         	<li>Stackover like idea: Add reputation that builds as users EFFECTIVELY user the website (create trees which are liked a lot, answer questions succesfully, etc.)</li>
 
         	<li>Bounty idea linked to reputation: Make users be able to put bounties up on specific questions - if users don't fairly manage bounties reputation takes a hit. Weightings of reputation will need to managed very carefully</li>
-
-        	<li>Github like idea: Add "linked" branches (e.g. users can link certain branches to university so that when they are updated, only they get updated but they can edit other branches - i.e. let users even link their whole tree to original tree</li>
 
         	<li>If linked branches/trees are introduced, let users suggest revisions - much like github</li>
 
@@ -99,6 +97,8 @@
 
 			<li>Need to fix div height issue on leaves page, see <a href="https://css-tricks.com/fluid-width-equal-height-columns/">css-tricks</a></li>
 
+			<li>Leaf widths get screwed up due to masonary plugin on small screens (phones)</li>
+
 			<li>Enterering is prevented on registration form so that users are forced to view modal with terms and conditions</li>
 
 		</ul>
@@ -138,6 +138,10 @@
 
 		<h3>FINISHED TASKS:</h3>
 		<ul>
+
+        	<li>Create an mini linked tree system</li>
+
+        	<li>Github like idea: Add "linked" branches (e.g. users can link certain branches to university so that when they are updated, only they get updated but they can edit other branches - i.e. let users even link their whole tree to original tree</li>
 
 			<li>Leaf page needs better UI in general, add editing overlay for leaf page (just one button on top left "edit") then all "add"s appear and Xs appear for deletion, also allow for reordering of list (maybe use sortable?) - this will also lead to CLEAN UP of multiple pages. Maybe add a feature where you can create "leaf types" so user can choose what type of information to collect together (like videos, lectures, etc)</li>
 

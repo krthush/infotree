@@ -112,6 +112,9 @@ Route::patch('/branches/{branch}','LeafController@fact')->name('fact-branch');
 Route::post('/branches/{branch}/leaves','LeafController@store');
 Route::delete('/branches/{branch}/leaves','LeafController@destroy')->name('delete-leaf');
 Route::patch('/branches/{branch}/leaves','LeafController@rename')->name('rename-leaf');
+Route::get('/{branch}/rename-all','LeafController@massRename')->name('mass-rename');
+Route::patch('/{branch}/rename-branches','LeafController@renameBranches')->name('rename-branches');
+Route::patch('/{branch}/rename-leaves','LeafController@renameLeaves')->name('rename-leaves');
 
 
 

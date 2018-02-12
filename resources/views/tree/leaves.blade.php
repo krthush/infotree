@@ -23,7 +23,19 @@
 @if ($empty === 1)
          <div class="stack midHeader">
             <div class="midContainerHeader">
-                <div class="midContainerHeaderText">{{ $branch->title }}</div>        
+                <div class="midContainerHeaderText">{{ $branch->title }}</div>
+                <div class="midContainerHeaderButtonContainer">
+                    <div class="midHeaderButton" data-toggle="tooltip" title="Edit Tree">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-edit">&ensp;</span><span class="caret"></span>
+                            </button>
+                          <ul class="dropdown-menu">
+                            <li><a href="{{ route('mass-rename',$branch) }}">Mass Rename</a></li>
+                          </ul>
+                        </div>
+                    </div>
+                </div>        
             </div>
         </div>       
         <div class="padLeft topStack">
@@ -32,7 +44,19 @@
 @else
 <div class="midContainer">
 	<div class="midContainerHeader">
-    	<div class="midContainerHeaderText">{{ $branch->title }}</div>        
+    	<div class="midContainerHeaderText">{{ $branch->title }}</div>
+        <div class="midContainerHeaderButtonContainer">
+            <div class="midHeaderButton" data-toggle="tooltip" title="Edit Tree">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-edit">&ensp;</span><span class="caret"></span>
+                    </button>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{ route('mass-rename',$branch) }}">Mass Rename</a></li>
+                  </ul>
+                </div>
+            </div>
+        </div>        
     </div>
     <div class="edit midContainerContent">
         {!! nl2br(e($branch->facts)) !!}
@@ -64,7 +88,7 @@
                     <a class="rawLink" href="{{ route('leaves', $childbranch->id) }}" >
                         <div class="icon">
                             <img src="/images/folder.png" class="img-circle">
-                            <h4>{{ $childbranch->title }}</h4>
+                            <h4 class="break-word">{{ $childbranch->title }}</h4>
                         </div>
                     </a>
                 </div>
@@ -149,7 +173,7 @@
                             <a class="rawLink" href="{{ $infoVideo->link }}" target="_blank">
                                 <div class="icon">
                                     <img src="/images/videocameraclassic.png" class="img-circle">
-                                    <h4>{{ $infoVideo->title }}</h4>
+                                    <h4 class="break-word">{{ $infoVideo->title }}</h4>
                                 </div>
                             </a>                       
                     @endforeach
@@ -179,7 +203,7 @@
                             <a class="rawLink" href="{{ $infoTutorial->link }}" target="_blank">
                                 <div class="icon">
                                     <img src="/images/compose.png" class="img-circle">
-                                    <h4>{{ $infoTutorial->title }}</h4>
+                                    <h4 class="break-word">{{ $infoTutorial->title }}</h4>
                                 </div>
                             </a>                       
                     @endforeach
@@ -209,7 +233,7 @@
                             <a class="rawLink" href="{{ $infoContentAdd->link }}" target="_blank">
                                 <div class="icon">
                                     <img src="/images/news.png" class="img-circle">
-                                    <h4>{{ $infoContentAdd->title }}</h4>
+                                    <h4 class="break-word">{{ $infoContentAdd->title }}</h4>
                                 </div>
                             </a>                      
                     @endforeach
