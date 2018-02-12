@@ -375,6 +375,9 @@ class LeafController extends Controller
         // flag to catch if user manages to edit linked branches
         $flag = false;
 
+        // original branch
+        $originalBranch = $branch;
+
         foreach ($data as $key => $value) {
 
             $id = substr($key, 7);
@@ -412,11 +415,11 @@ class LeafController extends Controller
 
         if ($flag==true) {
 
-            return back()->withErrors(['Some branches were not renamed since they are linked.']);
+            return redirect(route('leaves',$originalBranch))->withErrors(['Some branches were not renamed since they are linked.']);
 
         } else {
 
-            return back()->with('success', 'Names edited successfully.');
+            return redirect(route('leaves',$originalBranch))->with('success', 'Names edited successfully.');
 
         }
 
@@ -431,6 +434,9 @@ class LeafController extends Controller
 
         // flag to catch if user manages to edit linked branches
         $flag = false;
+
+        // original branch
+        $originalBranch = $branch;
 
         foreach ($data as $key => $value) {
 
@@ -469,11 +475,11 @@ class LeafController extends Controller
 
         if ($flag==true) {
 
-            return back()->withErrors(['Some leaves were not renamed since they are linked.']);
+            return redirect(route('leaves',$originalBranch))->withErrors(['Some leaves were not renamed since they are linked.']);
 
         } else {
 
-            return back()->with('success', 'Names edited successfully.');
+            return redirect(route('leaves',$originalBranch))->with('success', 'Names edited successfully.');
 
         }
 
