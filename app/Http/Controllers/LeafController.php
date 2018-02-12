@@ -402,6 +402,10 @@ class LeafController extends Controller
 
                 }                
 
+            } else {
+
+                $flag = true;
+
             }
 
         }
@@ -454,6 +458,10 @@ class LeafController extends Controller
                     $flag = true;
 
                 }                
+
+            } else {
+
+                $flag = true;
 
             }
 
