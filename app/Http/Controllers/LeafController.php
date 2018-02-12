@@ -216,10 +216,21 @@ class LeafController extends Controller
         $infoVideos = Leaf::where('parent_id',$id)->whereIn('tree_id', $arrayOfTreeIDs)->where('type','vid')->get();
         $infoContentAdds = Leaf::where('parent_id',$id)->whereIn('tree_id', $arrayOfTreeIDs)->where('type','add')->get();
 
-        $allInfoContents = Leaf::where('parent_id',$id)->whereIn('tree_id', $arrayOfTreeIDs)->where('type','edu')->pluck('title','id')->all();
-        $allInfoTutorials = Leaf::where('parent_id',$id)->whereIn('tree_id', $arrayOfTreeIDs)->where('type','tut')->pluck('title','id')->all();
-        $allInfoVideos = Leaf::where('parent_id',$id)->whereIn('tree_id', $arrayOfTreeIDs)->where('type','vid')->pluck('title','id')->all();
-        $allInfoContentAdds = Leaf::where('parent_id',$id)->whereIn('tree_id', $arrayOfTreeIDs)->where('type','add')->pluck('title','id')->all();
+        if ($user->hasRole('admin') || $tree->global === 1) {
+
+            $allInfoContents = Leaf::where('parent_id',$id)->whereIn('tree_id', $arrayOfTreeIDs)->where('type','edu')->pluck('title','id')->all();
+            $allInfoTutorials = Leaf::where('parent_id',$id)->whereIn('tree_id', $arrayOfTreeIDs)->where('type','tut')->pluck('title','id')->all();
+            $allInfoVideos = Leaf::where('parent_id',$id)->whereIn('tree_id', $arrayOfTreeIDs)->where('type','vid')->pluck('title','id')->all();
+            $allInfoContentAdds = Leaf::where('parent_id',$id)->whereIn('tree_id', $arrayOfTreeIDs)->where('type','add')->pluck('title','id')->all();
+
+        } else {
+
+            $allInfoContents = Leaf::where('user_id',$userID)->where('parent_id',$id)->whereIn('tree_id', $arrayOfTreeIDs)->where('type','edu')->pluck('title','id')->all();
+            $allInfoTutorials = Leaf::where('user_id',$userID)->where('parent_id',$id)->whereIn('tree_id', $arrayOfTreeIDs)->where('type','tut')->pluck('title','id')->all();
+            $allInfoVideos = Leaf::where('user_id',$userID)->where('parent_id',$id)->whereIn('tree_id', $arrayOfTreeIDs)->where('type','vid')->pluck('title','id')->all();
+            $allInfoContentAdds = Leaf::where('user_id',$userID)->where('parent_id',$id)->whereIn('tree_id', $arrayOfTreeIDs)->where('type','add')->pluck('title','id')->all();
+
+        }
 
         if ($branch->facts == '' ) {
             $empty = 1;
