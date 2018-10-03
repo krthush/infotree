@@ -47,7 +47,7 @@ class HomeController extends Controller
 
         }
 
-        $topTree = Tree::where('shared',true)->where('university','!=',true)->orderBy('likes','desc')->first();
+        $topTree = Tree::where('shared',true)->orderBy('likes','desc')->first();
         return redirect(route('tree', $topTree->id));
     }
 }
