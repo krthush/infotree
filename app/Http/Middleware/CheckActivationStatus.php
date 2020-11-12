@@ -16,9 +16,9 @@ class CheckActivationStatus
     public function handle($request, Closure $next)
     {
         // dd(auth()->user()->activated_at);
-        if (empty(auth()->user()->activated_at)) {
-            return redirect()->route('account.activation.request');
-        }
+        // if (empty(auth()->user()->activated_at)) {
+        //     return redirect()->route('account.activation.request');
+        // }
         return $next($request);
     }
 }
