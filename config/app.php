@@ -166,7 +166,6 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Cog\Laravel\Ban\Providers\BanServiceProvider::class,
-        Aacotroneo\Saml2\Saml2ServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
 
         /*
@@ -232,7 +231,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Saml2' => Aacotroneo\Saml2\Facades\Saml2Auth::class,
 
     ],
 
